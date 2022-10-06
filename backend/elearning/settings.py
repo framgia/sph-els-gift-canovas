@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     # third party packages
     "corsheaders",
     "rest_framework",
-    "rest_framework.authtoken"
+    "rest_framework.authtoken",
 
     # local apps
     "learnings",
