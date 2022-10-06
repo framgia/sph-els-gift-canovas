@@ -31,10 +31,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.staticfiles",
+
     # third party packages
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken"
+
     # local apps
     "learnings",
 ]
