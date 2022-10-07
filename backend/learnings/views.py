@@ -1,10 +1,25 @@
 from django.contrib.auth.models import User
 
 from rest_framework import generics
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 
 from .models import EUser
 from .serializers import EUserSerializer
+
+
+class LoginView(ObtainAuthToken):
+    def post(self, request):
+        data = request.data
+        username = data.get("username")
+        try:
+            user = User.objects.get(username=username)
+            get_token = Token.objects.get(user=user)
+            token = str(get_token)
+            return Response({"message": "Success", "token": token})
+        except Exception:
+            return Response({"message": "Failed"})
 
 
 class RegisterView(generics.CreateAPIView):
@@ -25,6 +40,6 @@ class RegisterView(generics.CreateAPIView):
         user = User.objects.create(
             username=username, email=email, first_name=firstname, last_name=lastname
         )
-
         user.set_password(password)
         user.save()
+        Token.objects.create(user=user)
