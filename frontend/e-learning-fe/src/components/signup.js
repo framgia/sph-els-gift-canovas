@@ -26,7 +26,7 @@ function SignUp() {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="username"
-                    required=""
+                    required
                   />
                 </div>
                 <div>
@@ -44,7 +44,7 @@ function SignUp() {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
-                    required=""
+                    required
                   />
                 </div>
               </div>
@@ -65,7 +65,7 @@ function SignUp() {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="firstname"
-                    required=""
+                    required
                   />
                 </div>
                 <div>
@@ -84,7 +84,7 @@ function SignUp() {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block 
                       w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 
                       dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                   />
                 </div>
               </div>
@@ -105,7 +105,7 @@ function SignUp() {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="lastname"
-                    required=""
+                    required
                   />
                 </div>
                 <div>
@@ -124,7 +124,7 @@ function SignUp() {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block 
                       w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 
                       dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                   />
                 </div>
               </div>
@@ -137,7 +137,7 @@ function SignUp() {
                     class="w-4 h-4 border border-gray-300 rounded bg-gray-50 
                         focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 
                         dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    required=""
+                    required
                   />
                 </div>
                 <div class="ml-3 text-sm">
