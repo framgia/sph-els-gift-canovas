@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import API from "../api";
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isDisable, setisDisable] = useState(false);
@@ -15,19 +16,10 @@ function Login() {
       username,
       password,
     });
-
     if (response.data.message === "Success") {
-      toast.success("Success!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      navigate("/dashboard", { replace: true });
     } else {
-      toast.error("Wrong Credentials!", {
+      toast.error("Check Credentials!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

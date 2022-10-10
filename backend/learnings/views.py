@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 
 from rest_framework import generics, status
@@ -13,11 +14,16 @@ class LoginView(ObtainAuthToken):
     def post(self, request):
         data = request.data
         username = data.get("username")
+        password = data.get("password")
         try:
             user = User.objects.get(username=username)
-            get_token = Token.objects.get(user=user)
-            token = str(get_token)
-            return Response({"message": "Success", "token": token})
+            password = check_password(password, user.password)
+            if password == True:
+                get_token = Token.objects.get(user=user)
+                token = str(get_token)
+                return Response({"message": "Success", "token": token})
+            else:
+                return Response({"message": "Failed"})
         except Exception:
             return Response({"message": "Failed"})
 
