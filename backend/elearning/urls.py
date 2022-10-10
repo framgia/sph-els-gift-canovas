@@ -1,12 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from learnings.views import RegisterView
-from rest_framework.authtoken.views import obtain_auth_token
+from learnings.views import LoginView, RegisterView
 
-# moved by linter/isort
+# can't add space between learnings and django
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', obtain_auth_token),
-    path('register/', RegisterView.as_view()),
+    path("admin/", admin.site.urls),
+    path("auth/", LoginView.as_view()),
+    path("register/", RegisterView.as_view()),
 ]
