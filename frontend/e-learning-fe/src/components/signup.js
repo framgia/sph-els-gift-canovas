@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import API from "../api";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [firstname, setFirstName] = useState("");
@@ -19,17 +20,33 @@ function SignUp() {
     setIsAdmin(!isAdmin);
   };
 
+  const toastWarning = (message) => {
+    toast.warn(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const toastSuccess = (message) => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
-      toast.warn("Password Does Not Match!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastWarning("Password Does Not Match!");
     } else {
       const response = await API.signup.signUp({
         username,
@@ -40,15 +57,11 @@ function SignUp() {
         confirmPassword,
         isAdmin,
       });
-      toast.success("Success!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+
+      if (response.status === 200) {
+        toastSuccess("Success!");
+        navigate("/", { replace: true });
+      } else toastWarning("User Already Exist!");
     }
   };
 
@@ -267,12 +280,11 @@ function SignUp() {
               )}
               <p class="text-sm font-light text-black dark:text-black">
                 Already have an account?{" "}
-                <a
-                  href="#"
-                  class="font-medium text-black hover:underline dark:text-black"
-                >
-                  Login here
-                </a>
+                <Link to="/">
+                  <a class="font-medium text-black hover:underline dark:text-black">
+                    Login here
+                  </a>
+                </Link>
               </p>
             </div>
           </div>

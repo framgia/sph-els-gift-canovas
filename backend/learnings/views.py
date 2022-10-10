@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
@@ -26,20 +26,22 @@ class RegisterView(generics.CreateAPIView):
     queryset = EUser.objects.all()
     serializer_class = EUserSerializer
 
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        return Response({"status": 200, "message": "Account Registered", "data": response.data})
-
-    def perform_create(self, serializer):
-        username = serializer.validated_data["username"]
-        firstname = serializer.validated_data["firstname"]
-        lastname = serializer.validated_data["lastname"]
-        email = serializer.validated_data["email"]
-        password = serializer.validated_data["password"]
-
-        user = User.objects.create(
-            username=username, email=email, first_name=firstname, last_name=lastname
-        )
-        user.set_password(password)
-        user.save()
-        Token.objects.create(user=user)
+    def create(self, request):
+        try:
+            response = super().create(request)
+            data = request.data
+            username = data["username"]
+            firstname = data["firstname"]
+            lastname = data["lastname"]
+            email = data["email"]
+            password = data["password"]
+            user = User.objects.create(
+                username=username, email=email, first_name=firstname, last_name=lastname
+            )
+            user.set_password(password)
+            user.save()
+            Token.objects.create(user=user)
+            return Response({"message": "Account Registered"})
+        except Exception:
+            content = {"message": "Account Not Registered"}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
