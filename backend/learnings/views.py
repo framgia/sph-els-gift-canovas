@@ -1,13 +1,17 @@
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 from rest_framework import generics, status
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.decorators import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import EUser
-from .serializers import EUserSerializer
+from .models import Category, EUser
+from .serializers import CategorySerializer, EUserSerializer
 
 
 class LoginView(ObtainAuthToken):
@@ -51,3 +55,13 @@ class RegisterView(generics.CreateAPIView):
         except Exception:
             content = {"message": "Account Not Registered"}
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DisplayCategoryWithUserFilter(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, user):
+        get_category = Category.objects.filter(~Q(quiztaken__user_id__username=user))
+        serializer = CategorySerializer(get_category, many=True)
+        return Response({"categories": serializer.data})
