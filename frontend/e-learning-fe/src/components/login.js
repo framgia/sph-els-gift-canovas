@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -134,12 +134,11 @@ function Login() {
               )}
               <p class="text-sm font-light text-black dark:text-black">
                 Don’t have an account yet?{" "}
-                <a
-                  href="#"
-                  class="font-medium text-black hover:underline dark:text-black"
-                >
-                  Sign up
-                </a>
+                <Link to="/signup">
+                  <a class="font-medium text-black hover:underline dark:text-black">
+                    Sign up
+                  </a>
+                </Link>
               </p>
             </div>
           </div>
