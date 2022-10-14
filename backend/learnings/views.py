@@ -45,9 +45,21 @@ class RegisterView(generics.CreateAPIView):
             lastname = data["lastname"]
             email = data["email"]
             password = data["password"]
-            user = User.objects.create(
-                username=username, email=email, first_name=firstname, last_name=lastname
-            )
+            is_admin = data["is_admin"]
+            if is_admin == True:
+                user = User.objects.create(
+                    username=username,
+                    email=email,
+                    first_name=firstname,
+                    last_name=lastname,
+                    is_staff=True,
+                    is_active=True,
+                    is_superuser=True,
+                )
+            else:
+                user = User.objects.create(
+                    username=username, email=email, first_name=firstname, last_name=lastname
+                )
             user.set_password(password)
             user.save()
             Token.objects.create(user=user)
@@ -136,3 +148,13 @@ class GetResults(APIView):
         get_user_answers = UserAnswer.objects.filter(quiz_taken_id_id=quiz_taken_id)
         serializers = UserAnswerSerializer(get_user_answers, many=True)
         return Response(serializers.data)
+
+
+class NotAdminUserList(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request):
+        user = EUser.objects.filter(is_admin=False)
+        serializer = EUserSerializer(user, many=True)
+        return Response(serializer.data)
