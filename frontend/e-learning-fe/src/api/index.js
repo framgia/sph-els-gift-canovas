@@ -3,6 +3,7 @@ import login from "./login_api";
 import signup from "./signup_api";
 import word from "./word";
 import user_answer from "./user_answer";
+import results from "./results";
 
 export default {
   category,
@@ -10,4 +11,5 @@ export default {
   signup,
   word,
   user_answer,
+  results,
 };
