@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import EUser
+from .models import Category, EUser
 
 
 class EUserSerializer(serializers.ModelSerializer):
@@ -20,3 +20,8 @@ class EUserSerializer(serializers.ModelSerializer):
         if attrs["password"] != attrs["confirm_password"]:
             raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'category_name', 'description']
