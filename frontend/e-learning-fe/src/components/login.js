@@ -17,6 +17,8 @@ function Login() {
       password,
     });
     if (response.data.message === "Success") {
+      localStorage.setItem("username", username);
+      localStorage.setItem("token", response.data.token);
       navigate("/dashboard", { replace: true });
     } else {
       toast.error("Check Credentials!", {
