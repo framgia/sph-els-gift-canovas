@@ -126,3 +126,24 @@ class UserAnswerView(generics.CreateAPIView):
                 is_correct=check,
             )
         return Response({"quiz_taken_id": get_quiz_taken_instance.id})
+
+
+class GetResults(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, quiz_taken_id):
+        results = []
+        get_quiz_taken_instance = QuizTaken.objects.get(id=quiz_taken_id)
+        get_user_answers = UserAnswer.objects.filter(quiz_taken_id=get_quiz_taken_instance.id)
+        for data in get_user_answers:
+            get_word = Word.objects.get(id=data.word_id.id)
+            results.append(
+                {
+                    "id": data.id,
+                    "user_answer": data.user_answer,
+                    "word": get_word.word,
+                    "is_correct": data.is_correct,
+                }
+            )
+        return Response(results)
