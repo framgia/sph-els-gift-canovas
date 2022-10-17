@@ -10,13 +10,8 @@ from rest_framework.decorators import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-<<<<<<< HEAD
-from .models import Category, Choices, EUser, Word
-from .serializers import CategorySerializer, EUserSerializer
-=======
 from .models import Category, Choices, EUser, QuizTaken, UserAnswer, Word
-from .serializers import EUserSerializer
->>>>>>> e886193 ([SELS-15] [FE/BE] ANSWER - Create endpoint for answer user (UserAnswer Model to Word Model))
+from .serializers import CategorySerializer, EUserSerializer
 
 
 class LoginView(ObtainAuthToken):
