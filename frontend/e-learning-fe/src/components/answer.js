@@ -4,9 +4,9 @@ import API from "../api";
 function Answer() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [words, setWords] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
   const [index, setIndex] = useState(0);
-  const [wordsLength, setwordsLength] = useState(0);
+  const [wordsLength, setWordsLength] = useState(0);
   const token = localStorage.getItem("token");
   const category_id = 1; //props for the category id
   let newAnswer = [];
@@ -19,8 +19,8 @@ function Answer() {
       })
       .then((data) => {
         setWords(data.data);
-        setwordsLength(data.data.words.length);
-        setLoading(true);
+        setWordsLength(data.data.words.length);
+        setisLoading(true);
       });
   };
 
@@ -58,7 +58,7 @@ function Answer() {
 
   return (
     <div class="p-6">
-      {loading ? (
+      {isLoading ? (
         <div>
           {userAnswers.length !== wordsLength && (
             <div>

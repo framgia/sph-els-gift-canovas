@@ -4,7 +4,7 @@ import API from "../api";
 
 function NotAdminUsers() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
   const token = localStorage.getItem("token");
 
   const fetchData = async () => {
@@ -14,17 +14,17 @@ function NotAdminUsers() {
       })
       .then((data) => {
         setUsers(data.data);
-        setLoading(true);
+        setisLoading(true);
       });
   };
 
   useEffect(() => {
     fetchData();
-  }, [loading]);
+  }, []);
 
   return (
     <div>
-      {loading ? (
+      {isLoading ? (
         <div class="overflow-x-auto relative p-6">
           <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
             User List
