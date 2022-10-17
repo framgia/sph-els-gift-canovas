@@ -29,12 +29,12 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class UserAnswerSerializer(serializers.ModelSerializer):
-    word = serializers.SerializerMethodField("get_word_only")
+    word = serializers.SerializerMethodField()
 
     class Meta:
         model = UserAnswer
         fields = ["id", "word", "user_answer", "is_correct"]
 
-    def get_word_only(self, obj):
+    def get_word(self, obj):
         get_word = Word.objects.get(id=obj.word_id.id)
         return get_word.word
