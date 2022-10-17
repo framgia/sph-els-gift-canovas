@@ -40,12 +40,6 @@ function Answer() {
   };
 
   useEffect(() => {
-    if (index === wordsLength) {
-      console.log("display the results", userAnswers);
-    }
-  }, [userAnswers]);
-
-  useEffect(() => {
     fetchData();
   }, []);
 
