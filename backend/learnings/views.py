@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Category, Choices, EUser, QuizTaken, UserAnswer, Word
-from .serializers import CategorySerializer, EUserSerializer
+from .serializers import CategorySerializer, EUserSerializer, UserAnswerSerializer
 
 
 class LoginView(ObtainAuthToken):
@@ -126,3 +126,13 @@ class UserAnswerView(generics.CreateAPIView):
                 is_correct=check,
             )
         return Response({"quiz_taken_id": get_quiz_taken_instance.id})
+
+
+class GetResults(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, quiz_taken_id):
+        get_user_answers = UserAnswer.objects.filter(quiz_taken_id_id=quiz_taken_id)
+        serializers = UserAnswerSerializer(get_user_answers, many=True)
+        return Response(serializers.data)
