@@ -6,6 +6,7 @@ from learnings.views import (
     GetWordsPerCategory,
     LoginView,
     RegisterView,
+    UserAnswerView,
 )
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path("register/", RegisterView.as_view()),
     path("category/<str:user>/", DisplayCategoryWithUserFilter.as_view()),
     path("get_words/<int:category_id>", GetWordsPerCategory.as_view()),
+    path("user_answer/", UserAnswerView.as_view()),
 ]

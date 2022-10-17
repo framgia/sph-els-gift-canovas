@@ -7,7 +7,6 @@ function Answer() {
   const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
   const [wordsLength, setwordsLength] = useState(0);
-
   const token = localStorage.getItem("token");
   const category_id = 1; //props for the category id
   let newAnswer = [];
@@ -28,7 +27,6 @@ function Answer() {
   const nextIndex = (answer) => {
     if (index <= wordsLength - 1) {
       newAnswer = {
-        category_id: words.words[index].category_id,
         userAnswer: answer,
         correct_answer: words.words[index].correct_answer,
         word: words.words[index].word,
@@ -38,6 +36,21 @@ function Answer() {
       setIndex(index + 1);
     }
   };
+
+  const saveAnswers = async () => {
+    const result = await API.user_answer.userAnswers({
+      token,
+      category_id,
+      username,
+      userAnswers,
+    });
+  };
+
+  useEffect(() => {
+    if (wordsLength && index === wordsLength) {
+      saveAnswers();
+    }
+  }, [userAnswers]);
 
   useEffect(() => {
     fetchData();

@@ -10,7 +10,7 @@ from rest_framework.decorators import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import Category, Choices, EUser, Word
+from .models import Category, Choices, EUser, QuizTaken, UserAnswer, Word
 from .serializers import CategorySerializer, EUserSerializer
 
 
@@ -94,3 +94,35 @@ class GetWordsPerCategory(APIView):
             "words": word_per_category_with_choices,
         }
         return Response(content)
+
+
+class UserAnswerView(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def create(self, request):
+        data = request.data
+        category = Category.objects.get(id=data["category_id"])
+        user = EUser.objects.get(username=data["username"])
+
+        QuizTaken.objects.create(user_id=user, category_id=category)
+        get_quiz_taken_instance = QuizTaken.objects.last()
+        user_answers = data["userAnswers"]
+        for answers in user_answers:
+            check = False
+            userAnswer = answers["userAnswer"]
+            word_id = answers["word_id"]
+            correct_answer = answers["correct_answer"]
+            word = answers["word"]
+
+            word = Word.objects.get(id=word_id)
+            if userAnswer == correct_answer:
+                check = True
+            UserAnswer.objects.create(
+                user_id=user,
+                word_id=word,
+                quiz_taken_id=get_quiz_taken_instance,
+                user_answer=userAnswer,
+                is_correct=check,
+            )
+        return Response({"quiz_taken_id": get_quiz_taken_instance.id})
