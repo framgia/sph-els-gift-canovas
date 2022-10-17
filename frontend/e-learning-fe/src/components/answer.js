@@ -47,10 +47,8 @@ function Answer() {
   };
 
   useEffect(() => {
-    if (wordsLength !== 0) {
-      if (index === wordsLength) {
-        saveAnswers();
-      }
+    if (wordsLength && index === wordsLength) {
+      saveAnswers();
     }
   }, [userAnswers]);
 
