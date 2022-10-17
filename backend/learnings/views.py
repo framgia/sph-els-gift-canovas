@@ -10,7 +10,7 @@ from rest_framework.decorators import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import Category, EUser
+from .models import Category, Choices, EUser, Word
 from .serializers import CategorySerializer, EUserSerializer
 
 
@@ -65,3 +65,32 @@ class DisplayCategoryWithUserFilter(APIView):
         get_category = Category.objects.filter(~Q(quiztaken__user_id__username=user))
         serializer = CategorySerializer(get_category, many=True)
         return Response({"categories": serializer.data})
+
+
+class GetWordsPerCategory(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, category_id):
+        word_per_category_with_choices = []
+        get_category = Category.objects.get(id=category_id)
+        get_words = Word.objects.filter(category_id=get_category)
+        for word in get_words:
+            get_choices = Choices.objects.get(word_id=word.id)
+            word_per_category_with_choices.append(
+                {
+                    "word_id": get_choices.id,
+                    "category_id": word.category_id.id,
+                    "word": word.word,
+                    "correct_answer": word.correct_answer,
+                    "choice_a": get_choices.choice_a,
+                    "choice_b": get_choices.choice_b,
+                    "choice_c": get_choices.choice_c,
+                    "choice_d": get_choices.choice_d,
+                }
+            )
+        content = {
+            "category_name": get_category.category_name,
+            "words": word_per_category_with_choices,
+        }
+        return Response(content)
