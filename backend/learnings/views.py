@@ -11,7 +11,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Category, Choices, EUser, QuizTaken, UserAnswer, Word
-from .serializers import CategorySerializer, EUserSerializer, UserAnswerSerializer
+from .serializers import (
+    CategorySerializer,
+    EditUserSerializer,
+    EUserSerializer,
+    UserAnswerSerializer,
+)
 
 
 class LoginView(ObtainAuthToken):
@@ -164,3 +169,20 @@ class UserDetails(generics.RetrieveAPIView):
     queryset = EUser.objects.all()
     serializer_class = EUserSerializer
     lookup_field = "username"
+
+
+class EditUserDetails(generics.UpdateAPIView):
+    queryset = EUser.objects.all()
+    serializer_class = EditUserSerializer
+    lookup_field = "id"
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            user = User.objects.get(username=instance.username)
+            user.set_password(serializer.validated_data["password"])
+            user.username = serializer.validated_data["username"]
+            user.save()
+            serializer.save()
+            return Response(serializer.data)

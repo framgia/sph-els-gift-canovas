@@ -7,6 +7,7 @@ class EUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = EUser
         fields = [
+            "id",
             "username",
             "firstname",
             "lastname",
@@ -38,3 +39,16 @@ class UserAnswerSerializer(serializers.ModelSerializer):
     def get_word(self, obj):
         get_word = Word.objects.get(id=obj.word_id.id)
         return get_word.word
+
+
+class EditUserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=False)
+    firstname = serializers.CharField(required=False)
+    lastname = serializers.CharField(required=False)
+    email = serializers.CharField(required=False)
+    password = serializers.CharField(required=False)
+    confirm_password = serializers.CharField(required=False)
+
+    class Meta:
+        model = UserAnswer
+        fields = ["username", "firstname", "lastname", "email", "password", "confirm_password"]
