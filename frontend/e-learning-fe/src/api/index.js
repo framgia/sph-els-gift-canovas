@@ -5,6 +5,7 @@ import word from "./word";
 import user_answer from "./user_answer";
 import results from "./results";
 import notAdminUsers from "./notAdminUsers";
+import userDetails from "./userDetails";
 
 export default {
   category,
@@ -14,4 +15,5 @@ export default {
   user_answer,
   results,
   notAdminUsers,
+  userDetails,
 };
