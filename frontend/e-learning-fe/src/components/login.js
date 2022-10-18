@@ -9,7 +9,7 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isDisable, setisDisable] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
 
   const handleLogin = async () => {
     const response = await API.login.login({
@@ -34,7 +34,7 @@ function Login() {
   };
 
   const checkFields = () => {
-    if (username !== "" && password !== "") setisDisable(true);
+    if (username !== "" && password !== "") setIsDisable(true);
   };
 
   return (

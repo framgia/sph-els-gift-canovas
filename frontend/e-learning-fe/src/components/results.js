@@ -4,9 +4,10 @@ import API from "../api";
 
 function Results() {
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
   const token = localStorage.getItem("token");
   let quiz_taken_id = 52; // TODO: static id for now
+
   const fetchData = async () => {
     await API.results
       .getResults({
@@ -15,17 +16,19 @@ function Results() {
       })
       .then((data) => {
         setResults(data.data);
-        setLoading(true);
+        setIsloading(false);
       });
   };
 
   useEffect(() => {
     fetchData();
-  }, [loading]);
+  }, []);
 
   return (
     <div>
-      {loading ? (
+      {isLoading ? (
+        ""
+      ) : (
         <div class="overflow-x-auto relative p-6">
           <table class="w-96 text-sm text-left text-black dark:text-black">
             <thead class="text-xs text-black uppercase ">
@@ -82,8 +85,6 @@ function Results() {
             </tbody>
           </table>
         </div>
-      ) : (
-        ""
       )}
     </div>
   );
