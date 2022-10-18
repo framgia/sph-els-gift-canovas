@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import API from "../api";
+import Navbar from "./navbar";
 
 function NotAdminUsers() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   const token = localStorage.getItem("token");
 
   const fetchData = async () => {
@@ -23,7 +25,8 @@ function NotAdminUsers() {
   }, []);
 
   return (
-    <div>
+    <div class="p-6">
+      <Navbar />
       {isLoading ? (
         ""
       ) : (

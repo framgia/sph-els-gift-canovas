@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import API from "../api";
+import Navbar from "./navbar";
 
 function Results() {
+  const location = useLocation();
+  const { quizTakenId } = location.state;
   const [results, setResults] = useState([]);
   const [isLoading, setIsloading] = useState(true);
+
   const token = localStorage.getItem("token");
-  let quiz_taken_id = 52; // TODO: static id for now
 
   const fetchData = async () => {
     await API.results
       .getResults({
-        quiz_taken_id,
+        quiz_taken_id: quizTakenId,
         token,
       })
       .then((data) => {
@@ -25,11 +29,15 @@ function Results() {
   }, []);
 
   return (
-    <div>
+    <div class="p-6">
+      <Navbar />
       {isLoading ? (
         ""
       ) : (
         <div class="overflow-x-auto relative p-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+            Results
+          </h5>
           <table class="w-96 text-sm text-left text-black dark:text-black">
             <thead class="text-xs text-black uppercase ">
               <tr>
