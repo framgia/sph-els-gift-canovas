@@ -158,3 +158,9 @@ class NotAdminUserList(APIView):
         user = EUser.objects.filter(is_admin=False)
         serializer = EUserSerializer(user, many=True)
         return Response(serializer.data)
+
+
+class UserDetails(generics.RetrieveAPIView):
+    queryset = EUser.objects.all()
+    serializer_class = EUserSerializer
+    lookup_field = "username"

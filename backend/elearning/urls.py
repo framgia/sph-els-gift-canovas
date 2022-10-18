@@ -9,6 +9,7 @@ from learnings.views import (
     NotAdminUserList,
     RegisterView,
     UserAnswerView,
+    UserDetails,
 )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path("user_answer/", UserAnswerView.as_view()),
     path("results/<int:quiz_taken_id>", GetResults.as_view()),
     path("not_admin_users/", NotAdminUserList.as_view()),
+    path("user_details/<str:username>/", UserDetails.as_view()),
 ]
