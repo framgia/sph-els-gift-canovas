@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import API from "../api";
+import Navbar from "./navbar";
 
 function Answer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { categoryId: category_id } = location.state;
+
   const [userAnswers, setUserAnswers] = useState([]);
   const [words, setWords] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [index, setIndex] = useState(0);
   const [wordsLength, setWordsLength] = useState(0);
+
   const token = localStorage.getItem("token");
-  const category_id = 1; // TODO: static id for now
+  const username = localStorage.getItem("username");
+
   let newAnswer = [];
 
   const fetchData = async () => {
@@ -38,12 +47,18 @@ function Answer() {
   };
 
   const saveAnswers = async () => {
-    const result = await API.user_answer.userAnswers({
-      token,
-      category_id,
-      username,
-      userAnswers,
-    });
+    const result = await API.user_answer
+      .userAnswers({
+        token,
+        category_id,
+        username,
+        userAnswers,
+      })
+      .then((data) => {
+        navigate("/results", {
+          state: { quizTakenId: data.data.quiz_taken_id },
+        });
+      });
   };
 
   useEffect(() => {
@@ -58,6 +73,7 @@ function Answer() {
 
   return (
     <div class="p-6">
+      <Navbar />
       {isLoading ? (
         ""
       ) : (
