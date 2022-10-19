@@ -10,7 +10,15 @@ from rest_framework.decorators import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import Category, Choices, EUser, QuizTaken, UserAnswer, Word
+from .models import (
+    Category,
+    Choices,
+    EUser,
+    QuizTaken,
+    UserActivityLog,
+    UserAnswer,
+    Word,
+)
 from .serializers import (
     CategorySerializer,
     EditUserSerializer,
@@ -122,7 +130,10 @@ class UserAnswerView(generics.CreateAPIView):
         category = Category.objects.get(id=data["category_id"])
         user = EUser.objects.get(username=data["username"])
 
-        QuizTaken.objects.create(user_id=user, category_id=category)
+        quiz = QuizTaken.objects.create(user_id=user, category_id=category)
+        UserActivityLog.objects.create(
+            user_id=user, quiz_taken_id=quiz, activity_description="quiz"
+        )
         get_quiz_taken_instance = QuizTaken.objects.last()
         user_answers = data["userAnswers"]
         for answers in user_answers:
