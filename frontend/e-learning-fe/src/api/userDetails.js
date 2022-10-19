@@ -13,4 +13,34 @@ export default {
     );
     return response;
   },
+
+  async editUserDetails(query) {
+    const {
+      id,
+      username,
+      firstname,
+      lastname,
+      email,
+      password,
+      confirm_password,
+      token,
+    } = query;
+    const response = await axios.put(
+      `http://127.0.0.1:8000/edit_user_details/${id}/`,
+      {
+        username,
+        firstname,
+        lastname,
+        email,
+        password,
+        confirm_password,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    return response;
+  },
 };
