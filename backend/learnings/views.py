@@ -195,3 +195,14 @@ class NumberOfCategoriesTaken(APIView):
     def get(self, request, username):
         number_of_categories_taken = QuizTaken.objects.filter(user_id__username=username).count()
         return Response({"number_of_categories_taken": number_of_categories_taken})
+
+
+class NumberOfWordsLearned(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, username):
+        number_of_words_learned = UserAnswer.objects.filter(
+            user_id__username=username, is_correct=True
+        ).count()
+        return Response({"number_of_words_learned": number_of_words_learned})

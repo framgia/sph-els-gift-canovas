@@ -9,6 +9,7 @@ from learnings.views import (
     LoginView,
     NotAdminUserList,
     NumberOfCategoriesTaken,
+    NumberOfWordsLearned,
     RegisterView,
     UserAnswerView,
     UserDetails,
@@ -26,4 +27,5 @@ urlpatterns = [
     path("user_details/<str:username>/", UserDetails.as_view()),
     path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
     path("number_of_categories_taken/<str:username>/", NumberOfCategoriesTaken.as_view()),
+    path("number_of_words_learned/<str:username>/", NumberOfWordsLearned.as_view()),
 ]
