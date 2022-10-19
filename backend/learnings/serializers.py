@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, EUser, UserAnswer, Word
+from .models import Category, EUser, UserActivityLog, UserAnswer, Word
 
 
 class EUserSerializer(serializers.ModelSerializer):
@@ -52,3 +52,9 @@ class EditUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAnswer
         fields = ["username", "firstname", "lastname", "email", "password", "confirm_password"]
+
+
+class UserActivityLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserActivityLog
+        fields = "__all__"
