@@ -4,7 +4,7 @@ import API from "../api";
 
 function Results() {
   const [results, setResults] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
   const token = localStorage.getItem("token");
   let quiz_taken_id = 52; // TODO: static id for now
 
@@ -16,7 +16,7 @@ function Results() {
       })
       .then((data) => {
         setResults(data.data);
-        setIsloading(true);
+        setIsloading(false);
       });
   };
 
@@ -27,6 +27,8 @@ function Results() {
   return (
     <div>
       {isLoading ? (
+        ""
+      ) : (
         <div class="overflow-x-auto relative p-6">
           <table class="w-96 text-sm text-left text-black dark:text-black">
             <thead class="text-xs text-black uppercase ">
@@ -83,8 +85,6 @@ function Results() {
             </tbody>
           </table>
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

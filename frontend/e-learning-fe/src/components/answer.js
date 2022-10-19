@@ -4,11 +4,11 @@ import API from "../api";
 function Answer() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [words, setWords] = useState([]);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [index, setIndex] = useState(0);
   const [wordsLength, setWordsLength] = useState(0);
   const token = localStorage.getItem("token");
-  const category_id = 1; //props for the category id
+  const category_id = 1; // TODO: static id for now
   let newAnswer = [];
 
   const fetchData = async () => {
@@ -20,7 +20,7 @@ function Answer() {
       .then((data) => {
         setWords(data.data);
         setWordsLength(data.data.words.length);
-        setisLoading(true);
+        setIsLoading(false);
       });
   };
 
@@ -59,6 +59,8 @@ function Answer() {
   return (
     <div class="p-6">
       {isLoading ? (
+        ""
+      ) : (
         <div>
           {userAnswers.length !== wordsLength && (
             <div>
@@ -78,36 +80,36 @@ function Answer() {
                 <div class="flex flex-col">
                   <button
                     class="text-white bg-gradient-to-r from-blue-500 
-                via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-                focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-                font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
+              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
+              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                     onClick={() => nextIndex(words.words[index].choice_a)}
                   >
                     {words.words[index].choice_a}
                   </button>
                   <button
                     class="text-white bg-gradient-to-r from-blue-500 
-                via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-                focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-                font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
+              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
+              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                     onClick={() => nextIndex(words.words[index].choice_b)}
                   >
                     {words.words[index].choice_b}
                   </button>
                   <button
                     class="text-white bg-gradient-to-r from-blue-500 
-                via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-                focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-                font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
+              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
+              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                     onClick={() => nextIndex(words.words[index].choice_c)}
                   >
                     {words.words[index].choice_c}
                   </button>
                   <button
                     class="text-white bg-gradient-to-r from-blue-500 
-                via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-                focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-                font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
+              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
+              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                     onClick={() => nextIndex(words.words[index].choice_d)}
                   >
                     {words.words[index].choice_d}
@@ -117,8 +119,6 @@ function Answer() {
             </div>
           )}
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

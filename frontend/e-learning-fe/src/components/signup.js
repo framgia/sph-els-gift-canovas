@@ -14,7 +14,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isDisableSignupButton, setisDisableSignupButton] = useState(false);
+  const [isDisableSignupButton, setIsDisableSignupButton] = useState(false);
 
   const handleOnChangeAdmin = () => {
     setIsAdmin(!isAdmin);
@@ -74,7 +74,7 @@ function SignUp() {
       password !== "" &&
       confirmPassword !== ""
     )
-      setisDisableSignupButton(true);
+      setIsDisableSignupButton(true);
   };
 
   return (
