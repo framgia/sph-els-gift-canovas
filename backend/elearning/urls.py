@@ -8,6 +8,7 @@ from learnings.views import (
     GetWordsPerCategory,
     LoginView,
     NotAdminUserList,
+    NumberOfCategoriesTaken,
     RegisterView,
     UserAnswerView,
     UserDetails,
@@ -24,4 +25,5 @@ urlpatterns = [
     path("not_admin_users/", NotAdminUserList.as_view()),
     path("user_details/<str:username>/", UserDetails.as_view()),
     path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
+    path("number_of_categories_taken/<str:username>/", NumberOfCategoriesTaken.as_view()),
 ]

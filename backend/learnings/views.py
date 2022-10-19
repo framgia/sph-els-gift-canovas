@@ -186,3 +186,12 @@ class EditUserDetails(generics.UpdateAPIView):
         user.save()
         serializer.save()
         return Response(serializer.data)
+
+
+class NumberOfCategoriesTaken(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, username):
+        number_of_categories_taken = QuizTaken.objects.filter(user_id__username=username).count()
+        return Response({"number_of_categories_taken": number_of_categories_taken})
