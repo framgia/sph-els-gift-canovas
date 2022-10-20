@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import ReactTimeAgo from "react-time-ago";
 
 import API from "../api";
 import Navbar from "./navbar";
 
 function Dashboard() {
-  const [category, setCategory] = useState([]);
-
+  const [activities, setActivities] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
   const fetchData = async () => {
-    await API.category
-      .getCategoryByUser({
+    await API.userActivityLog
+      .dashboardUserActivity({
         username,
+        page: "dashboard",
         token,
       })
       .then((data) => {
-        setCategory(data.data.categories);
+        setActivities(data.data);
+        setIsLoading(false);
       });
   };
 
@@ -29,32 +31,42 @@ function Dashboard() {
     <div class="p-6">
       <Navbar />
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-        Categories
+        Dashboard
       </h5>
-      <div class="flex flex-row w-full flex flex-wrap place-content-center">
-        {category.map((cat, i) => (
+      <div class="flex flex-row  justify-around">
+        <div class="flex flex-col">
           <div
-            key={i}
-            class="p-6 m-8 w-80 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-300 dark:border-gray-700"
+            class="inline-flex overflow-hidden relative justify-center items-center 
+            w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
           >
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">
-              {cat.category_name}
-            </h5>
-
-            <p class="mb-3 font-normal text-black dark:text-gray-600">
-              {cat.description}
-            </p>
-            <Link to="/answer" state={{ categoryId: cat.id }}>
-              <a
-                class="text-center ml-56 w-24 py-2 px-3 text-sm font-medium  text-white bg-blue-700 
-              rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600
-               dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Start
-              </a>
-            </Link>
+            <span class="text-7xl text-gray-600 dark:text-gray-300">
+              {username[0].toUpperCase()}
+            </span>
           </div>
-        ))}
+          <p class="text-3xl text-gray-900 dark:text-black">{username}</p>
+        </div>
+        <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
+          {isLoading
+            ? "aaaa"
+            : activities.map((activity) => (
+                <div key={activity.id}>
+                  {activity.activity_description === "follow" ||
+                  activity.activity_description === "unfollow" ? (
+                    <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                      {activity.user} {activity.activity_description}{" "}
+                      {activity.follow}{" "}
+                      <ReactTimeAgo date={activity.created_at} locale="en-US" />
+                    </p>
+                  ) : (
+                    <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                      {activity.user} {activity.activity_description}{" "}
+                      {activity.follow}{" "}
+                      <ReactTimeAgo date={activity.created_at} locale="en-US" />
+                    </p>
+                  )}
+                </div>
+              ))}
+        </div>
       </div>
     </div>
   );

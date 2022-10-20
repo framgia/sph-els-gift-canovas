@@ -6,8 +6,12 @@ import SignUp from "./components/signup";
 import Answer from "./components/answer";
 import Results from "./components/results";
 import NotAdminUsers from "./components/notAdminUsers";
+<<<<<<< HEAD
 import UserDetails from "./components/userDetails";
 import UpdateUserDetails from "./components/updateUserDetails";
+=======
+import Categories from "./components/categories";
+>>>>>>> a3f6553 ([SELS-34] [FE/BE] Dashboard User Activity Log)
 
 function App() {
   return (
@@ -19,8 +23,12 @@ function App() {
         <Route path="/answer" element={<Answer />} />
         <Route path="/results" element={<Results />} />
         <Route path="/users" element={<NotAdminUsers />} />
+<<<<<<< HEAD
         <Route path="/profile" element={<UserDetails />} />
         <Route path="/update" element={<UpdateUserDetails />} />
+=======
+        <Route path="/categories" element={<Categories />} />
+>>>>>>> a3f6553 ([SELS-34] [FE/BE] Dashboard User Activity Log)
       </Routes>
     </BrowserRouter>
   );
