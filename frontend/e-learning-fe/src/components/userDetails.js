@@ -9,6 +9,8 @@ function UserDetails() {
   const [flag, setFlag] = useState(false);
   const [status, setStatus] = useState("");
   const [extraUsernameState, setExtraUsernameState] = useState("");
+  const [numberOfFollowers, setNumberOfFollowers] = useState(0);
+  const [numberOfFollowing, setNumberOfFollowing] = useState(0);
 
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
@@ -55,6 +57,18 @@ function UserDetails() {
       })
       .then((data) => {
         setStatus("unfollow");
+        setUserDetails(data.data);
+      });
+
+    await API.follow
+      .getNumberOfFollowersFollowing({
+        username,
+        token,
+      })
+      .then((data) => {
+        setNumberOfFollowers(data.data.followers);
+        setNumberOfFollowing(data.data.following);
+        setIsLoading(false);
       });
   };
 
@@ -83,6 +97,21 @@ function UserDetails() {
               ></svg>
             </div>
 
+            <div class="flex justify-between mt-3 px-4">
+              <div class="flex flex-col">
+                <span class="font-bold text-2xl text-center">
+                  {numberOfFollowers}
+                </span>
+                <span class="text-sm text-red-600">Followers</span>
+              </div>
+
+              <div class="flex flex-col">
+                <span class="font-bold text-2xl text-center">
+                  {numberOfFollowing}
+                </span>
+                <span class="text-sm text-red-600">Followings</span>
+              </div>
+            </div>
             <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
               {userDetails.username}
             </p>
