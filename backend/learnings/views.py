@@ -178,10 +178,25 @@ class NotAdminUserList(APIView):
         return Response(serializer.data)
 
 
-class UserDetails(generics.RetrieveAPIView):
-    queryset = EUser.objects.all()
-    serializer_class = EUserSerializer
-    lookup_field = "username"
+class UserDetails(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, username, follower_username, following_username):
+        user = EUser.objects.get(username=username)
+        serializer = EUserSerializer(user)
+        if follower_username != "none" or following_username != "none":
+            try:
+                check = Follow.objects.get(
+                    follower_id__username=follower_username,
+                    following_id__username=following_username,
+                )
+                content = {"status": "unfollow", "data": serializer.data}
+                return Response(content)
+            except Exception:
+                content = {"status": "follow", "data": serializer.data}
+                return Response(content)
+        return Response(serializer.data)
 
 
 class EditUserDetails(generics.UpdateAPIView):
@@ -243,8 +258,8 @@ class AddNewFollower(generics.CreateAPIView):
 
     def create(self, request):
         data = request.data
-        follower = data["follower_id"]
-        following = data["following_id"]
+        follower = data["follower_username"]
+        following = data["following_username"]
 
         follower_id = EUser.objects.get(username=follower)
         following_id = EUser.objects.get(username=following)

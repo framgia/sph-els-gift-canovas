@@ -6,6 +6,7 @@ import user_answer from "./user_answer";
 import results from "./results";
 import notAdminUsers from "./notAdminUsers";
 import userDetails from "./userDetails";
+import follow from "./follow";
 
 export default {
   category,
@@ -16,4 +17,5 @@ export default {
   results,
   notAdminUsers,
   userDetails,
+  follow,
 };
