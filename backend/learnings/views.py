@@ -224,6 +224,16 @@ class NumberOfCategoriesTaken(APIView):
         return Response({"number_of_categories_taken": number_of_categories_taken})
 
 
+class NumberOfFollowersFollowing(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, username):
+        followers = Follow.objects.filter(following_id__username=username).count()
+        following = Follow.objects.filter(follower_id__username=username).count()
+        return Response({"followers": followers, "following": following})
+
+
 class NumberOfWordsLearned(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
