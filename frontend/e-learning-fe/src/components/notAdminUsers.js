@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import API from "../api";
 import Navbar from "./navbar";
 
 function NotAdminUsers() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("token");
+
+  const handleClickUser = (user) => {
+    localStorage.setItem("extraUsername", user);
+    navigate("/profile");
+  };
 
   const fetchData = async () => {
     await API.notAdminUsers
@@ -63,22 +70,34 @@ function NotAdminUsers() {
               {users.map((data) => (
                 <tr>
                   <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black">
+                    <p
+                      class="text-base text-gray-900 dark:text-black cursor-pointer"
+                      onClick={() => handleClickUser(data.username)}
+                    >
                       {data.username}
                     </p>
                   </td>
                   <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black">
+                    <p
+                      class="text-base text-gray-900 dark:text-black cursor-pointer"
+                      onClick={() => handleClickUser(data.username)}
+                    >
                       {data.firstname}
                     </p>
                   </td>
                   <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black">
+                    <p
+                      class="text-base text-gray-900 dark:text-black cursor-pointer"
+                      onClick={() => handleClickUser(data.username)}
+                    >
                       {data.lastname}
                     </p>
                   </td>
                   <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black">
+                    <p
+                      class="text-base text-gray-900 dark:text-black cursor-pointer"
+                      onClick={() => handleClickUser(data.username)}
+                    >
                       {data.email}
                     </p>
                   </td>
