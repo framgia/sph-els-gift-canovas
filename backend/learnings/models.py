@@ -67,3 +67,16 @@ class UserAnswer(models.Model):
 
     class Meta:
         verbose_name_plural = "UserAnswer"
+
+
+class UserActivityLog(models.Model):
+    user_id = models.ForeignKey(EUser, on_delete=models.CASCADE)
+    follow_id = models.ForeignKey(
+        EUser, on_delete=models.CASCADE, related_name="follow_username", null=True, blank=True
+    )
+    quiz_taken_id = models.ForeignKey(QuizTaken, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    activity_description = models.CharField(max_length=254)
+
+    class Meta:
+        verbose_name_plural = "UserActivityLog"
