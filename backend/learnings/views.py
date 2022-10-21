@@ -23,6 +23,7 @@ from .serializers import (
     CategorySerializer,
     EditUserSerializer,
     EUserSerializer,
+    UserActivityLogSerializer,
     UserAnswerSerializer,
 )
 
@@ -217,3 +218,19 @@ class NumberOfWordsLearned(APIView):
             user_id__username=username, is_correct=True
         ).count()
         return Response({"number_of_words_learned": number_of_words_learned})
+
+
+class GetUserActivityLog(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, page, username):
+        user = EUser.objects.get(username=username)
+        if page == "dashboard":
+            activities = UserActivityLog.objects.filter(user_id=user).order_by("created_at")
+        else:
+            activities = UserActivityLog.objects.filter(
+                activity_description="quiz", user_id=user
+            ).order_by("created_at")
+        serializer = UserActivityLogSerializer(activities, many=True)
+        return Response(serializer.data)

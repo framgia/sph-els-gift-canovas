@@ -5,6 +5,7 @@ from learnings.views import (
     DisplayCategoryWithUserFilter,
     EditUserDetails,
     GetResults,
+    GetUserActivityLog,
     GetWordsPerCategory,
     LoginView,
     NotAdminUserList,
@@ -28,4 +29,5 @@ urlpatterns = [
     path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
     path("number_of_categories_taken/<str:username>/", NumberOfCategoriesTaken.as_view()),
     path("number_of_words_learned/<str:username>/", NumberOfWordsLearned.as_view()),
+    path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
 ]
