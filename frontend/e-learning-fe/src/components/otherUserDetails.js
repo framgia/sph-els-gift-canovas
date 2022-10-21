@@ -1,41 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import API from "../api";
 import Navbar from "./navbar";
 
 function UserDetails() {
   const [userDetails, setUserDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [numberOfFollowers, setNumberOfFollowers] = useState(0);
-  const [numberOfFollowing, setNumberOfFollowing] = useState(0);
+  const [status, setStatus] = useState("");
+  const [extraUsernameState, setExtraUsernameState] = useState("");
 
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
+  const extraUsername = localStorage.getItem("extraUsername");
 
   const fetchData = async () => {
     await API.userDetails
       .getUserDetails({
-        username,
+        username: extraUsername,
         token,
-        follower: "none",
-        following: "none",
+        follower: username,
+        following: extraUsername,
       })
       .then((data) => {
-        setUserDetails(data.data);
-      });
-    await API.follow
-      .getNumberOfFollowersFollowing({
-        username,
-        token,
-      })
-      .then((data) => {
-        setNumberOfFollowers(data.data.followers);
-        setNumberOfFollowing(data.data.following);
+        setStatus(data.data.status);
+        setUserDetails(data.data.data);
         setIsLoading(false);
       });
+
+    localStorage.setItem("extraUsername", "");
+  };
+
+  const handleFollow = async () => {
+    if (status === "follow") {
+      await API.follow
+        .follow({
+          token,
+          follower_username: username,
+          following_username: extraUsernameState,
+        })
+        .then((data) => {
+          setStatus("unfollow");
+        });
+    } else {
+      await API.follow
+        .unfollow({
+          token,
+          follower_username: username,
+          following_username: extraUsernameState,
+        })
+        .then((data) => {
+          setStatus("follow");
+        });
+    }
   };
 
   useEffect(() => {
+    setExtraUsernameState(extraUsername);
     fetchData();
   }, []);
 
@@ -56,21 +75,6 @@ function UserDetails() {
               </span>
             </div>
 
-            <div class="flex justify-between mt-3 px-4">
-              <div class="flex flex-col mr-3">
-                <span class="font-bold text-2xl text-center">
-                  {numberOfFollowers}
-                </span>
-                <span class="text-sm text-red-600">Followers</span>
-              </div>
-
-              <div class="flex flex-col">
-                <span class="font-bold text-2xl text-center">
-                  {numberOfFollowing}
-                </span>
-                <span class="text-sm text-red-600">Followings</span>
-              </div>
-            </div>
             <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
               {userDetails.username}
             </p>
@@ -81,17 +85,16 @@ function UserDetails() {
               {userDetails.email}
             </p>
 
-            <Link to="/update" state={{ data: userDetails }}>
-              <button
-                type="button"
-                class=" mt-5 text-white bg-green-700 hover:bg-white-800 
-                  focus:outline-none focus:ring-4 focus:ring-green-300 
+            <button
+              type="button"
+              class=" mt-5 text-white bg-blue-700 hover:bg-white-800 
+                  focus:outline-none focus:ring-4 focus:ring-blue-300 
                   font-medium rounded-full text-sm px-5 py-2.5 text-center 
-                  mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-              >
-                Edit
-              </button>
-            </Link>
+                  mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={handleFollow}
+            >
+              {status}
+            </button>
           </div>
         </div>
       )}

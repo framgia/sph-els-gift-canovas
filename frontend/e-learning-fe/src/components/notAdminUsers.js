@@ -10,16 +10,18 @@ function NotAdminUsers() {
   const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
 
   const handleClickUser = (user) => {
     localStorage.setItem("extraUsername", user);
-    navigate("/profile");
+    navigate("/otherUser");
   };
 
   const fetchData = async () => {
     await API.notAdminUsers
       .getNotAdminUsers({
         token,
+        username,
       })
       .then((data) => {
         setUsers(data.data);
