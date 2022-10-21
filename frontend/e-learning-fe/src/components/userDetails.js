@@ -65,10 +65,7 @@ function UserDetails() {
 
   return (
     <div class="p-6">
-<<<<<<< HEAD
       <Navbar />
-=======
->>>>>>> dfa31fa ([SELS-31] [BE/FE] PROFILE - Follow user)
       {isLoading ? (
         ""
       ) : (
@@ -95,7 +92,6 @@ function UserDetails() {
             <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
               {userDetails.email}
             </p>
-<<<<<<< HEAD
             <Link to="/update" state={{ data: userDetails }}>
               <button
                 type="button"
@@ -104,13 +100,6 @@ function UserDetails() {
                 Edit
               </button>
             </Link>
-=======
-            <button
-              type="button"
-              class=" mt-5 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            >
-              Edit
-            </button>
             {flag === false ? (
               ""
             ) : (
@@ -125,7 +114,6 @@ function UserDetails() {
                 {status}
               </button>
             )}
->>>>>>> dfa31fa ([SELS-31] [BE/FE] PROFILE - Follow user)
           </div>
         </div>
       )}

@@ -187,15 +187,14 @@ class UserDetails(APIView):
         serializer = EUserSerializer(user)
         if follower_username != "none" or following_username != "none":
             try:
-                check = Follow.objects.get(
+                Follow.objects.get(
                     follower_id__username=follower_username,
                     following_id__username=following_username,
                 )
                 content = {"status": "unfollow", "data": serializer.data}
-                return Response(content)
             except Exception:
                 content = {"status": "follow", "data": serializer.data}
-                return Response(content)
+            return Response(content)
         return Response(serializer.data)
 
 
