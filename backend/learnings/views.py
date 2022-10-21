@@ -179,10 +179,10 @@ class EditUserDetails(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
-        if serializer.is_valid():
-            user = User.objects.get(username=instance.username)
-            user.set_password(serializer.validated_data["password"])
-            user.username = serializer.validated_data["username"]
-            user.save()
-            serializer.save()
-            return Response(serializer.data)
+        serializer.is_valid(raise_exception=True)
+        user = User.objects.get(username=instance.username)
+        user.set_password(serializer.validated_data["password"])
+        user.username = serializer.validated_data["username"]
+        user.save()
+        serializer.save()
+        return Response(serializer.data)
