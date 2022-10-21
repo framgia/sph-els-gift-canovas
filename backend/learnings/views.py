@@ -14,6 +14,7 @@ from .models import (
     Category,
     Choices,
     EUser,
+    Follow,
     QuizTaken,
     UserActivityLog,
     UserAnswer,
@@ -234,3 +235,23 @@ class GetUserActivityLog(APIView):
             ).order_by("created_at")
         serializer = UserActivityLogSerializer(activities, many=True)
         return Response(serializer.data)
+
+
+class AddNewFollower(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def create(self, request):
+        data = request.data
+        follower = data["follower_id"]
+        following = data["following_id"]
+
+        follower_id = EUser.objects.get(username=follower)
+        following_id = EUser.objects.get(username=following)
+
+        Follow.objects.create(follower_id=follower_id, following_id=following_id)
+        UserActivityLog.objects.create(
+            user_id=follower_id, follow_id=following_id, activity_description="follow"
+        )
+
+        return Response({"Successfully Followed"})
