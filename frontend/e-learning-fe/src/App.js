@@ -6,6 +6,8 @@ import SignUp from "./components/signup";
 import Answer from "./components/answer";
 import Results from "./components/results";
 import NotAdminUsers from "./components/notAdminUsers";
+import UserDetails from "./components/userDetails";
+import UpdateUserDetails from "./components/updateUserDetails";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/answer" element={<Answer />} />
         <Route path="/results" element={<Results />} />
         <Route path="/users" element={<NotAdminUsers />} />
+        <Route path="/profile" element={<UserDetails />} />
+        <Route path="/update" element={<UpdateUserDetails />} />
       </Routes>
     </BrowserRouter>
   );
