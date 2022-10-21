@@ -172,8 +172,8 @@ class NotAdminUserList(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 
-    def get(self, request):
-        user = EUser.objects.filter(is_admin=False)
+    def get(self, request, username):
+        user = EUser.objects.filter(Q(is_admin=False) and ~Q(username=username))
         serializer = EUserSerializer(user, many=True)
         return Response(serializer.data)
 
