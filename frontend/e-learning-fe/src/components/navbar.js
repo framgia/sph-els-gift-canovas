@@ -28,6 +28,20 @@ function Navbar() {
               </Link>
             </li>
             <li>
+              <Link to="/categories">
+                <a
+                  href="#"
+                  class="block py-2 pr-4 pl-3 text-black rounded text-lg
+                hover:bg-gray-100 md:hover:bg-transparent
+                 md:border-0 md:hover:text-blue-700 md:p-0 
+                 dark:text-black md:dark:hover:text-white
+                  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  Categories
+                </a>
+              </Link>
+            </li>
+            <li>
               <Link to="/profile">
                 <a
                   href="#"

@@ -7,6 +7,7 @@ import results from "./results";
 import notAdminUsers from "./notAdminUsers";
 import userDetails from "./userDetails";
 import follow from "./follow";
+import userActivityLog from "./userActivityLog";
 
 export default {
   category,
@@ -18,4 +19,5 @@ export default {
   notAdminUsers,
   userDetails,
   follow,
+  userActivityLog,
 };
