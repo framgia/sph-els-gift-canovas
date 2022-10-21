@@ -3,6 +3,7 @@ from django.urls import path
 
 from learnings.views import (
     DisplayCategoryWithUserFilter,
+    EditUserDetails,
     GetResults,
     GetWordsPerCategory,
     LoginView,
@@ -22,4 +23,5 @@ urlpatterns = [
     path("results/<int:quiz_taken_id>", GetResults.as_view()),
     path("not_admin_users/", NotAdminUserList.as_view()),
     path("user_details/<str:username>/", UserDetails.as_view()),
+    path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
 ]
