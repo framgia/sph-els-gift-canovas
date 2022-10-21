@@ -255,3 +255,17 @@ class AddNewFollower(generics.CreateAPIView):
         )
 
         return Response({"Successfully Followed"})
+
+
+class RemoveFollower(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, follower_username, following_username):
+        follower = EUser.objects.get(username=follower_username)
+        following = EUser.objects.get(username=following_username)
+        Follow.objects.get(follower_id=follower, following_id=following).delete()
+        UserActivityLog.objects.create(
+            user_id=follower, follow_id=following, activity_description="unfollow"
+        )
+        return Response({"Successfully Unfollowed"})

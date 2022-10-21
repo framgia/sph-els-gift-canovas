@@ -13,6 +13,7 @@ from learnings.views import (
     NumberOfCategoriesTaken,
     NumberOfWordsLearned,
     RegisterView,
+    RemoveFollower,
     UserAnswerView,
     UserDetails,
 )
@@ -32,4 +33,5 @@ urlpatterns = [
     path("number_of_categories_taken/<str:username>/", NumberOfCategoriesTaken.as_view()),
     path("number_of_words_learned/<str:username>/", NumberOfWordsLearned.as_view()),
     path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
+    path("unfollow/<str:follower_username>/<str:following_username>/", RemoveFollower.as_view()),
 ]
