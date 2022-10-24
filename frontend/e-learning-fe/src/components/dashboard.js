@@ -7,6 +7,8 @@ import Navbar from "./navbar";
 function Dashboard() {
   const [activities, setActivities] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [lessonsLearned, setLessonsLearned] = useState();
+  const [wordsLearned, seWordsLearned] = useState();
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
@@ -19,6 +21,15 @@ function Dashboard() {
       })
       .then((data) => {
         setActivities(data.data);
+      });
+    await API.userActivityLog
+      .userDashboard({
+        username,
+        token,
+      })
+      .then((data) => {
+        setLessonsLearned(data.data.number_of_categories_taken);
+        seWordsLearned(data.data.number_of_words_learned);
         setIsLoading(false);
       });
   };
@@ -44,6 +55,15 @@ function Dashboard() {
             </span>
           </div>
           <p class="text-3xl text-gray-900 dark:text-black">{username}</p>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-base text-gray-900 dark:text-black">
+            {" "}
+            Learned {wordsLearned} words
+          </p>
+          <p class="text-base text-gray-900 dark:text-black">
+            Learned {lessonsLearned} lessons
+          </p>
         </div>
         <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
           {isLoading

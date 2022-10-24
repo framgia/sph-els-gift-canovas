@@ -3,6 +3,7 @@ from django.urls import path
 
 from learnings.views import (
     AddNewFollower,
+    Dashboard,
     DisplayCategoryWithUserFilter,
     EditUserDetails,
     GetResults,
@@ -10,9 +11,7 @@ from learnings.views import (
     GetWordsPerCategory,
     LoginView,
     NotAdminUserList,
-    NumberOfCategoriesTaken,
     NumberOfFollowersFollowing,
-    NumberOfWordsLearned,
     RegisterView,
     RemoveFollower,
     UserAnswerView,
@@ -30,8 +29,7 @@ urlpatterns = [
     path("results/<int:quiz_taken_id>", GetResults.as_view()),
     path("user_answer/", UserAnswerView.as_view()),
     path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
-    path("number_of_categories_taken/<str:username>/", NumberOfCategoriesTaken.as_view()),
-    path("number_of_words_learned/<str:username>/", NumberOfWordsLearned.as_view()),
+    path("dashboard/<str:username>", Dashboard.as_view()),
     path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
     path("unfollow/<str:follower_username>/<str:following_username>/", RemoveFollower.as_view()),
     path(
