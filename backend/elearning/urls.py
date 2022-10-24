@@ -6,6 +6,7 @@ from learnings.views import (
     AddNewFollower,
     CategoryList,
     DisplayCategoryWithUserFilter,
+    Editcategory,
     EditUserDetails,
     GetResults,
     GetUserActivityLog,
@@ -44,4 +45,5 @@ urlpatterns = [
     path("category_list/", CategoryList.as_view()),
     path("words_learned/<str:username>", WordsLearned.as_view()),
     path("add_category/", AddCategory.as_view()),
+    path("edit_category/<int:id>", Editcategory.as_view()),
 ]
