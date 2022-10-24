@@ -3,6 +3,7 @@ from django.urls import path
 
 from learnings.views import (
     AddNewFollower,
+    CategoryList,
     DisplayCategoryWithUserFilter,
     EditUserDetails,
     GetResults,
@@ -40,4 +41,5 @@ urlpatterns = [
     ),
     path("number_of_followers_following/<str:username>/", NumberOfFollowersFollowing.as_view()),
     path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
+    path("category_list/", CategoryList.as_view()),
 ]
