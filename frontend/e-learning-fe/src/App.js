@@ -10,6 +10,7 @@ import UserDetails from "./components/userDetails";
 import UpdateUserDetails from "./components/updateUserDetails";
 import Categories from "./components/categories";
 import OtherUserDetails from "./components/otherUserDetails";
+import AdminDashboard from "./components/admin/dashboard";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/update" element={<UpdateUserDetails />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/otherUser" element={<OtherUserDetails />} />
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );
