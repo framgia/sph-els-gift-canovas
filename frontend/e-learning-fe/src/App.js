@@ -9,6 +9,7 @@ import NotAdminUsers from "./components/notAdminUsers";
 import UserDetails from "./components/userDetails";
 import UpdateUserDetails from "./components/updateUserDetails";
 import Categories from "./components/categories";
+import OtherUserDetails from "./components/otherUserDetails";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<UserDetails />} />
         <Route path="/update" element={<UpdateUserDetails />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/otherUser" element={<OtherUserDetails />} />
       </Routes>
     </BrowserRouter>
   );
