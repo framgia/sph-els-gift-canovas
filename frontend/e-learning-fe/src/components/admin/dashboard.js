@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import API from "../api";
-import Navbar from "./admin/navbar";
+import API from "../../api";
+import Navbar from "./navbar";
 
 function AdminDashboard() {
   const [categories, setCategories] = useState([]);
@@ -32,9 +32,30 @@ function AdminDashboard() {
         ""
       ) : (
         <div class="overflow-x-auto relative p-6">
-          <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
-            Categories
-          </p>
+          <div class="flex flex-row place-content-between">
+            <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
+              Categories
+            </p>
+            <Link to="/adminAddcategory">
+              <button class="mt-8 bg-blue-300 hover:bg-blue-500 text-gray-800 font-bold w-40 h-8 rounded inline-flex items-center">
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  ></path>
+                </svg>
+                <span>Add Category</span>
+              </button>
+            </Link>
+          </div>
           <table class="w-96 text-sm text-left text-black dark:text-black">
             <thead class="text-xs text-black ">
               <tr>
