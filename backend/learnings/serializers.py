@@ -57,10 +57,18 @@ class EditUserSerializer(serializers.ModelSerializer):
 class UserActivityLogSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     follow = serializers.SerializerMethodField()
+    quiz = serializers.SerializerMethodField()
 
     class Meta:
         model = UserActivityLog
-        fields = ["id", "user", "follow", "quiz_taken_id", "created_at", "activity_description"]
+        fields = [
+            "id",
+            "user",
+            "follow",
+            "quiz",
+            "created_at",
+            "activity_description",
+        ]
 
     def get_user(self, obj):
         get_user = EUser.objects.get(id=obj.user_id.id)
@@ -70,3 +78,19 @@ class UserActivityLogSerializer(serializers.ModelSerializer):
         if obj.follow_id is not None:
             get_follow = EUser.objects.get(id=obj.follow_id_id)
             return get_follow.username
+
+    def get_quiz(self, obj):
+        total_check_answers = 0
+        total_words = 0
+        if obj.quiz_taken_id is not None:
+            get_words = UserAnswer.objects.filter(quiz_taken_id=obj.quiz_taken_id)
+            for word in get_words:
+                category_name = word.quiz_taken_id.category_id.category_name
+                if word.is_correct == True:
+                    total_check_answers += 1
+                total_words += 1
+            return {
+                "total_check_answers": total_check_answers,
+                "total_words": total_words,
+                "category_name": category_name,
+            }
