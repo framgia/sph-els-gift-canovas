@@ -43,7 +43,9 @@ function Dashboard() {
               {username[0].toUpperCase()}
             </span>
           </div>
-          <p class="text-3xl text-gray-900 dark:text-black">{username}</p>
+          <p class="mt-3 text-3xl text-center text-gray-900 dark:text-black">
+            {username}
+          </p>
         </div>
         <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
           {isLoading
@@ -52,17 +54,37 @@ function Dashboard() {
                 <div key={activity.id}>
                   {activity.activity_description === "follow" ||
                   activity.activity_description === "unfollow" ? (
-                    <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
-                      {activity.user} {activity.activity_description}{" "}
-                      {activity.follow}{" "}
+                    <div class="flex flex-row place-content-between">
+                      <div class="flex flex-row space-x-2">
+                        <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                          {activity.user}
+                        </h3>
+                        <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                          {activity.activity_description}
+                        </p>
+                        <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                          {activity.follow}
+                        </h3>
+                      </div>
                       <ReactTimeAgo date={activity.created_at} locale="en-US" />
-                    </p>
+                    </div>
                   ) : (
-                    <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
-                      {activity.user} {activity.activity_description}{" "}
-                      {activity.follow}{" "}
+                    <div class="flex flex-row place-content-between">
+                      <div class="flex flex-row space-x-2">
+                        <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                          {activity.user}
+                        </h3>
+                        <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                          learned {activity.quiz.total_check_answers} of{" "}
+                          {activity.quiz.total_words} words in
+                        </p>
+                        <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                          {activity.quiz.category_name}
+                        </h3>
+                      </div>
+
                       <ReactTimeAgo date={activity.created_at} locale="en-US" />
-                    </p>
+                    </div>
                   )}
                 </div>
               ))}
