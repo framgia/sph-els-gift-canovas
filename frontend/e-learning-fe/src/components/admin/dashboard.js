@@ -21,6 +21,17 @@ function AdminDashboard() {
       });
   };
 
+  const handleDeleteCategory = async (id) => {
+    await API.category
+      .deleteCategory({
+        token,
+        id,
+      })
+      .then(() => {
+        fetchData();
+      });
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -117,19 +128,18 @@ function AdminDashboard() {
                           Edit |
                         </a>
                       </Link>
-                      <Link to="">
-                        <a
-                          href="#"
-                          class="block py-2 pr-4 pl-3 text-black rounded text-lg
+
+                      <p
+                        class="block py-2 pr-4 pl-3 text-black rounded text-lg
                               hover:bg-gray-100 md:hover:bg-blue-200 
                               md:border-0 md:hover:text-blue-700 md:p-0 
                               dark:text-black md:dark:hover:text-blue-600
                               dark:hover:bg-gray-700 dark:hover:text-blue
-                              md:dark:hover:bg-transparent"
-                        >
-                          Delete
-                        </a>
-                      </Link>
+                              md:dark:hover:bg-transparent cursor-pointer"
+                        onClick={() => handleDeleteCategory(category.id)}
+                      >
+                        Delete
+                      </p>
                     </div>
                   </td>
                 </tr>
