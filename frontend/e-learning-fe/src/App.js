@@ -13,6 +13,7 @@ import OtherUserDetails from "./components/otherUserDetails";
 import AdminDashboard from "./components/admin/dashboard";
 import WordsLearned from "./components/wordsLearned";
 import AdminAddCategory from "./components/admin/addCategory";
+import AdminEditCategory from "./components/admin/editCategory";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/wordsLearned" element={<WordsLearned />} />
         <Route path="/adminAddcategory" element={<AdminAddCategory />} />
+        <Route path="/adminEditCategory" element={<AdminEditCategory />} />
       </Routes>
     </BrowserRouter>
   );
