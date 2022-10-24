@@ -225,7 +225,7 @@ class NumberOfFollowersFollowing(APIView):
         return Response({"followers": followers, "following": following})
 
 
-class Dashboard(APIView):
+class QuizResults(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 

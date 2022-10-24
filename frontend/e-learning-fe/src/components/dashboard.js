@@ -22,8 +22,8 @@ function Dashboard() {
       .then((data) => {
         setActivities(data.data);
       });
-    await API.userActivityLog
-      .userDashboard({
+    await API.results
+      .userQuizResults({
         username,
         token,
       })
