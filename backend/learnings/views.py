@@ -305,3 +305,18 @@ class WordsLearned(APIView):
         user_answers = UserAnswer.objects.filter(user_id__username=username, is_correct=True)
         serializer = UserAnswerSerializer(user_answers, many=True)
         return Response(serializer.data)
+
+
+class AddCategory(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def create(self, request):
+        data = request.data
+        category_name = data["category_name"]
+        description = data["description"]
+        new_category = Category.objects.create(
+            category_name=category_name, description=description
+        )
+        serilizer = CategorySerializer(new_category)
+        return Response(serilizer.data)

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from learnings.views import (
+    AddCategory,
     AddNewFollower,
     CategoryList,
     DisplayCategoryWithUserFilter,
@@ -42,4 +43,5 @@ urlpatterns = [
     path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
     path("category_list/", CategoryList.as_view()),
     path("words_learned/<str:username>", WordsLearned.as_view()),
+    path("add_category/", AddCategory.as_view()),
 ]
