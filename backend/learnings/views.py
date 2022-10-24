@@ -293,3 +293,8 @@ class RemoveFollower(APIView):
             user_id=follower, follow_id=following, activity_description="unfollow"
         )
         return Response({"Successfully Unfollowed"})
+
+
+class CategoryList(generics.ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
