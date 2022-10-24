@@ -247,13 +247,12 @@ class GetUserActivityLog(APIView):
     authentication_classes = [TokenAuthentication]
 
     def get(self, request, page, username):
-        user = EUser.objects.get(username=username)
         if page == "dashboard":
-            activities = UserActivityLog.objects.filter(user_id=user).order_by("-created_at")
+            activities = UserActivityLog.objects.all().order_by("-created_at")
         else:
-            activities = UserActivityLog.objects.filter(
-                activity_description="quiz", user_id=user
-            ).order_by("-created_at")
+            activities = UserActivityLog.objects.filter(user_id__username=username).order_by(
+                "-created_at"
+            )
         serializer = UserActivityLogSerializer(activities, many=True)
         return Response(serializer.data)
 

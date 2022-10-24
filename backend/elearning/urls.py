@@ -39,7 +39,6 @@ urlpatterns = [
         UserDetails.as_view(),
     ),
     path("number_of_followers_following/<str:username>/", NumberOfFollowersFollowing.as_view()),
-    path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
     path("category_list/", CategoryList.as_view()),
     path("words_learned/<str:username>", WordsLearned.as_view()),
 ]

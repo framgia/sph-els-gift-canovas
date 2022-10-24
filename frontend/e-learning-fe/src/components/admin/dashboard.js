@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import API from "../api";
-import Navbar from "./admin/navbar";
+import API from "../../api";
+import Navbar from "./navbar";
 
 function AdminDashboard() {
   const [categories, setCategories] = useState([]);
