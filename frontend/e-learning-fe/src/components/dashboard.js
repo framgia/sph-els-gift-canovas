@@ -8,7 +8,7 @@ function Dashboard() {
   const [activities, setActivities] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [lessonsLearned, setLessonsLearned] = useState();
-  const [wordsLearned, seWordsLearned] = useState();
+  const [wordsLearned, setWordsLearned] = useState();
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
@@ -29,7 +29,7 @@ function Dashboard() {
       })
       .then((data) => {
         setLessonsLearned(data.data.number_of_categories_taken);
-        seWordsLearned(data.data.number_of_words_learned);
+        setWordsLearned(data.data.number_of_words_learned);
         setIsLoading(false);
       });
   };
@@ -67,7 +67,7 @@ function Dashboard() {
         </div>
         <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
           {isLoading
-            ? "aaaa"
+            ? ""
             : activities.map((activity) => (
                 <div key={activity.id}>
                   {activity.activity_description === "follow" ||
