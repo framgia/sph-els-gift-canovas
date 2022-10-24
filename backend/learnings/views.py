@@ -295,3 +295,13 @@ class RemoveFollower(APIView):
 class CategoryList(generics.ListAPIView):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
+
+class WordsLearned(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, username):
+        user_answers = UserAnswer.objects.filter(user_id__username=username, is_correct=True)
+        serializer = UserAnswerSerializer(user_answers, many=True)
+        return Response(serializer.data)
