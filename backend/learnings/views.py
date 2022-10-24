@@ -215,15 +215,6 @@ class EditUserDetails(generics.UpdateAPIView):
         return Response(serializer.data)
 
 
-class NumberOfCategoriesTaken(APIView):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
-
-    def get(self, request, username):
-        number_of_categories_taken = QuizTaken.objects.filter(user_id__username=username).count()
-        return Response({"number_of_categories_taken": number_of_categories_taken})
-
-
 class NumberOfFollowersFollowing(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
@@ -234,7 +225,7 @@ class NumberOfFollowersFollowing(APIView):
         return Response({"followers": followers, "following": following})
 
 
-class NumberOfWordsLearned(APIView):
+class QuizResults(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 
@@ -242,7 +233,13 @@ class NumberOfWordsLearned(APIView):
         number_of_words_learned = UserAnswer.objects.filter(
             user_id__username=username, is_correct=True
         ).count()
-        return Response({"number_of_words_learned": number_of_words_learned})
+        number_of_categories_taken = QuizTaken.objects.filter(user_id__username=username).count()
+        return Response(
+            {
+                "number_of_words_learned": number_of_words_learned,
+                "number_of_categories_taken": number_of_categories_taken,
+            }
+        )
 
 
 class GetUserActivityLog(APIView):
