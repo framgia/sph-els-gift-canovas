@@ -40,7 +40,7 @@ class LoginView(ObtainAuthToken):
             if password == True:
                 get_token = Token.objects.get(user=user)
                 token = str(get_token)
-                return Response({"message": "Success", "token": token})
+                return Response({"message": "Success", "token": token, "is_admin": user.is_staff})
             else:
                 return Response({"message": "Failed"})
         except Exception:

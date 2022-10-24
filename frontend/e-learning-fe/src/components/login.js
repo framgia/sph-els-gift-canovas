@@ -21,7 +21,9 @@ function Login() {
       localStorage.setItem("username", username);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("extraUsername", "");
-      navigate("/dashboard", { replace: true });
+      if (response.data.is_admin === true)
+        navigate("/adminDashboard", { replace: true });
+      else navigate("/dashboard", { replace: true });
     } else {
       toast.error("Check Credentials!", {
         position: "top-right",
