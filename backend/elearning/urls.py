@@ -4,6 +4,7 @@ from django.urls import path
 from learnings.views import (
     AddCategory,
     AddNewFollower,
+    AddWordAndchoices,
     CategoryList,
     DeleteCategory,
     DisplayCategoryWithUserFilter,
@@ -48,4 +49,5 @@ urlpatterns = [
     path("add_category/", AddCategory.as_view()),
     path("edit_category/<int:id>", Editcategory.as_view()),
     path("delete_category/<int:id>", DeleteCategory.as_view()),
+    path("add_words_choices/", AddWordAndchoices.as_view()),
 ]
