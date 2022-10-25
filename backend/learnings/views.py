@@ -200,6 +200,8 @@ class UserDetails(APIView):
 
 
 class EditUserDetails(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
     queryset = EUser.objects.all()
     serializer_class = EditUserSerializer
     lookup_field = "id"
@@ -300,6 +302,8 @@ class RemoveFollower(APIView):
 
 
 class CategoryList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
 
@@ -343,6 +347,8 @@ class EditCategory(generics.UpdateAPIView):
 
 
 class DeleteCategory(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = "id"
