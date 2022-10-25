@@ -15,6 +15,7 @@ import WordsLearned from "./components/wordsLearned";
 import AdminAddCategory from "./components/admin/addCategory";
 import AdminEditCategory from "./components/admin/editCategory";
 import AdminAddWordAndChoices from "./components/admin/addWordAndChoices";
+import AdminWordsPerCategory from "./components/admin/wordsPerCategory";
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
         <Route
           path="/adminAddWordChoices"
           element={<AdminAddWordAndChoices />}
+        />
+        <Route
+          path="/adminWordsPerCategory"
+          element={<AdminWordsPerCategory />}
         />
       </Routes>
     </BrowserRouter>
