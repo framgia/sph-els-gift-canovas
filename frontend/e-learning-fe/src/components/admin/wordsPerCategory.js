@@ -24,6 +24,16 @@ function AdminWordsPerCategory() {
         setIsLoading(false);
       });
   };
+  const handleDeleteWord = async (id) => {
+    await API.word
+      .deleteWord({
+        token,
+        id,
+      })
+      .then(() => {
+        fetchData();
+      });
+  };
 
   useEffect(() => {
     fetchData();
@@ -94,6 +104,7 @@ function AdminWordsPerCategory() {
                               dark:text-black md:dark:hover:text-blue-600
                               dark:hover:bg-gray-700 dark:hover:text-blue
                               md:dark:hover:bg-transparent cursor-pointer"
+                        onClick={() => handleDeleteWord(word.word_id)}
                       >
                         Delete
                       </p>
