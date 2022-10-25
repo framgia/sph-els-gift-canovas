@@ -372,3 +372,8 @@ class AddWordAndchoices(generics.CreateAPIView):
             choice_d=choice_d,
         )
         return Response({"Successfully Created"})
+
+
+class DeleteWord(generics.DestroyAPIView):
+    queryset = Word.objects.all()
+    lookup_field = "id"
