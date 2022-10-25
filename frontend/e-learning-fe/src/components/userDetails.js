@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import ReactTimeAgo from "react-time-ago";
 import { Link } from "react-router-dom";
 import API from "../api";
 import Navbar from "./navbar";
 
 function UserDetails() {
+  const [activities, setActivities] = useState();
   const [userDetails, setUserDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [numberOfFollowers, setNumberOfFollowers] = useState(0);
@@ -23,6 +25,15 @@ function UserDetails() {
       .then((data) => {
         setUserDetails(data.data);
       });
+    await API.userActivityLog
+      .dashboardUserActivity({
+        username,
+        page: "profile",
+        token,
+      })
+      .then((data) => {
+        setActivities(data.data);
+      });
     await API.follow
       .getNumberOfFollowersFollowing({
         username,
@@ -33,6 +44,8 @@ function UserDetails() {
         setNumberOfFollowing(data.data.following);
         setIsLoading(false);
       });
+
+    localStorage.setItem("extraUsername", "");
   };
 
   useEffect(() => {
@@ -45,7 +58,7 @@ function UserDetails() {
       {isLoading ? (
         ""
       ) : (
-        <div class="flex flex-row space-x-4 p-10">
+        <div class="flex flex-row place-content-between p-10">
           <div class="flex flex-col space-y-4 ">
             <div
               class="inline-flex overflow-hidden relative justify-center items-center 
@@ -92,6 +105,46 @@ function UserDetails() {
                 Edit
               </button>
             </Link>
+          </div>
+          <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
+            {activities.map((activity) => (
+              <div key={activity.id}>
+                {activity.activity_description === "follow" ||
+                activity.activity_description === "unfollow" ? (
+                  <div class="flex flex-row place-content-between">
+                    <div class="flex flex-row space-x-2">
+                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                        {activity.user}
+                      </h3>
+                      <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                        {activity.activity_description}
+                      </p>
+                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                        {activity.follow}
+                      </h3>
+                    </div>
+                    <ReactTimeAgo date={activity.created_at} locale="en-US" />
+                  </div>
+                ) : (
+                  <div class="flex flex-row place-content-between">
+                    <div class="flex flex-row space-x-2">
+                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                        {activity.user}
+                      </h3>
+                      <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                        learned {activity.quiz.total_check_answers} of{" "}
+                        {activity.quiz.total_words} words in
+                      </p>
+                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                        {activity.quiz.category_name}
+                      </h3>
+                    </div>
+
+                    <ReactTimeAgo date={activity.created_at} locale="en-US" />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       )}
