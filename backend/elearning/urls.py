@@ -22,6 +22,7 @@ from learnings.views import (
     UserAnswerView,
     UserDetails,
     WordsLearned,
+    WordsPerCategory,
 )
 
 urlpatterns = [
@@ -49,4 +50,5 @@ urlpatterns = [
     path("edit_category/<int:id>", Editcategory.as_view()),
     path("delete_category/<int:id>", DeleteCategory.as_view()),
     path("add_words_choices/", AddWordAndchoices.as_view()),
+    path("words_per_category/<int:category_id>", WordsPerCategory.as_view()),
 ]

@@ -26,6 +26,7 @@ from .serializers import (
     EUserSerializer,
     UserActivityLogSerializer,
     UserAnswerSerializer,
+    WordSerializer,
 )
 
 
@@ -372,3 +373,13 @@ class AddWordAndchoices(generics.CreateAPIView):
             choice_d=choice_d,
         )
         return Response({"Successfully Created"})
+
+
+class WordsPerCategory(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, category_id):
+        words = Word.objects.filter(category_id_id=category_id)
+        serializer = WordSerializer(words, many=True)
+        return Response(serializer.data)
