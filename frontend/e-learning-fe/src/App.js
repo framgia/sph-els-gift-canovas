@@ -14,6 +14,7 @@ import AdminDashboard from "./components/admin/dashboard";
 import WordsLearned from "./components/wordsLearned";
 import AdminAddCategory from "./components/admin/addCategory";
 import AdminEditCategory from "./components/admin/editCategory";
+import AdminAddWordAndChoices from "./components/admin/addWordAndChoices";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
         <Route path="/wordsLearned" element={<WordsLearned />} />
         <Route path="/adminAddcategory" element={<AdminAddCategory />} />
         <Route path="/adminEditCategory" element={<AdminEditCategory />} />
+        <Route
+          path="/adminAddWordChoices"
+          element={<AdminAddWordAndChoices />}
+        />
       </Routes>
     </BrowserRouter>
   );

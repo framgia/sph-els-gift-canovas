@@ -22,4 +22,36 @@ export default {
     );
     return response;
   },
+
+  async addWordChoices(query) {
+    const {
+      token,
+      word,
+      category_id,
+      correct_answer,
+      choice_a,
+      choice_b,
+      choice_c,
+      choice_d,
+    } = query;
+    const response = await axios.post(
+      "http://127.0.0.1:8000/add_words_choices/",
+      {
+        word,
+        category_id,
+        correct_answer,
+        choice_a,
+        choice_b,
+        choice_c,
+        choice_d,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response;
+  },
 };

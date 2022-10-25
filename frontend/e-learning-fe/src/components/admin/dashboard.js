@@ -102,7 +102,10 @@ function AdminDashboard() {
                   </td>
                   <td class="py-4 px-28 ">
                     <div class="flex flex-row w-48">
-                      <Link to="">
+                      <Link
+                        to="/adminAddWordChoices"
+                        state={{ data: category }}
+                      >
                         <a
                           href="#"
                           class="block py-2 pr-4 pl-3 text-black rounded text-lg
@@ -115,7 +118,7 @@ function AdminDashboard() {
                           Add Word |
                         </a>
                       </Link>
-                      <Link to="">
+                      <Link to="/adminEditCategory" state={{ data: category }}>
                         <a
                           href="#"
                           class="block py-2 pr-4 pl-3 text-black rounded text-lg
