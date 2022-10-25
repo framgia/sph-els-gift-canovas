@@ -248,7 +248,15 @@ class GetUserActivityLog(APIView):
 
     def get(self, request, page, username):
         if page == "dashboard":
-            activities = UserActivityLog.objects.all().order_by("-created_at")
+            activities = UserActivityLog.objects.filter(
+                user_id__username=username, activity_description="follow"
+            ).order_by("-created_at")
+            for other_user in activities:
+                activity = UserActivityLog.objects.filter(
+                    user_id__username=other_user.follow_id.username
+                ).order_by("-created_at")
+                if activity.exists():
+                    activities = activities | activity
         else:
             activities = UserActivityLog.objects.filter(user_id__username=username).order_by(
                 "-created_at"
