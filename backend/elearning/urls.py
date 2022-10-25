@@ -7,6 +7,7 @@ from learnings.views import (
     AddWordAndchoices,
     CategoryList,
     DeleteCategory,
+    DeleteWord,
     DisplayCategoryWithUserFilter,
     Editcategory,
     EditUserDetails,
@@ -49,4 +50,5 @@ urlpatterns = [
     path("edit_category/<int:id>", Editcategory.as_view()),
     path("delete_category/<int:id>", DeleteCategory.as_view()),
     path("add_words_choices/", AddWordAndchoices.as_view()),
+    path("delete_word/<int:id>", DeleteWord.as_view()),
 ]
