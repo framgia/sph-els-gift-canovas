@@ -26,6 +26,7 @@ from .serializers import (
     EUserSerializer,
     UserActivityLogSerializer,
     UserAnswerSerializer,
+    WordSerializer,
 )
 
 
@@ -328,7 +329,7 @@ class AddCategory(generics.CreateAPIView):
         return Response(serializer.data)
 
 
-class Editcategory(generics.UpdateAPIView):
+class EditCategory(generics.UpdateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = "id"
@@ -377,3 +378,27 @@ class AddWordAndchoices(generics.CreateAPIView):
 class DeleteWord(generics.DestroyAPIView):
     queryset = Word.objects.all()
     lookup_field = "id"
+
+
+class EditWordAndChoices(generics.UpdateAPIView):
+    queryset = Word.objects.all()
+    serializer_class = WordSerializer
+    lookup_field = "id"
+
+    def update(self, request, *args, **kwargs):
+        data = request.data
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        get_choice = Choices.objects.get(word_id=instance)
+        choice_a = data["choice_a"]
+        choice_b = data["choice_b"]
+        choice_c = data["choice_c"]
+        choice_d = data["choice_d"]
+        get_choice.choice_a = choice_a
+        get_choice.choice_b = choice_b
+        get_choice.choice_c = choice_c
+        get_choice.choice_d = choice_d
+        get_choice.save()
+        serializer.save()
+        return Response(serializer.data)

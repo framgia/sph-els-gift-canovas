@@ -94,3 +94,8 @@ class UserActivityLogSerializer(serializers.ModelSerializer):
                 "total_words": total_words,
                 "category_name": category_name,
             }
+
+class WordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Word
+        fields = ["id", "category_id", "word", "correct_answer"]
