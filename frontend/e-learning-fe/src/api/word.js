@@ -53,4 +53,17 @@ export default {
     );
     return response;
   },
+  async deleteWord(query) {
+    const { token, id } = query;
+    const response = await axios.delete(
+      `http://127.0.0.1:8000/delete_word/${id}`,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response;
+  },
 };
