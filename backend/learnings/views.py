@@ -318,8 +318,8 @@ class AddCategory(generics.CreateAPIView):
         new_category = Category.objects.create(
             category_name=category_name, description=description
         )
-        serilizer = CategorySerializer(new_category)
-        return Response(serilizer.data)
+        serializer = CategorySerializer(new_category)
+        return Response(serializer.data)
 
 
 class Editcategory(generics.UpdateAPIView):
@@ -339,3 +339,30 @@ class DeleteCategory(generics.DestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = "id"
+
+
+class AddWordAndchoices(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def create(self, request):
+        data = request.data
+        category_id = data["category_id"]
+        word = data["word"]
+        correct_answer = data["correct_answer"]
+        choice_a = data["choice_a"]
+        choice_b = data["choice_b"]
+        choice_c = data["choice_c"]
+        choice_d = data["choice_d"]
+        category = Category.objects.get(id=category_id)
+        new_word = Word.objects.create(
+            category_id=category, word=word, correct_answer=correct_answer
+        )
+        Choices.objects.create(
+            word_id=new_word,
+            choice_a=choice_a,
+            choice_b=choice_b,
+            choice_c=choice_c,
+            choice_d=choice_d,
+        )
+        return Response({"Successfully Created"})

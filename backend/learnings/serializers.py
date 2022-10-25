@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, EUser, Follow, UserActivityLog, UserAnswer, Word
+from .models import Category, EUser, UserActivityLog, UserAnswer, Word
 
 
 class EUserSerializer(serializers.ModelSerializer):
