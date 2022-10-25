@@ -174,7 +174,7 @@ class NotAdminUserList(APIView):
     authentication_classes = [TokenAuthentication]
 
     def get(self, request, username):
-        user = EUser.objects.filter(Q(is_admin=False) and ~Q(username=username))
+        user = EUser.objects.filter(is_admin=False).exclude(username=username)
         serializer = EUserSerializer(user, many=True)
         return Response(serializer.data)
 
@@ -401,4 +401,13 @@ class EditWordAndChoices(generics.UpdateAPIView):
         get_choice.choice_d = choice_d
         get_choice.save()
         serializer.save()
+
+
+class AdminUserList(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self, request, username):
+        user = EUser.objects.filter(is_admin=True).exclude(username=username)
+        serializer = EUserSerializer(user, many=True)
         return Response(serializer.data)

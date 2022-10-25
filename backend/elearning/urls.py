@@ -5,6 +5,7 @@ from learnings.views import (
     AddCategory,
     AddNewFollower,
     AddWordAndchoices,
+    AdminUserList,
     CategoryList,
     DeleteCategory,
     DeleteWord,
@@ -53,4 +54,5 @@ urlpatterns = [
     path("add_words_choices/", AddWordAndchoices.as_view()),
     path("delete_word/<int:id>", DeleteWord.as_view()),
     path("edit_word_choices/<int:id>", EditWordAndChoices.as_view()),
+    path("admin_users/<str:username>", AdminUserList.as_view()),
 ]
