@@ -320,3 +320,16 @@ class AddCategory(generics.CreateAPIView):
         )
         serilizer = CategorySerializer(new_category)
         return Response(serilizer.data)
+
+
+class Editcategory(generics.UpdateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    lookup_field = "id"
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
