@@ -59,4 +59,18 @@ export default {
 
     return response;
   },
+
+  async deleteCategory(query) {
+    const { token, id } = query;
+    const response = await axios.delete(
+      `http://127.0.0.1:8000/delete_category/${id}`,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response;
+  },
 };
