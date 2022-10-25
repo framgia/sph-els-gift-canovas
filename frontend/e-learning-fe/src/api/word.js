@@ -63,7 +63,35 @@ export default {
         },
       }
     );
-
+    return response;
+  },
+  async editWordChoices(query) {
+    const {
+      token,
+      word,
+      id,
+      correct_answer,
+      choice_a,
+      choice_b,
+      choice_c,
+      choice_d,
+    } = query;
+    const response = await axios.put(
+      `http://127.0.0.1:8000/edit_word_choices/${id}`,
+      {
+        word,
+        correct_answer,
+        choice_a,
+        choice_b,
+        choice_c,
+        choice_d,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
     return response;
   },
 };

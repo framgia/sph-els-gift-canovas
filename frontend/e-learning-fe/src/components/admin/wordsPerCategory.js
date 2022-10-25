@@ -45,25 +45,44 @@ function AdminWordsPerCategory() {
       {isLoading ? (
         ""
       ) : (
-        <div class="overflow-x-auto relative p-6">
+        <div>
           <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
             Words In this Category {words.category_name}
           </p>
-
-          <table class="w-96 text-sm text-left text-black dark:text-black">
+          <table class=" text-sm text-left text-black dark:text-black">
             <thead class="text-xs text-black ">
               <tr>
-                <th scope="col" class="w-48">
+                <th>
                   <p class="text-base text-center text-gray-900 dark:text-black">
                     Word
                   </p>
                 </th>
-                <th scope="row" class="w-48">
+                <th>
                   <p class="text-base text-center text-gray-900 dark:text-black">
                     Correct Answer
                   </p>
                 </th>
-                <th scope="col" class="w-48">
+                <th>
+                  <p class="text-base text-center text-gray-900 dark:text-black">
+                    Choice A
+                  </p>
+                </th>
+                <th>
+                  <p class="text-base text-center text-gray-900 dark:text-black">
+                    Choice B
+                  </p>
+                </th>
+                <th>
+                  <p class="text-base text-center text-gray-900 dark:text-black">
+                    Choice C
+                  </p>
+                </th>
+                <th>
+                  <p class="text-base text-center text-gray-900 dark:text-black">
+                    Choice D
+                  </p>
+                </th>
+                <th>
                   <p class="text-base text-center text-gray-900 dark:text-black">
                     Action
                   </p>
@@ -73,17 +92,32 @@ function AdminWordsPerCategory() {
             <tbody>
               {words.words.map((word) => (
                 <tr>
-                  <td class="py-4 px-14">
-                    <p class="text-base text-center w-48">{word.word}</p>
+                  <td>
+                    <p class="text-base text-center w-40">{word.word}</p>
                   </td>
-                  <td class="py-4 px-24">
-                    <p class="text-base text-center w-48">
+                  <td>
+                    <p class="text-base text-center w-40">
                       {word.correct_answer}
                     </p>
                   </td>
-                  <td class="py-4 px-28 ">
+                  <td>
+                    <p class="text-base text-center w-40">{word.choice_a}</p>
+                  </td>
+                  <td>
+                    <p class="text-base text-center w-40">{word.choice_b}</p>
+                  </td>
+                  <td>
+                    <p class="text-base text-center w-40">{word.choice_c}</p>
+                  </td>
+                  <td>
+                    <p class="text-base text-center w-40">{word.choice_d}</p>
+                  </td>
+                  <td>
                     <div class="flex flex-row w-48">
-                      <Link to="">
+                      <Link
+                        to="/adminEditWordAndChoices"
+                        state={{ data: word }}
+                      >
                         <a
                           href="#"
                           class="block py-2 pr-4 pl-3 text-black rounded text-lg
@@ -91,7 +125,7 @@ function AdminWordsPerCategory() {
                           md:border-0 md:hover:text-blue-700 md:p-0 
                           dark:text-black md:dark:hover:text-blue-600
                           dark:hover:bg-gray-700 dark:hover:text-blue
-                          md:dark:hover:bg-transparent"
+                          md:dark:hover:bg-transparent ml-12"
                         >
                           Edit |
                         </a>
