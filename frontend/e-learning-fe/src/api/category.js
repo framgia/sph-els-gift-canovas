@@ -23,4 +23,22 @@ export default {
 
     return response;
   },
+
+  async addCategory(query) {
+    const { token, category_name, description } = query;
+    const response = await axios.post(
+      "http://127.0.0.1:8000/add_category/",
+      {
+        category_name,
+        description,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response;
+  },
 };
