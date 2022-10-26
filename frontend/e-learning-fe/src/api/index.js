@@ -4,7 +4,7 @@ import signup from "./signup_api";
 import word from "./word";
 import user_answer from "./user_answer";
 import results from "./results";
-import notAdminUsers from "./notAdminUsers";
+import users from "./users";
 import userDetails from "./userDetails";
 import follow from "./follow";
 import userActivityLog from "./userActivityLog";
@@ -16,7 +16,7 @@ export default {
   word,
   user_answer,
   results,
-  notAdminUsers,
+  users,
   userDetails,
   follow,
   userActivityLog,

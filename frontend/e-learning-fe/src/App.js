@@ -16,6 +16,7 @@ import AdminAddCategory from "./components/admin/addCategory";
 import AdminEditCategory from "./components/admin/editCategory";
 import AdminAddWordAndChoices from "./components/admin/addWordAndChoices";
 import AdminWordsPerCategory from "./components/admin/wordsPerCategory";
+import AdminUsers from "./components/admin/adminUsers";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           path="/adminWordsPerCategory"
           element={<AdminWordsPerCategory />}
         />
+        <Route path="/adminUsers" element={<AdminUsers />} />
       </Routes>
     </BrowserRouter>
   );

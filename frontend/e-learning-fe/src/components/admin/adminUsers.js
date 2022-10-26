@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-import API from "../api";
+import API from "../../api";
 import Navbar from "./navbar";
 
-function NotAdminUsers() {
-  const navigate = useNavigate();
+function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
-  const handleClickUser = (user) => {
-    localStorage.setItem("extraUsername", user);
-    navigate("/otherUser");
-  };
-
   const fetchData = async () => {
     await API.users
-      .getNotAdminUsers({
+      .getAdminUsers({
         token,
         username,
       })
@@ -41,7 +34,7 @@ function NotAdminUsers() {
       ) : (
         <div class="overflow-x-auto relative p-6">
           <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
-            User List
+            Admin User List
           </p>
           <table class="w-96 text-sm text-left text-black dark:text-black">
             <thead class="text-xs text-black ">
@@ -72,34 +65,22 @@ function NotAdminUsers() {
               {users.map((data) => (
                 <tr>
                   <td class="py-4 px-14">
-                    <p
-                      class="text-base text-gray-900 dark:text-black cursor-pointer"
-                      onClick={() => handleClickUser(data.username)}
-                    >
+                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
                       {data.username}
                     </p>
                   </td>
                   <td class="py-4 px-14">
-                    <p
-                      class="text-base text-gray-900 dark:text-black cursor-pointer"
-                      onClick={() => handleClickUser(data.username)}
-                    >
+                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
                       {data.firstname}
                     </p>
                   </td>
                   <td class="py-4 px-14">
-                    <p
-                      class="text-base text-gray-900 dark:text-black cursor-pointer"
-                      onClick={() => handleClickUser(data.username)}
-                    >
+                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
                       {data.lastname}
                     </p>
                   </td>
                   <td class="py-4 px-14">
-                    <p
-                      class="text-base text-gray-900 dark:text-black cursor-pointer"
-                      onClick={() => handleClickUser(data.username)}
-                    >
+                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
                       {data.email}
                     </p>
                   </td>
@@ -113,4 +94,4 @@ function NotAdminUsers() {
   );
 }
 
-export default NotAdminUsers;
+export default AdminUsers;
