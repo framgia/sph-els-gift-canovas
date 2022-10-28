@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    localStorage.clear();
+    navigate("/", { replace: true });
+  };
   return (
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-500 mb-5">
       <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -77,6 +82,7 @@ function Navbar() {
                    md:hover:text-blue-700 md:p-0 dark:text-black
                     md:dark:hover:text-white dark:hover:bg-gray-700
                      dark:hover:text-white md:dark:hover:bg-transparent"
+                onClick={handleLogout}
               >
                 Logout
               </a>

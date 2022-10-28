@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { Navigate } from "react-router-dom";
 import Dashboard from "./components/dashboard";
 import Login from "./components/login";
 import SignUp from "./components/signup";
@@ -19,32 +20,142 @@ import AdminWordsPerCategory from "./components/admin/wordsPerCategory";
 import AdminUsers from "./components/admin/adminUsers";
 
 function App() {
+  const ProtectedRoute = ({ children }) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return <Navigate to="/" replace />;
+    }
+
+    return children;
+  };
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/answer" element={<Answer />} />
-        <Route path="/results" element={<Results />} />
-        <Route path="/users" element={<NotAdminUsers />} />
-        <Route path="/profile" element={<UserDetails />} />
-        <Route path="/update" element={<UpdateUserDetails />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/otherUser" element={<OtherUserDetails />} />
-        <Route path="/adminDashboard" element={<AdminDashboard />} />
-        <Route path="/wordsLearned" element={<WordsLearned />} />
-        <Route path="/adminAddcategory" element={<AdminAddCategory />} />
-        <Route path="/adminEditCategory" element={<AdminEditCategory />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/answer"
+          element={
+            <ProtectedRoute>
+              <Answer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <ProtectedRoute>
+              <Results />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <NotAdminUsers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <UserDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/update"
+          element={
+            <ProtectedRoute>
+              <UpdateUserDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/otherUser"
+          element={
+            <ProtectedRoute>
+              <OtherUserDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/adminDashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/wordsLearned"
+          element={
+            <ProtectedRoute>
+              <WordsLearned />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/adminAddcategory"
+          element={
+            <ProtectedRoute>
+              <AdminAddCategory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/adminEditCategory"
+          element={
+            <ProtectedRoute>
+              <AdminEditCategory />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/adminAddWordChoices"
-          element={<AdminAddWordAndChoices />}
+          element={
+            <ProtectedRoute>
+              <AdminAddWordAndChoices />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/adminWordsPerCategory"
-          element={<AdminWordsPerCategory />}
+          element={
+            <ProtectedRoute>
+              <AdminWordsPerCategory />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/adminUsers" element={<AdminUsers />} />
+
+        <Route
+          path="/adminUsers"
+          element={
+            <ProtectedRoute>
+              <AdminUsers />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

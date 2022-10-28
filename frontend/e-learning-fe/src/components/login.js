@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,9 +21,11 @@ function Login() {
       localStorage.setItem("username", username);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("extraUsername", "");
-      if (response.data.is_admin === true)
+      localStorage.setItem("isAdmin", false);
+      if (response.data.is_admin === true) {
+        localStorage.setItem("isAdmin", true);
         navigate("/adminDashboard", { replace: true });
-      else navigate("/dashboard", { replace: true });
+      } else navigate("/dashboard", { replace: true });
     } else {
       toast.error("Check Credentials!", {
         position: "top-right",
@@ -40,6 +42,15 @@ function Login() {
   const checkFields = () => {
     if (username !== "" && password !== "") setIsDisable(true);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      const isAdmin = localStorage.getItem("isAdmin");
+      if (isAdmin === "true") navigate("/adminDashboard", { replace: true });
+      else navigate("/dashboard", { replace: true });
+    }
+  }, []);
 
   return (
     <section>
