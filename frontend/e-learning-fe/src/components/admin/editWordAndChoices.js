@@ -51,7 +51,7 @@ function AdminEditWordAndChoices() {
   };
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -64,7 +64,7 @@ function AdminEditWordAndChoices() {
         pauseOnHover
       />
       <Navbar />
-      <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
+      <p class="text-4xl font-bold text-gray-900 dark:text-black py-6 mt-12">
         Edit Word
       </p>
       <div class="flex flex-row space-x-4 ">

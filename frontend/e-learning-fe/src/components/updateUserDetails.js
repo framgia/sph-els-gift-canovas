@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import API from "../api";
 import Navbar from "./navbar";
@@ -27,22 +29,45 @@ function UpdateUserDetails() {
 
   const handleDone = async () => {
     localStorage.setItem("username", username);
-    await API.userDetails.editUserDetails({
-      id,
-      username,
-      firstname,
-      lastname,
-      email,
-      password,
-      confirm_password: confirmPassword,
-      token,
-    });
+    await API.userDetails
+      .editUserDetails({
+        id,
+        username,
+        firstname,
+        lastname,
+        email,
+        password,
+        confirm_password: confirmPassword,
+        token,
+      })
+      .then(() => {
+        toast.success("Edit Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
-      <div class="grid gap-6 mb-6 md:grid-cols-2">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div class="grid gap-6 mb-6 md:grid-cols-2 mt-20">
         <div>
           <label
             for="username"

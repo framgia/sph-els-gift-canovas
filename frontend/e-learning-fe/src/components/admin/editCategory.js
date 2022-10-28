@@ -40,7 +40,7 @@ function AdminEditCategory() {
   };
 
   return (
-    <div class="p-6">
+    <div class="p-6  bg-gray-300 h-screen">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -53,8 +53,8 @@ function AdminEditCategory() {
         pauseOnHover
       />
       <Navbar />
-      <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
-        Edit Categories
+      <p class="text-4xl font-bold text-gray-900 dark:text-black py-6 mt-14">
+        Edit Category Details
       </p>
       <div>
         <label

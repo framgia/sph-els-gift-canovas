@@ -29,65 +29,56 @@ function AdminUsers() {
   return (
     <div class="p-6">
       <Navbar />
+      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+        Admin Users
+      </h5>
       {isLoading ? (
         ""
       ) : (
-        <div class="overflow-x-auto relative p-6">
-          <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
-            Admin User List
-          </p>
-          <table class="w-96 text-sm text-left text-black dark:text-black">
-            <thead class="text-xs text-black ">
-              <tr>
-                <th scope="col" class="w-48">
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Username
-                  </p>
-                </th>
-                <th scope="row" class="w-48">
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    First Name
-                  </p>
-                </th>
-                <th scope="col" class="w-48">
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Last Name
-                  </p>
-                </th>
-                <th scope="col" class="w-48">
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Email
-                  </p>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((data) => (
-                <tr>
-                  <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
-                      {data.username}
-                    </p>
-                  </td>
-                  <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
-                      {data.firstname}
-                    </p>
-                  </td>
-                  <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
-                      {data.lastname}
-                    </p>
-                  </td>
-                  <td class="py-4 px-14">
-                    <p class="text-base text-gray-900 dark:text-black cursor-pointer">
-                      {data.email}
-                    </p>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div class="flex flex-col place-items-center mt-2">
+          <ul
+            class="w-8/12 text-xl font-medium text-gray-900 bg-white rounded-lg border
+           border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          >
+            <div class="flex flex-row">
+              <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                Username
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                First Name
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Last Name
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Email
+              </li>
+            </div>
+          </ul>
+          <ul
+            class="w-8/12 text-sm font-medium text-gray-900 bg-white rounded-lg border
+           border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8"
+          >
+            {users.map((data) => (
+              <div class="flex flex-row">
+                <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  {data.username}
+                </li>
+
+                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {data.firstname}
+                </li>
+
+                <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  {data.lastname}
+                </li>
+
+                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {data.email}
+                </li>
+              </div>
+            ))}
+          </ul>
         </div>
       )}
     </div>

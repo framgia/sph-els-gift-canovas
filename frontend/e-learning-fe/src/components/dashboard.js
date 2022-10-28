@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactTimeAgo from "react-time-ago";
-
+import { Link } from "react-router-dom";
 import API from "../api";
 import Navbar from "./navbar";
 
@@ -39,35 +39,34 @@ function Dashboard() {
   }, []);
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Dashboard
       </h5>
-      <div class="flex flex-row  justify-around">
-        <div class="flex flex-col">
-          <div
-            class="inline-flex overflow-hidden relative justify-center items-center 
-            w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
-          >
-            <span class="text-7xl text-gray-600 dark:text-gray-300">
-              {username[0].toUpperCase()}
-            </span>
-          </div>
-          <p class="mt-3 text-3xl text-center text-gray-900 dark:text-black">
-            {username}
+      <div class="flex flex-col place-items-center">
+        <div
+          class="inline-flex overflow-hidden relative justify-center items-center 
+              w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
+        >
+          <span class="text-7xl text-gray-600 dark:text-gray-300">
+            {username[0].toUpperCase()}
+          </span>
+        </div>
+        <p class="mt-3 text-3xl text-center text-gray-900 dark:text-black">
+          {username}
+        </p>
+        <div class="flex flex-row space-x-4">
+          <Link to="/wordsLearned">
+            <p class="text-base text-gray-900 dark:text-black underline ">
+              Learned {wordsLearned} Words
+            </p>
+          </Link>
+          <p class="text-base text-gray-900 dark:text-black underline ">
+            Learned {lessonsLearned} Lessons
           </p>
         </div>
-        <div class="flex flex-col">
-          <p class="text-base text-gray-900 dark:text-black">
-            {" "}
-            Learned {wordsLearned} words
-          </p>
-          <p class="text-base text-gray-900 dark:text-black">
-            Learned {lessonsLearned} lessons
-          </p>
-        </div>
-        <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
+        <div class="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5">
           {isLoading
             ? ""
             : activities.map((activity) => (

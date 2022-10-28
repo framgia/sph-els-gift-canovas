@@ -53,60 +53,56 @@ function UserDetails() {
   }, []);
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
+
       {isLoading ? (
         ""
       ) : (
-        <div class="flex flex-row place-content-between p-10">
-          <div class="flex flex-col space-y-4 ">
-            <div
-              class="inline-flex overflow-hidden relative justify-center items-center 
-            w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
-            >
-              <span class="text-7xl text-gray-600 dark:text-gray-300">
-                {userDetails.username[0].toUpperCase()}
-              </span>
-            </div>
-
-            <div class="flex justify-between mt-3 px-4">
-              <div class="flex flex-col mr-3">
-                <span class="font-bold text-2xl text-center">
-                  {numberOfFollowers}
-                </span>
-                <span class="text-sm text-red-600">Followers</span>
-              </div>
-
-              <div class="flex flex-col">
-                <span class="font-bold text-2xl text-center">
-                  {numberOfFollowing}
-                </span>
-                <span class="text-sm text-red-600">Followings</span>
-              </div>
-            </div>
-            <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-              {userDetails.username}
-            </p>
-            <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-              {userDetails.firstname} &nbsp; {userDetails.lastname}
-            </p>
-            <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-              {userDetails.email}
-            </p>
-
+        <div class="flex flex-col place-items-center mt-2">
+          <div class="place-self-end mt-12 ">
             <Link to="/update" state={{ data: userDetails }}>
               <button
                 type="button"
-                class=" mt-5 text-white bg-green-700 hover:bg-white-800 
+                class="text-white bg-green-700 hover:bg-white-800 
                   focus:outline-none focus:ring-4 focus:ring-green-300 
                   font-medium rounded-full text-sm px-5 py-2.5 text-center 
-                  mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               >
                 Edit
               </button>
             </Link>
           </div>
-          <div class="space-y-4 box-border h-4/5 w-3/5 p-4 border-4">
+          <div
+            class="inline-flex overflow-hidden relative justify-center items-center 
+                  w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600 \"
+          >
+            <span class="text-7xl text-gray-600 dark:text-gray-300">
+              {userDetails.username[0].toUpperCase()}
+            </span>
+          </div>
+
+          <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
+            {userDetails.firstname} &nbsp; {userDetails.lastname}
+          </p>
+
+          <div class="flex flex-row">
+            <div class="flex flex-col mr-3">
+              <span class="font-bold text-2xl text-center">
+                {numberOfFollowers}
+              </span>
+              <span class="text-sm text-black">Followers</span>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="font-bold text-2xl text-center">
+                {numberOfFollowing}
+              </span>
+              <span class="text-sm text-black">Followings</span>
+            </div>
+          </div>
+
+          <div class="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5">
             {activities.map((activity) => (
               <div key={activity.id}>
                 {activity.activity_description === "follow" ||

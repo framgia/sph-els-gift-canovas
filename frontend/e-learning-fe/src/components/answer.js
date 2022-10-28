@@ -72,15 +72,15 @@ function Answer() {
   }, []);
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
       {isLoading ? (
         ""
       ) : (
-        <div>
+        <>
           {userAnswers.length !== wordsLength && (
-            <div>
-              <div class="flex flex-row space-x-72 ">
+            <div class="flex flex-col place-items-center">
+              <div class="flex flex-row space-x-72 mt-20">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                   {words.category_name}
                 </h5>
@@ -88,53 +88,48 @@ function Answer() {
                   {index + 1} of {wordsLength}
                 </h4>
               </div>
+              <p class="text-4xl font-semibold text-gray-900 dark:text-blackl text-center mt-10">
+                {words.words[index].word}
+              </p>
 
-              <div class="flex flex-row place-content-left p-6 flex space-x-24 ">
-                <p class="text-4xl font-semibold text-gray-900 dark:text-blackl">
-                  {words.words[index].word}
-                </p>
-                <div class="flex flex-col">
-                  <button
-                    class="text-white bg-gradient-to-r from-blue-500 
-              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                    onClick={() => nextIndex(words.words[index].choice_a)}
-                  >
+              <div class="flex flex-row mt-12 space-x-12">
+                <button
+                  onClick={() => nextIndex(words.words[index].choice_a)}
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_a}
-                  </button>
-                  <button
-                    class="text-white bg-gradient-to-r from-blue-500 
-              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                    onClick={() => nextIndex(words.words[index].choice_b)}
-                  >
+                  </span>
+                </button>
+                <button
+                  onClick={() => nextIndex(words.words[index].choice_b)}
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_b}
-                  </button>
-                  <button
-                    class="text-white bg-gradient-to-r from-blue-500 
-              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                    onClick={() => nextIndex(words.words[index].choice_c)}
-                  >
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => nextIndex(words.words[index].choice_c)}
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_c}
-                  </button>
-                  <button
-                    class="text-white bg-gradient-to-r from-blue-500 
-              via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 
-              focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 
-              font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                    onClick={() => nextIndex(words.words[index].choice_d)}
-                  >
+                  </span>
+                </button>
+                <button
+                  onClick={() => nextIndex(words.words[index].choice_d)}
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_d}
-                  </button>
-                </div>
+                  </span>
+                </button>
               </div>
             </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

@@ -407,6 +407,7 @@ class EditWordAndChoices(generics.UpdateAPIView):
         get_choice.choice_d = choice_d
         get_choice.save()
         serializer.save()
+        return Response(serializer.data)
 
 
 class AdminUserList(APIView):
