@@ -59,43 +59,55 @@ function UserDetails() {
   }, []);
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
       {isLoading ? (
         ""
       ) : (
-        <div class="flex flex-row space-x-4 p-10">
-          <div class="flex flex-col space-y-4 ">
-            <div
-              class="inline-flex overflow-hidden relative justify-center items-center 
-            w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
-            >
-              <span class="text-7xl text-gray-600 dark:text-gray-300">
-                {userDetails.username[0].toUpperCase()}
-              </span>
-            </div>
+        <div class="flex flex-col place-items-center mt-20">
+          <div
+            class="inline-flex overflow-hidden relative justify-center items-center 
+                w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600 \"
+          >
+            <span class="text-7xl text-gray-600 dark:text-gray-300">
+              {userDetails.username[0].toUpperCase()}
+            </span>
+          </div>
+          <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
+            {userDetails.username}
+          </p>
 
-            <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-              {userDetails.username}
-            </p>
-            <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-              {userDetails.firstname} &nbsp; {userDetails.lastname}
-            </p>
-            <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-              {userDetails.email}
-            </p>
+          <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
+            {userDetails.firstname} &nbsp; {userDetails.lastname}
+          </p>
 
+          <p class="tracking-tighter text-center text-black md:text-lg dark:text-black mb-5">
+            {userDetails.email}
+          </p>
+          {status === "follow" ? (
             <button
               type="button"
-              class=" mt-5 text-white bg-blue-700 hover:bg-white-800 
-                  focus:outline-none focus:ring-4 focus:ring-blue-300 
-                  font-medium rounded-full text-sm px-5 py-2.5 text-center 
-                  mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               onClick={handleFollow}
+              class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br 
+              focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 
+              dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
             >
               {status}
             </button>
-          </div>
+          ) : (
+            <button
+              type="button"
+              onClick={handleFollow}
+              class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br
+               focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg 
+               shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm 
+               px-5 py-2.5 text-center mr-2 mb-2"
+            >
+              {status}
+            </button>
+          )}
+
+          <div class="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5"></div>
         </div>
       )}
     </div>

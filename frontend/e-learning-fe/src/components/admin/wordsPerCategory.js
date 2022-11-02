@@ -40,114 +40,85 @@ function AdminWordsPerCategory() {
   }, []);
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
+      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+        Words in Category : {words.category_name}
+      </h5>
       {isLoading ? (
         ""
       ) : (
-        <div>
-          <p class="text-4xl font-bold text-gray-900 dark:text-black py-6">
-            Words In this Category {words.category_name}
-          </p>
-          <table class=" text-sm text-left text-black dark:text-black">
-            <thead class="text-xs text-black ">
-              <tr>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Word
-                  </p>
-                </th>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Correct Answer
-                  </p>
-                </th>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Choice A
-                  </p>
-                </th>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Choice B
-                  </p>
-                </th>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Choice C
-                  </p>
-                </th>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Choice D
-                  </p>
-                </th>
-                <th>
-                  <p class="text-base text-center text-gray-900 dark:text-black">
-                    Action
-                  </p>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {words.words.map((word) => (
-                <tr>
-                  <td>
-                    <p class="text-base text-center w-40">{word.word}</p>
-                  </td>
-                  <td>
-                    <p class="text-base text-center w-40">
-                      {word.correct_answer}
-                    </p>
-                  </td>
-                  <td>
-                    <p class="text-base text-center w-40">{word.choice_a}</p>
-                  </td>
-                  <td>
-                    <p class="text-base text-center w-40">{word.choice_b}</p>
-                  </td>
-                  <td>
-                    <p class="text-base text-center w-40">{word.choice_c}</p>
-                  </td>
-                  <td>
-                    <p class="text-base text-center w-40">{word.choice_d}</p>
-                  </td>
-                  <td>
-                    <div class="flex flex-row w-48">
-                      <Link
-                        to="/adminEditWordAndChoices"
-                        state={{ data: word }}
-                      >
-                        <a
-                          href="#"
-                          class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                          hover:bg-gray-100 md:hover:bg-blue-200 
-                          md:border-0 md:hover:text-blue-700 md:p-0 
-                          dark:text-black md:dark:hover:text-blue-600
-                          dark:hover:bg-gray-700 dark:hover:text-blue
-                          md:dark:hover:bg-transparent ml-12"
-                        >
-                          Edit |
-                        </a>
-                      </Link>
+        <div class="flex flex-col place-items-center mt-5">
+          <ul
+            class="w-8/12 text-xl font-medium text-gray-900 bg-white rounded-lg border
+         border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          >
+            <div class="flex flex-row">
+              <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                Word
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Correct Answer
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Choice A
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Choice B
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Choice C
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Choice D
+              </li>
+              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                Action
+              </li>
+            </div>
+          </ul>
+          <ul
+            class="w-8/12 text-sm font-medium text-gray-900 bg-white rounded-lg border
+         border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8"
+          >
+            {words.words.map((word) => (
+              <div class="flex flex-row">
+                <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  {word.word}
+                </li>
 
-                      <p
-                        class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                              hover:bg-gray-100 md:hover:bg-blue-200 
-                              md:border-0 md:hover:text-blue-700 md:p-0 
-                              dark:text-black md:dark:hover:text-blue-600
-                              dark:hover:bg-gray-700 dark:hover:text-blue
-                              md:dark:hover:bg-transparent cursor-pointer"
-                        onClick={() => handleDeleteWord(word.word_id)}
-                      >
-                        Delete
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                <li class="py-2 px-4 w-64 text-center rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {word.correct_answer}
+                </li>
+                <li class="py-2 px-4 w-64 text-center rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {word.choice_a}
+                </li>
+                <li class="py-2 px-4 w-64 text-center rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {word.choice_b}
+                </li>
+                <li class="py-2 px-4 w-64 text-center rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {word.choice_c}
+                </li>
+                <li class="py-2 px-4 w-64 text-center rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                  {word.choice_d}
+                </li>
+
+                <li class="ml-20 py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  <div class="flex flex-row">
+                    <Link to="/adminEditWordAndChoices" state={{ data: word }}>
+                      <p class="underline">Edit Word |</p>
+                    </Link>
+                    <p
+                      class="underline"
+                      onClick={() => handleDeleteWord(word.word_id)}
+                    >
+                      Delete Word
+                    </p>
+                  </div>
+                </li>
+              </div>
+            ))}
+          </ul>
         </div>
       )}
     </div>

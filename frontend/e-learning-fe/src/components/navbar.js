@@ -7,85 +7,70 @@ function Navbar() {
     navigate("/", { replace: true });
   };
   return (
-    <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-500 mb-5">
+    <nav
+      class="bg-white px-2  dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b
+     border-gray-200 dark:border-gray-600 mb-5"
+    >
       <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul
-            class="flex flex-col p-4 mt-4
-           bg-gray-50 rounded-lg border
-            border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm 
-            md:font-medium md:border-0 md:bg-white dark:bg-gray-500
-             md:dark:bg-gray-500 dark:border-gray-400"
-          >
+        <Link to="/dashboard">
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white ml-3">
+            E-Learning
+          </span>
+        </Link>
+
+        <div
+          class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
+          id="navbar-sticky"
+        >
+          <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link to="/dashboard">
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                  hover:bg-gray-100 md:hover:bg-transparent 
-                  md:border-0 md:hover:text-blue-700 md:p-0 
-                  dark:text-black md:dark:hover:text-white 
-                  dark:hover:bg-gray-700 dark:hover:text-white 
-                  md:dark:hover:bg-transparent"
+                <p
+                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
+              md:text-white text-base md:p-0 dark:text-white"
                 >
                   Home
-                </a>
+                </p>
               </Link>
             </li>
             <li>
               <Link to="/categories">
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                hover:bg-gray-100 md:hover:bg-transparent
-                 md:border-0 md:hover:text-blue-700 md:p-0 
-                 dark:text-black md:dark:hover:text-white
-                  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                <p
+                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
+                 md:text-white text-base md:p-0 dark:text-white"
                 >
                   Categories
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link to="/profile">
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                hover:bg-gray-100 md:hover:bg-transparent
-                 md:border-0 md:hover:text-blue-700 md:p-0 
-                 dark:text-black md:dark:hover:text-white
-                  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Profile
-                </a>
+                </p>
               </Link>
             </li>
             <li>
               <Link to="/users">
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                  hover:bg-gray-100 md:hover:bg-transparent md:border-0
-                   md:hover:text-blue-700 md:p-0 dark:text-black
-                    md:dark:hover:text-white dark:hover:bg-gray-700
-                     dark:hover:text-white md:dark:hover:bg-transparent"
+                <p
+                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
+                  md:text-white text-base md:p-0 dark:text-white"
                 >
                   Users
-                </a>
+                </p>
               </Link>
             </li>
             <li>
-              <a
-                href="#"
-                class="block py-2 pr-4 pl-3 text-black rounded text-lg
-                  hover:bg-gray-100 md:hover:bg-transparent md:border-0
-                   md:hover:text-blue-700 md:p-0 dark:text-black
-                    md:dark:hover:text-white dark:hover:bg-gray-700
-                     dark:hover:text-white md:dark:hover:bg-transparent"
+              <Link to="/profile">
+                <p
+                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
+                  md:text-white text-base md:p-0 dark:text-white"
+                >
+                  Profile
+                </p>
+              </Link>
+            </li>
+            <li>
+              <p
+                class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
+                md:text-white text-base md:p-0 dark:text-white cursor-pointer"
                 onClick={handleLogout}
               >
                 Logout
-              </a>
+              </p>
             </li>
           </ul>
         </div>

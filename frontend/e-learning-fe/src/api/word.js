@@ -10,6 +10,7 @@ export default {
     });
     return response;
   },
+
   async getWordsLearned(query) {
     const { username, token } = query;
     const response = await axios.get(
@@ -53,6 +54,7 @@ export default {
     );
     return response;
   },
+
   async deleteWord(query) {
     const { token, id } = query;
     const response = await axios.delete(
@@ -65,6 +67,7 @@ export default {
     );
     return response;
   },
+
   async editWordChoices(query) {
     const {
       token,

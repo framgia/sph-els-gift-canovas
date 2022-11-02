@@ -78,7 +78,7 @@ function SignUp() {
   };
 
   return (
-    <section>
+    <section class="bg-gray-50 dark:bg-gray-900">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -90,18 +90,24 @@ function SignUp() {
         draggable
         pauseOnHover
       />
-      <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen">
-        <div class="w-3/4 h-4/5  bg-white rounded-lg shadow dark:border dark:bg-gray-300 dark:border-gray-700">
-          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
+      <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a
+          href="#"
+          class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
+          E-Learning
+        </a>
+        <div class="w-9/12 h-4/5 bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+          <div class=" p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create E-Learning Account
             </h1>
-            <div class="space-y-44 md:space-y-6">
-              <div class="flex flex-row space-x-44">
-                <div class="w-96">
+            <div class="flex flex-col space-y-4">
+              <div class="flex flex-row space-x-96">
+                <div>
                   <label
                     for="username"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Username
                   </label>
@@ -109,9 +115,10 @@ function SignUp() {
                     type="text"
                     name="username"
                     id="username"
-                    class="bg-red-50 border border-red-200 text-gray-900
-                      sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                      dark:focus:border-blue-500"
                     placeholder="username"
                     onChange={(e) => {
                       setUsername(e.target.value);
@@ -122,7 +129,7 @@ function SignUp() {
                 <div class="w-96">
                   <label
                     for="email"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Email
                   </label>
@@ -130,9 +137,10 @@ function SignUp() {
                     type="email"
                     name="email"
                     id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900
-                      sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                  focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                  dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     onChange={(e) => {
                       setEmail(e.target.value);
@@ -142,11 +150,11 @@ function SignUp() {
                 </div>
               </div>
 
-              <div class="flex flex-row space-x-44">
-                <div class="w-96">
+              <div class="flex flex-row space-x-96">
+                <div>
                   <label
                     for="firstname"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     First Name
                   </label>
@@ -154,9 +162,10 @@ function SignUp() {
                     type="text"
                     name="firstname"
                     id="firstname"
-                    class="bg-gray-50 border border-gray-300 text-gray-900
-                      sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                      dark:focus:border-blue-500"
                     placeholder="firstname"
                     onChange={(e) => {
                       setFirstName(e.target.value);
@@ -164,10 +173,10 @@ function SignUp() {
                     }}
                   />
                 </div>
-                <div class="w-96">
+                <div>
                   <label
                     for="password"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Password
                   </label>
@@ -176,10 +185,10 @@ function SignUp() {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900
-                      sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block 
-                      w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 
-                      dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                      dark:focus:border-blue-500"
                     onChange={(e) => {
                       setPassword(e.target.value);
                       checkFields();
@@ -188,11 +197,11 @@ function SignUp() {
                 </div>
               </div>
 
-              <div class="flex flex-row space-x-44">
-                <div class="w-96">
+              <div class="flex flex-row space-x-96">
+                <div>
                   <label
                     for="lastname"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Last Name
                   </label>
@@ -200,9 +209,10 @@ function SignUp() {
                     type="text"
                     name="lastname"
                     id="lastname"
-                    class="bg-gray-50 border border-gray-300 text-gray-900
-                      sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-200 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                      dark:focus:border-blue-500"
                     placeholder="lastname"
                     onChange={(e) => {
                       setLastName(e.target.value);
@@ -210,22 +220,22 @@ function SignUp() {
                     }}
                   />
                 </div>
-                <div class="w-96">
+                <div>
                   <label
                     for="confirm-password"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Confirm password
+                    Confirm Password
                   </label>
                   <input
                     type="password"
                     name="confirm-password"
                     id="confirm-password"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900
-                      sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block 
-                      w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 
-                      dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                      dark:focus:border-blue-500"
                     onChange={(e) => {
                       setConfirmPassword(e.target.value);
                       checkFields();
@@ -233,57 +243,36 @@ function SignUp() {
                   />
                 </div>
               </div>
-
-              <div class="flex items-start">
-                <div class="flex items-center h-5">
-                  <input
-                    id="is_admin"
-                    type="checkbox"
-                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 
-                        focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 
-                        dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    checked={isAdmin}
-                    onChange={handleOnChangeAdmin}
-                  />
-                </div>
-                <div class="ml-3 text-sm">
-                  <label
-                    for="is_admin"
-                    class="font-light text-black dark:text-black"
-                  >
-                    Admin
-                  </label>
-                </div>
-              </div>
+            </div>
+            <div class="flex flex-col space-y-4 place-items-center">
               {isDisableSignupButton === true ? (
                 <button
-                  type="submit"
-                  class="w-96 text-black bg-primary-600 hover:bg-primary-700 
-                focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium ml-72
-                rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 bg-green-600
-                dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                   onClick={handleSignUp}
+                  type="submit"
+                  class="w-80 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none mt-8
+                focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Create Account
+                  Create an account
                 </button>
               ) : (
                 <button
-                  type="submit"
-                  class="w-96 text-black bg-primary-600 hover:bg-primary-700 
-                focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium ml-72
-                rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 bg-gray-600
-                dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                   disabled
+                  type="submit"
+                  class="w-80 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none mt-8
+                focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                dark:bg-gray-400 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Create Account
+                  Create an account
                 </button>
               )}
-              <p class="text-sm font-light text-black dark:text-black">
+
+              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
                 <Link to="/">
-                  <a class="font-medium text-black hover:underline dark:text-black">
+                  <a class="font-medium text-primary-600 hover:underline dark:text-primary-500">
                     Login here
-                  </a>
+                  </a>{" "}
                 </Link>
               </p>
             </div>
