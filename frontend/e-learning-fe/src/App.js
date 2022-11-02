@@ -18,6 +18,7 @@ import AdminEditCategory from "./components/admin/editCategory";
 import AdminAddWordAndChoices from "./components/admin/addWordAndChoices";
 import AdminWordsPerCategory from "./components/admin/wordsPerCategory";
 import AdminUsers from "./components/admin/adminUsers";
+import AdminEditWordAndChoices from "./components/admin/editWordAndChoices";
 
 function App() {
   const ProtectedRoute = ({ children }) => {
@@ -155,6 +156,10 @@ function App() {
               <AdminUsers />
             </ProtectedRoute>
           }
+        />
+        <Route
+          path="/adminEditWordAndChoices"
+          element={<AdminEditWordAndChoices />}
         />
       </Routes>
     </BrowserRouter>
