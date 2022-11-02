@@ -1,4 +1,5 @@
 import axios from "axios";
+const { BASE_URL } = process.env;
 
 export default {
   async signUp(query) {
@@ -12,7 +13,7 @@ export default {
       isAdmin: is_admin,
     } = query;
     const response = await axios
-      .post("http://127.0.0.1:8000/register/", {
+      .post(`${BASE_URL}/register/`, {
         username,
         firstname,
         lastname,

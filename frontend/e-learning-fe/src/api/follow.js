@@ -1,10 +1,11 @@
 import axios from "axios";
+const { BASE_URL } = process.env;
 
 export default {
   async follow(query) {
     const { token, follower_username, following_username } = query;
     const response = await axios.post(
-      "http://127.0.0.1:8000/follow/",
+      `${BASE_URL}/follow/`,
       {
         follower_username,
         following_username,
@@ -20,7 +21,7 @@ export default {
   async getNumberOfFollowersFollowing(query) {
     const { token, username } = query;
     const response = await axios.get(
-      `http://127.0.0.1:8000/number_of_followers_following/${username}`,
+      `${BASE_URL}/number_of_followers_following/${username}`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -32,7 +33,7 @@ export default {
   async unfollow(query) {
     const { token, follower_username, following_username } = query;
     const response = await axios.get(
-      `http://127.0.0.1:8000/unfollow/${follower_username}/${following_username}`,
+      `${BASE_URL}/unfollow/${follower_username}/${following_username}`,
       {
         headers: {
           Authorization: `Token ${token}`,
