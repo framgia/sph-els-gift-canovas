@@ -244,6 +244,27 @@ function SignUp() {
                 </div>
               </div>
             </div>
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="is_admin"
+                  type="checkbox"
+                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 
+                        focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 
+                        dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                  checked={isAdmin}
+                  onChange={handleOnChangeAdmin}
+                />
+              </div>
+              <div class="ml-3 text-sm">
+                <label
+                  for="is_admin"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Admin
+                </label>
+              </div>
+            </div>
             <div class="flex flex-col space-y-4 place-items-center">
               {isDisableSignupButton === true ? (
                 <button
