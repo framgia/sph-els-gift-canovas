@@ -1,5 +1,5 @@
 import axios from "axios";
-const { BASE_URL } = process.env;
+const { REACT_APP_BASE_URL } = process.env;
 
 export default {
   async signUp(query) {
@@ -13,7 +13,7 @@ export default {
       isAdmin: is_admin,
     } = query;
     const response = await axios
-      .post(`${BASE_URL}/register/`, {
+      .post(`${REACT_APP_BASE_URL}/register/`, {
         username,
         firstname,
         lastname,

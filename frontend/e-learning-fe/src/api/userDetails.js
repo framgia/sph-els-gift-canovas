@@ -1,11 +1,11 @@
 import axios from "axios";
-const { BASE_URL } = process.env;
+const { REACT_APP_BASE_URL } = process.env;
 
 export default {
   async getUserDetails(query) {
     const { username, token, follower, following } = query;
     const response = await axios.get(
-      `${BASE_URL}/${username}/${follower}/${following}/`,
+      `${REACT_APP_BASE_URL}/${username}/${follower}/${following}/`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -27,7 +27,7 @@ export default {
       token,
     } = query;
     const response = await axios.put(
-      `${BASE_URL}/edit_user_details/${id}/`,
+      `${REACT_APP_BASE_URL}/edit_user_details/${id}/`,
       {
         username,
         firstname,
