@@ -1,10 +1,10 @@
 import axios from "axios";
-const { BASE_URL } = process.env;
+const { REACT_APP_BASE_URL } = process.env;
 
 export default {
   async login(query) {
     const { username, password } = query;
-    const response = await axios.post(`${BASE_URL}/auth/`, {
+    const response = await axios.post(`${REACT_APP_BASE_URL}/auth/`, {
       username,
       password,
     });
