@@ -1,10 +1,11 @@
 import axios from "axios";
+const { BASE_URL } = process.env;
 
 export default {
   async userAnswers(query) {
     const { token, category_id, username, userAnswers } = query;
     const response = await axios.post(
-      "http://127.0.0.1:8000/user_answer/",
+      `${BASE_URL}/user_answer/`,
       {
         category_id,
         username,

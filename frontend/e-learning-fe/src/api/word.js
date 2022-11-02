@@ -1,9 +1,10 @@
 import axios from "axios";
+const { BASE_URL } = process.env;
 
 export default {
   async getWordsPerCategory(query) {
     const { id, token } = query;
-    const response = await axios.get(`http://127.0.0.1:8000/get_words/${id}`, {
+    const response = await axios.get(`${BASE_URL}/get_words/${id}`, {
       headers: {
         Authorization: `Token ${token}`,
       },
@@ -13,14 +14,11 @@ export default {
 
   async getWordsLearned(query) {
     const { username, token } = query;
-    const response = await axios.get(
-      `http://127.0.0.1:8000/words_learned/${username}`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${BASE_URL}/words_learned/${username}`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
     return response;
   },
 
@@ -36,7 +34,7 @@ export default {
       choice_d,
     } = query;
     const response = await axios.post(
-      "http://127.0.0.1:8000/add_words_choices/",
+      `${BASE_URL}/add_words_choices/`,
       {
         word,
         category_id,
@@ -57,14 +55,11 @@ export default {
 
   async deleteWord(query) {
     const { token, id } = query;
-    const response = await axios.delete(
-      `http://127.0.0.1:8000/delete_word/${id}`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    const response = await axios.delete(`${BASE_URL}/delete_word/${id}`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
     return response;
   },
 
@@ -80,7 +75,7 @@ export default {
       choice_d,
     } = query;
     const response = await axios.put(
-      `http://127.0.0.1:8000/edit_word_choices/${id}`,
+      `${BASE_URL}/edit_word_choices/${id}`,
       {
         word,
         correct_answer,

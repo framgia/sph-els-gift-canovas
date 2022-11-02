@@ -1,9 +1,10 @@
 import axios from "axios";
+const { BASE_URL } = process.env;
 
 export default {
   async login(query) {
     const { username, password } = query;
-    const response = await axios.post("http://127.0.0.1:8000/auth/", {
+    const response = await axios.post(`${BASE_URL}/auth/`, {
       username,
       password,
     });

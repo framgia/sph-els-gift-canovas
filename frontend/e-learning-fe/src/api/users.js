@@ -1,10 +1,11 @@
 import axios from "axios";
+const { BASE_URL } = process.env;
 
 export default {
   async getNotAdminUsers(query) {
     const { token, username } = query;
     const response = await axios.get(
-      `http://127.0.0.1:8000/not_admin_users/${username}`,
+      `${BASE_URL}/not_admin_users/${username}`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -15,14 +16,11 @@ export default {
   },
   async getAdminUsers(query) {
     const { token, username } = query;
-    const response = await axios.get(
-      `http://127.0.0.1:8000/admin_users/${username}`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${BASE_URL}/admin_users/${username}`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
     return response;
   },
 };
