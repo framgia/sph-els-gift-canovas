@@ -4,11 +4,14 @@ const { REACT_APP_BASE_URL } = process.env;
 export default {
   async getCategoryByUser(query) {
     const { username, token } = query;
-    const response = await axios.get(`${REACT_APP_BASE_URL}/${username}`, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
+    const response = await axios.get(
+      `${REACT_APP_BASE_URL}/category/${username}`,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
     return response;
   },
   async getCategories(query) {

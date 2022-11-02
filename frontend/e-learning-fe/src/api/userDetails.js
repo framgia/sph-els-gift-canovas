@@ -5,7 +5,7 @@ export default {
   async getUserDetails(query) {
     const { username, token, follower, following } = query;
     const response = await axios.get(
-      `${REACT_APP_BASE_URL}/${username}/${follower}/${following}/`,
+      `${REACT_APP_BASE_URL}/user_details/${username}/${follower}/${following}/`,
       {
         headers: {
           Authorization: `Token ${token}`,
