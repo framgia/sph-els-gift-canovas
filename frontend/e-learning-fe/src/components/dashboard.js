@@ -57,7 +57,7 @@ function Dashboard() {
           {username}
         </p>
         <div class="flex flex-row space-x-4">
-          <Link to="/wordsLearned">
+          <Link to="/words-learned">
             <p class="text-base text-gray-900 dark:text-black underline ">
               Learned {wordsLearned} Words
             </p>

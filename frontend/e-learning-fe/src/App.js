@@ -93,7 +93,7 @@ function App() {
           }
         />
         <Route
-          path="/otherUser"
+          path="/other-user"
           element={
             <ProtectedRoute>
               <OtherUserDetails />
@@ -101,7 +101,7 @@ function App() {
           }
         />
         <Route
-          path="/adminDashboard"
+          path="/admin-dashboard"
           element={
             <ProtectedRoute>
               <AdminDashboard />
@@ -109,7 +109,7 @@ function App() {
           }
         />
         <Route
-          path="/wordsLearned"
+          path="/words-learned"
           element={
             <ProtectedRoute>
               <WordsLearned />
@@ -117,7 +117,7 @@ function App() {
           }
         />
         <Route
-          path="/adminAddcategory"
+          path="/admin-add-category"
           element={
             <ProtectedRoute>
               <AdminAddCategory />
@@ -125,7 +125,7 @@ function App() {
           }
         />
         <Route
-          path="/adminEditCategory"
+          path="/admin-edit-category"
           element={
             <ProtectedRoute>
               <AdminEditCategory />
@@ -133,7 +133,7 @@ function App() {
           }
         />
         <Route
-          path="/adminAddWordChoices"
+          path="/admin-add-word-choices"
           element={
             <ProtectedRoute>
               <AdminAddWordAndChoices />
@@ -141,7 +141,7 @@ function App() {
           }
         />
         <Route
-          path="/adminWordsPerCategory"
+          path="/admin-words-per-category"
           element={
             <ProtectedRoute>
               <AdminWordsPerCategory />
@@ -150,7 +150,7 @@ function App() {
         />
 
         <Route
-          path="/adminUsers"
+          path="/admin-users"
           element={
             <ProtectedRoute>
               <AdminUsers />
@@ -158,7 +158,7 @@ function App() {
           }
         />
         <Route
-          path="/adminEditWordAndChoices"
+          path="/admin-edit-word-and-choices"
           element={<AdminEditWordAndChoices />}
         />
       </Routes>
