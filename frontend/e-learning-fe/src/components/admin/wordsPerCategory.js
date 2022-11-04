@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
 import API from "../../api";
+import Loader from "../loader";
 import Navbar from "./navbar";
 
 function AdminWordsPerCategory() {
@@ -46,7 +48,9 @@ function AdminWordsPerCategory() {
         Words in Category : {words.category_name}
       </h5>
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <div class="flex flex-col place-items-center mt-5">
           <ul
