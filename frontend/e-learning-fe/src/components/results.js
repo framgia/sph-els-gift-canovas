@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import API from "../api";
+import Loader from "./loader";
 import Navbar from "./navbar";
 
 function Results() {
@@ -35,7 +36,9 @@ function Results() {
         Results
       </h5>
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <div class="flex flex-col place-items-center">
           <ul
