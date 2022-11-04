@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import API from "../../api";
+import Loader from "../loader";
 import Navbar from "./navbar";
 
 function AdminUsers() {
@@ -33,7 +34,9 @@ function AdminUsers() {
         Admin Users
       </h5>
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <div class="flex flex-col place-items-center mt-2">
           <ul
