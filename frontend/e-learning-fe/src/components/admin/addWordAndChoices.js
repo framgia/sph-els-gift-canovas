@@ -14,8 +14,21 @@ function AdminAddWordAndChoices() {
   const [choiceB, setChoiceB] = useState("");
   const [choiceC, setChoiceC] = useState("");
   const [choiceD, setChoiceD] = useState("");
+  const [isDisableAdd, setIsDisableAdd] = useState(false);
 
   const token = localStorage.getItem("token");
+
+  const checkFields = () => {
+    if (
+      word !== "" &&
+      correctAnswer !== "" &&
+      choiceA !== "" &&
+      choiceB !== "" &&
+      choiceC !== "" &&
+      choiceD !== ""
+    )
+      setIsDisableAdd(true);
+  };
 
   const handleAddCategory = async () => {
     await API.word
@@ -29,16 +42,28 @@ function AdminAddWordAndChoices() {
         choice_d: choiceD,
         token,
       })
-      .then(() => {
-        toast.success("Successfully Added", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+      .then((data) => {
+        if (data === 200) {
+          toast.success("Successfully Added", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.error("Correct answer not in the choices", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       });
   };
 
@@ -75,7 +100,10 @@ function AdminAddWordAndChoices() {
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => setWord(e.target.value)}
+              onChange={(e) => {
+                setWord(e.target.value);
+                checkFields();
+              }}
             />
           </div>
           <div>
@@ -92,7 +120,10 @@ function AdminAddWordAndChoices() {
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => setCorrectAnswer(e.target.value)}
+              onChange={(e) => {
+                setCorrectAnswer(e.target.value);
+                checkFields();
+              }}
             />
           </div>
         </div>
@@ -112,7 +143,10 @@ function AdminAddWordAndChoices() {
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => setChoiceA(e.target.value)}
+              onChange={(e) => {
+                setChoiceA(e.target.value);
+                checkFields();
+              }}
             />
           </div>
 
@@ -130,7 +164,10 @@ function AdminAddWordAndChoices() {
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => setChoiceB(e.target.value)}
+              onChange={(e) => {
+                setChoiceB(e.target.value);
+                checkFields();
+              }}
             />
           </div>
           <div>
@@ -147,7 +184,10 @@ function AdminAddWordAndChoices() {
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => setChoiceC(e.target.value)}
+              onChange={(e) => {
+                setChoiceC(e.target.value);
+                checkFields();
+              }}
             />
           </div>
           <div>
@@ -164,21 +204,35 @@ function AdminAddWordAndChoices() {
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => setChoiceD(e.target.value)}
+              onChange={(e) => {
+                setChoiceD(e.target.value);
+                checkFields();
+              }}
             />
           </div>
         </div>
       </div>
-
-      <button
-        type="button"
-        class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 
+      {isDisableAdd ? (
+        <button
+          type="button"
+          class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 
         focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 
         dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        onClick={handleAddCategory}
-      >
-        Add
-      </button>
+          onClick={handleAddCategory}
+        >
+          Add
+        </button>
+      ) : (
+        <button
+          type="button"
+          class="mt-3 text-white bg-blue-700  focus:outline-none focus:ring-4 
+              focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 
+              dark:bg-gray-600 dark:focus:ring-blue-800"
+          disabled
+        >
+          Add
+        </button>
+      )}
     </div>
   );
 }
