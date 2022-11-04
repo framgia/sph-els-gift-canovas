@@ -24,7 +24,7 @@ function Login() {
       localStorage.setItem("isAdmin", false);
       if (response.data.is_admin === true) {
         localStorage.setItem("isAdmin", true);
-        navigate("/adminDashboard", { replace: true });
+        navigate("/admin-dashboard", { replace: true });
       } else navigate("/dashboard", { replace: true });
     } else {
       toast.error("Check Credentials!", {
@@ -47,7 +47,7 @@ function Login() {
     const token = localStorage.getItem("token");
     if (token !== null) {
       const isAdmin = localStorage.getItem("isAdmin");
-      if (isAdmin === "true") navigate("/adminDashboard", { replace: true });
+      if (isAdmin === "true") navigate("/admin-dashboard", { replace: true });
       else navigate("/dashboard", { replace: true });
     }
   }, []);

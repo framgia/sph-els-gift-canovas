@@ -14,7 +14,7 @@ function NotAdminUsers() {
 
   const handleClickUser = (user) => {
     localStorage.setItem("extraUsername", user);
-    navigate("/otherUser");
+    navigate("/other-user");
   };
 
   const fetchData = async () => {

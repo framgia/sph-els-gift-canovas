@@ -12,7 +12,7 @@ function AdminNavbar() {
    border-gray-200 dark:border-gray-600 mb-5"
     >
       <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <Link to="/adminDashboard">
+        <Link to="/admin-dashboard">
           <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white ml-3">
             E-Learning Admin
           </span>
@@ -24,7 +24,7 @@ function AdminNavbar() {
         >
           <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <Link to="/adminDashboard">
+              <Link to="/admin-dashboard">
                 <p
                   class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
             md:text-white text-base md:p-0 dark:text-white"
@@ -35,7 +35,7 @@ function AdminNavbar() {
             </li>
 
             <li>
-              <Link to="/adminUsers">
+              <Link to="/admin-users">
                 <p
                   class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
                 md:text-white text-base md:p-0 dark:text-white"

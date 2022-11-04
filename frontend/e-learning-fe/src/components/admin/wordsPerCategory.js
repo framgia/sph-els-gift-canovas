@@ -105,7 +105,10 @@ function AdminWordsPerCategory() {
 
                 <li class="ml-20 py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
                   <div class="flex flex-row">
-                    <Link to="/adminEditWordAndChoices" state={{ data: word }}>
+                    <Link
+                      to="/admin-edit-word-and-choices"
+                      state={{ data: word }}
+                    >
                       <p class="underline">Edit Word |</p>
                     </Link>
                     <p

@@ -43,7 +43,7 @@ function AdminDashboard() {
         <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
           Categories
         </h5>
-        <Link to="/adminAddcategory">
+        <Link to="/admin-add-category">
           <button class="mt-12 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
             <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
               Add Category
@@ -78,7 +78,7 @@ function AdminDashboard() {
           >
             {categories.map((category) => (
               <div class="flex flex-row">
-                <Link to="/adminWordsPerCategory" state={{ data: category }}>
+                <Link to="/admin-words-per-category" state={{ data: category }}>
                   <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
                     {category.category_name}
                   </li>
@@ -89,10 +89,13 @@ function AdminDashboard() {
 
                 <li class="py-2 px-4 w-96  rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
                   <div class="flex flex-row">
-                    <Link to="/adminAddWordChoices" state={{ data: category }}>
+                    <Link
+                      to="/admin-add-word-choices"
+                      state={{ data: category }}
+                    >
                       <p class="underline">Add Word |</p>
                     </Link>
-                    <Link to="/adminEditCategory" state={{ data: category }}>
+                    <Link to="/admin-edit-category" state={{ data: category }}>
                       <p class="underline">Edit Category |</p>
                     </Link>
                     <p
