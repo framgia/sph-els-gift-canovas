@@ -1,7 +1,6 @@
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from django.db.models import Q
-
 from rest_framework import generics, status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
@@ -147,7 +146,7 @@ class UserAnswerView(generics.CreateAPIView):
             word = answers["word"]
 
             word = Word.objects.get(id=word_id)
-            if userAnswer == correct_answer:
+            if userAnswer.lower() == correct_answer.lower():
                 check = True
             UserAnswer.objects.create(
                 user_id=user,
@@ -362,23 +361,28 @@ class AddWordAndchoices(generics.CreateAPIView):
         data = request.data
         category_id = data["category_id"]
         word = data["word"]
-        correct_answer = data["correct_answer"]
-        choice_a = data["choice_a"]
-        choice_b = data["choice_b"]
-        choice_c = data["choice_c"]
-        choice_d = data["choice_d"]
-        category = Category.objects.get(id=category_id)
-        new_word = Word.objects.create(
-            category_id=category, word=word, correct_answer=correct_answer
-        )
-        Choices.objects.create(
-            word_id=new_word,
-            choice_a=choice_a,
-            choice_b=choice_b,
-            choice_c=choice_c,
-            choice_d=choice_d,
-        )
-        return Response({"Successfully Created"})
+        correct_answer = data["correct_answer"].lower()
+        choice_a = data["choice_a"].lower()
+        choice_b = data["choice_b"].lower()
+        choice_c = data["choice_c"].lower()
+        choice_d = data["choice_d"].lower()
+        choices = [choice_a, choice_b, choice_c, choice_d]
+        if correct_answer in choices:
+            category = Category.objects.get(id=category_id)
+            new_word = Word.objects.create(
+                category_id=category, word=word, correct_answer=correct_answer
+            )
+            Choices.objects.create(
+                word_id=new_word,
+                choice_a=choice_a,
+                choice_b=choice_b,
+                choice_c=choice_c,
+                choice_d=choice_d,
+            )
+            return Response({"Successfully Created"})
+        else:
+            content = {"message": "Correct answer not in the choices"}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DeleteWord(generics.DestroyAPIView):

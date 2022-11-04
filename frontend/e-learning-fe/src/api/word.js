@@ -36,23 +36,32 @@ export default {
       choice_c,
       choice_d,
     } = query;
-    const response = await axios.post(
-      `${REACT_APP_BASE_URL}/add_words_choices/`,
-      {
-        word,
-        category_id,
-        correct_answer,
-        choice_a,
-        choice_b,
-        choice_c,
-        choice_d,
-      },
-      {
-        headers: {
-          Authorization: `Token ${token}`,
+    const response = await axios
+      .post(
+        `${REACT_APP_BASE_URL}/add_words_choices/`,
+        {
+          word,
+          category_id,
+          correct_answer,
+          choice_a,
+          choice_b,
+          choice_c,
+          choice_d,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const result = response.status;
+        return result;
+      })
+      .catch((error) => {
+        const result = error.response.status;
+        return result;
+      });
     return response;
   },
 
