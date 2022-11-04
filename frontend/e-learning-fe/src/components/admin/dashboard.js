@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import API from "../../api";
+import Loader from "../loader";
 import Navbar from "./navbar";
 
 function AdminDashboard() {
@@ -53,7 +54,9 @@ function AdminDashboard() {
       </div>
 
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <div class="flex flex-col place-items-center mt-2">
           <ul
