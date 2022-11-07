@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import API from "../api";
+import Loader from "./loader";
 import Navbar from "./navbar";
 
 function NotAdminUsers() {
@@ -40,7 +41,9 @@ function NotAdminUsers() {
         Users
       </h5>
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <div class="flex flex-col place-items-center">
           <ul
