@@ -40,7 +40,7 @@ function AdminDashboard() {
     <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
       <div class="flex flex-row justify-around">
-        <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+        <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black cursor-default">
           Categories
         </h5>
         <Link to="/admin-add-category">
@@ -61,13 +61,13 @@ function AdminDashboard() {
            border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
             <div class="flex flex-row">
-              <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+              <li class="py-2 px-4 w-3/4 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-default">
                 Title
               </li>
-              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+              <li class="py-2 px-4 w-3/4 border-b border-gray-200 dark:border-gray-600 cursor-default">
                 Description
               </li>
-              <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+              <li class="py-2 px-4 w-3/4 border-b border-gray-200 dark:border-gray-600 cursor-default">
                 Action
               </li>
             </div>
@@ -79,15 +79,16 @@ function AdminDashboard() {
             {categories.map((category) => (
               <div class="flex flex-row">
                 <Link to="/admin-words-per-category" state={{ data: category }}>
-                  <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  <li class="mr-16 py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
                     {category.category_name}
                   </li>
                 </Link>
-                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+
+                <li class="ml-3 mr-24 py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-default">
                   {category.description}
                 </li>
 
-                <li class="py-2 px-4 w-96  rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
                   <div class="flex flex-row">
                     <Link
                       to="/admin-add-word-choices"
