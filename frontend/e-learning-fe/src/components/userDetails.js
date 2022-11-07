@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactTimeAgo from "react-time-ago";
 import { Link } from "react-router-dom";
+
 import API from "../api";
+import Loader from "./loader";
 import Navbar from "./navbar";
 
 function UserDetails() {
@@ -57,7 +59,9 @@ function UserDetails() {
       <Navbar />
 
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <div class="flex flex-col place-items-center mt-2">
           <div class="place-self-end mt-12 ">
