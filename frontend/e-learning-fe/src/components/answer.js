@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import API from "../api";
+import Loader from "./loader";
 import Navbar from "./navbar";
 
 function Answer() {
@@ -75,7 +76,9 @@ function Answer() {
     <div class="p-6 bg-gray-300 h-screen">
       <Navbar />
       {isLoading ? (
-        ""
+        <div class="text-center mt-44">
+          <Loader />
+        </div>
       ) : (
         <>
           {userAnswers.length !== wordsLength && (
