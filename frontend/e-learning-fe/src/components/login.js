@@ -10,14 +10,12 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isDisable, setIsDisable] = useState(true);
+  const [isDisableSignInButton, setIsDisableSignInButton] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [isDisableField, setIsDisableField] = useState(false);
 
   const handleLogin = async () => {
     setIsLoading(true);
-    setIsDisableField(true);
-    setIsDisable(true);
+    setIsDisableSignInButton(true);
     const response = await API.login.login({
       username,
       password,
@@ -35,8 +33,7 @@ function Login() {
       } else navigate("/dashboard", { replace: true });
     } else {
       setIsLoading(false);
-      setIsDisableField(false);
-      setIsDisable(false);
+      setIsDisableSignInButton(false);
       toast.error("Check Credentials!", {
         position: "top-right",
         autoClose: 5000,
@@ -50,7 +47,7 @@ function Login() {
   };
 
   const checkFields = () => {
-    if (username !== "" && password !== "") setIsDisable(false);
+    if (username !== "" && password !== "") setIsDisableSignInButton(false);
   };
 
   useEffect(() => {
@@ -106,7 +103,7 @@ function Login() {
                   setUsername(e.target.value);
                   checkFields();
                 }}
-                disabled={isDisableField}
+                disabled={isLoading}
               />
             </div>
             <div>
@@ -129,31 +126,23 @@ function Login() {
                   setPassword(e.target.value);
                   checkFields();
                 }}
-                disabled={isDisableField}
+                disabled={isLoading}
               />
             </div>
 
-            {isDisable === true ? (
-              <button
-                type="submit"
-                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 
-                    focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                    dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                disabled
-              >
-                Sign in
-              </button>
-            ) : (
-              <button
-                type="submit"
-                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 
-                  focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                  dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                onClick={handleLogin}
-              >
-                Sign in
-              </button>
-            )}
+            <button
+              type="submit"
+              class={
+                isDisableSignInButton
+                  ? "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  : "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              }
+              onClick={handleLogin}
+              disabled={isDisableSignInButton}
+            >
+              Sign in
+            </button>
+
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet?
               <Link to="/signup">
