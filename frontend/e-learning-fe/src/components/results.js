@@ -30,7 +30,7 @@ function Results() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="p-6 bg-gray-300 h-screen cursor-default">
       <Navbar />
       <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Results
@@ -62,7 +62,7 @@ function Results() {
             {results.map((data) => (
               <div class="flex flex-row">
                 {data.is_correct === true ? (
-                  <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                     <svg
                       class="w-6 h-6"
                       fill="none"
@@ -79,7 +79,7 @@ function Results() {
                     </svg>
                   </li>
                 ) : (
-                  <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                  <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                     <svg
                       class="w-6 h-6"
                       fill="none"
@@ -96,10 +96,10 @@ function Results() {
                     </svg>
                   </li>
                 )}
-                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                   {data.word}
                 </li>
-                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                   {data.user_answer}
                 </li>
               </div>

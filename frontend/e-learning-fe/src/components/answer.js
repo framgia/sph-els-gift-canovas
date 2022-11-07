@@ -82,7 +82,7 @@ function Answer() {
       ) : (
         <>
           {userAnswers.length !== wordsLength && (
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center cursor-default">
               <div class="flex flex-row space-x-72 mt-20">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                   {words.category_name}

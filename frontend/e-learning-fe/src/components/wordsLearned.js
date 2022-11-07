@@ -36,7 +36,7 @@ function WordsLearned() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="p-6 bg-gray-300 h-screen cursor-default">
       <Navbar />
       <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Words Learned

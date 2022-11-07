@@ -59,7 +59,7 @@ function UserDetails() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="p-6 bg-gray-300 h-screen cursor-default">
       <Navbar />
       {isLoading ? (
         ""
@@ -78,7 +78,7 @@ function UserDetails() {
           </p>
 
           <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
-            {userDetails.firstname} &nbsp; {userDetails.lastname}
+            {userDetails.firstname} {userDetails.lastname}
           </p>
 
           <p class="tracking-tighter text-center text-black md:text-lg dark:text-black mb-5">
