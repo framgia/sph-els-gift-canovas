@@ -53,7 +53,7 @@ function UserDetails() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="p-6 bg-gray-300 h-screen cursor-default">
       <Navbar />
 
       {isLoading ? (

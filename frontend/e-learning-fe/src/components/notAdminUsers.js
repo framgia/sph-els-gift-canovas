@@ -34,7 +34,7 @@ function NotAdminUsers() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="p-6 bg-gray-300 h-screen cursor-default">
       <Navbar />
       <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Users
