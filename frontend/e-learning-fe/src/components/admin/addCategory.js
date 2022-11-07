@@ -16,6 +16,7 @@ function AdminAddCategory() {
   };
 
   const handleAddCategory = async () => {
+    setIsDisableAdd(true);
     await API.category
       .addCategory({
         category_name: categoryName,
@@ -33,6 +34,9 @@ function AdminAddCategory() {
           progress: undefined,
         });
       });
+    setTimeout(() => {
+      setIsDisableAdd(false);
+    }, 2000);
   };
 
   return (
