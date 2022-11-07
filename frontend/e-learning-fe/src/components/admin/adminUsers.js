@@ -28,7 +28,7 @@ function AdminUsers() {
   }, []);
 
   return (
-    <div class="p-6">
+    <div class="p-6 bg-gray-300 h-screen cursor-default">
       <Navbar />
       <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Admin Users
@@ -59,24 +59,24 @@ function AdminUsers() {
             </div>
           </ul>
           <ul
-            class="w-8/12 text-sm font-medium text-gray-900 bg-white rounded-lg border
-           border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8"
+            class="w-8/12 text-sm mt-5 font-medium text-gray-900 bg-white rounded-lg border
+           border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
             {users.map((data) => (
               <div class="flex flex-row">
-                <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                   {data.username}
                 </li>
 
-                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                   {data.firstname}
                 </li>
 
-                <li class="py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
+                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                   {data.lastname}
                 </li>
 
-                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                   {data.email}
                 </li>
               </div>
