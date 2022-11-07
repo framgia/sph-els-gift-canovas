@@ -14,7 +14,7 @@ function AdminAddWordAndChoices() {
   const [choiceB, setChoiceB] = useState("");
   const [choiceC, setChoiceC] = useState("");
   const [choiceD, setChoiceD] = useState("");
-  const [isDisableAdd, setIsDisableAdd] = useState(false);
+  const [isDisableAdd, setIsDisableAdd] = useState(true);
 
   const token = localStorage.getItem("token");
 
@@ -27,10 +27,10 @@ function AdminAddWordAndChoices() {
       choiceC !== "" &&
       choiceD !== ""
     )
-      setIsDisableAdd(true);
+      setIsDisableAdd(false);
   };
 
-  const handleAddCategory = async () => {
+  const handleAddWordChoices = async () => {
     await API.word
       .addWordChoices({
         word,
@@ -212,27 +212,17 @@ function AdminAddWordAndChoices() {
           </div>
         </div>
       </div>
-      {isDisableAdd ? (
-        <button
-          type="button"
-          class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 
-        focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 
-        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={handleAddCategory}
-        >
-          Add
-        </button>
-      ) : (
-        <button
-          type="button"
-          class="mt-3 text-white bg-blue-700  focus:outline-none focus:ring-4 
-              focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 
-              dark:bg-gray-600 dark:focus:ring-blue-800"
-          disabled
-        >
-          Add
-        </button>
-      )}
+      <button
+        type="button"
+        class={`mt-3 text-white focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 ${
+          isDisableAdd ? "bg-gray-700 " : "bg-blue-700"
+        }`}
+        onClick={handleAddWordChoices}
+        disabled={isDisableAdd}
+      >
+        Add
+      </button>
     </div>
   );
 }
