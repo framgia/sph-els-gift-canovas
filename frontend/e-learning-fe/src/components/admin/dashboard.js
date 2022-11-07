@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 import API from "../../api";
 import Navbar from "./navbar";
@@ -28,6 +29,15 @@ function AdminDashboard() {
         id,
       })
       .then(() => {
+        toast.success("Successfully Deleted", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         fetchData();
       });
   };
@@ -38,6 +48,17 @@ function AdminDashboard() {
 
   return (
     <div class="p-6 bg-gray-300 h-screen">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Navbar />
       <div class="flex flex-row justify-around">
         <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black cursor-default">

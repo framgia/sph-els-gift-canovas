@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 import API from "../../api";
 import Loader from "../loader";
@@ -33,6 +34,15 @@ function AdminWordsPerCategory() {
         id,
       })
       .then(() => {
+        toast.success("Successfully Deleted", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         fetchData();
       });
   };
@@ -43,6 +53,17 @@ function AdminWordsPerCategory() {
 
   return (
     <div class="p-6 bg-gray-300 h-screen">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Navbar />
       <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Words in Category : {words.category_name}
