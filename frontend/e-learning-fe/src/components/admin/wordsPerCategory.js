@@ -53,7 +53,7 @@ function AdminWordsPerCategory() {
             class="w-full text-xl font-medium text-gray-900 bg-white rounded-lg border
          border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
-            <div class="flex flex-row  cursor-default">
+            <div class="flex flex-row cursor-default">
               <li class="py-2 px-4 w-6/12 rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                 Word
               </li>
@@ -103,7 +103,7 @@ function AdminWordsPerCategory() {
                 </li>
 
                 <li class="py-2 px-4 w-3/4 border-b border-gray-200 dark:border-gray-600">
-                  <div class="flex flex-row  cursor-pointer">
+                  <div class="flex flex-row cursor-pointer">
                     <Link
                       to="/admin-edit-word-and-choices"
                       state={{ data: word }}
