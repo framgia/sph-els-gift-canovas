@@ -6,13 +6,16 @@ import API from "../api";
 import Loader from "./loader";
 import Navbar from "./navbar";
 
+const { REACT_APP_BASE_URL } = process.env;
+
 function UserDetails() {
   const [activities, setActivities] = useState();
   const [userDetails, setUserDetails] = useState([]);
+  const [profile, setProfile] = useState();
+  const [hasProfile, setHasProfile] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [numberOfFollowers, setNumberOfFollowers] = useState(0);
   const [numberOfFollowing, setNumberOfFollowing] = useState(0);
-
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
@@ -25,7 +28,16 @@ function UserDetails() {
         following: "none",
       })
       .then((data) => {
-        setUserDetails(data.data);
+        setUserDetails(data.data.data);
+        if (data.data.profile_details === "None") {
+          setProfile("None");
+          setHasProfile(false);
+        } else {
+          setProfile(
+            `${REACT_APP_BASE_URL}${data.data.profile_details.picture}`
+          );
+          setHasProfile(true);
+        }
       });
     await API.userActivityLog
       .dashboardUserActivity({
@@ -81,7 +93,11 @@ function UserDetails() {
                   w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
           >
             <span class="text-7xl text-gray-600 dark:text-gray-300">
-              {userDetails.username[0].toUpperCase()}
+              {hasProfile ? (
+                <img class="w-32 h-32 rounded-full" src={profile}></img>
+              ) : (
+                userDetails.username[0].toUpperCase()
+              )}
             </span>
           </div>
 

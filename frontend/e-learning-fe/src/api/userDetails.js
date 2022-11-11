@@ -44,4 +44,36 @@ export default {
     );
     return response;
   },
+  async uploadProfile(query) {
+    const { body, token } = query;
+    const response = await axios
+      .post(`${REACT_APP_BASE_URL}/upload_profile_picture/`, body, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        const result = error.response;
+        return result;
+      });
+
+    return response;
+  },
+
+  async editUploadProfile(query) {
+    const { id, body, token } = query;
+    const response = await axios.put(
+      `${REACT_APP_BASE_URL}/update_profile_picture/${id}`,
+      body,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    return response;
+  },
 };

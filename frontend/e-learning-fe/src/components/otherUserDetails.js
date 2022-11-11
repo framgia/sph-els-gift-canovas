@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import API from "../api";
 import Navbar from "./navbar";
+const { REACT_APP_BASE_URL } = process.env;
 
 function UserDetails() {
+  const [profile, setProfile] = useState([]);
+  const [hasProfile, setHasProfile] = useState();
   const [userDetails, setUserDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState("");
@@ -23,6 +26,15 @@ function UserDetails() {
       .then((data) => {
         setStatus(data.data.status);
         setUserDetails(data.data.data);
+        if (data.data.profile_details === "None") {
+          setProfile("None");
+          setHasProfile(false);
+        } else {
+          setProfile(
+            `${REACT_APP_BASE_URL}${data.data.profile_details.picture}`
+          );
+          setHasProfile(true);
+        }
         setIsLoading(false);
       });
 
@@ -70,7 +82,11 @@ function UserDetails() {
                 w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
           >
             <span class="text-7xl text-gray-600 dark:text-gray-300">
-              {userDetails.username[0].toUpperCase()}
+              {hasProfile ? (
+                <img class="w-32 h-32 rounded-full" src={profile}></img>
+              ) : (
+                userDetails.username[0].toUpperCase()
+              )}
             </span>
           </div>
           <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
