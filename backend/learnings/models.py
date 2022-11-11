@@ -14,6 +14,16 @@ class EUser(models.Model):
         verbose_name_plural = "EUser"
 
 
+def upload_path(instance, filename):
+    return "/".join(["picture", str(instance.title), filename])
+
+
+class UserProfilePicture(models.Model):
+    title = models.CharField(max_length=32)
+    picture = models.ImageField(blank=True, null=True, upload_to=upload_path)
+    user_id = models.ForeignKey(EUser, on_delete=models.CASCADE)
+
+
 class Follow(models.Model):
     follower_id = models.ForeignKey(EUser, on_delete=models.CASCADE, related_name="follower_id")
     following_id = models.ForeignKey(EUser, on_delete=models.CASCADE, related_name="following_id")
