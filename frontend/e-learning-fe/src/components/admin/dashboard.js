@@ -48,7 +48,7 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -61,7 +61,7 @@ function AdminDashboard() {
         pauseOnHover
       />
       <Navbar />
-      <h5 class="mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-2">
         Categories
       </h5>
 
@@ -70,7 +70,7 @@ function AdminDashboard() {
           <Loader />
         </div>
       ) : (
-        <div class="flex flex-col place-items-center">
+        <div class="relative lg:mx-auto">
           <div class="w-full flex justify-end">
             <Link to="/admin-add-category">
               <button class="mt-2 inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
@@ -80,60 +80,63 @@ function AdminDashboard() {
               </button>
             </Link>
           </div>
-          <ul
-            class="w-8/12 text-xl font-medium text-gray-900 bg-white rounded-lg border
-           border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-          >
-            <div class="flex flex-row">
-              <li class="py-2 px-4 w-3/4 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-default">
-                Title
-              </li>
-              <li class="py-2 px-4 w-3/4 border-b border-gray-200 dark:border-gray-600 cursor-default">
-                Description
-              </li>
-              <li class="py-2 px-4 w-3/4 border-b border-gray-200 dark:border-gray-600 cursor-default">
-                Action
-              </li>
-            </div>
-          </ul>
-          <ul
-            class="w-8/12 text-sm font-medium text-gray-900 bg-white rounded-lg border
-           border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8"
-          >
-            {categories.map((category) => (
-              <div class="flex flex-row">
-                <Link to="/admin-words-per-category" state={{ data: category }}>
-                  <li class="mr-16 py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
-                    {category.category_name}
-                  </li>
-                </Link>
-
-                <li class="ml-3 mr-24 py-2 px-4 w-64 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-default">
-                  {category.description}
-                </li>
-
-                <li class="py-2 px-4 w-96 rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer">
-                  <div class="flex flex-row">
-                    <Link
-                      to="/admin-add-word-choices"
-                      state={{ data: category }}
+          <table class="w-full text-sm text-left text-gray-400 lg:w-3/4 lg:mx-auto md:mx-auto">
+            <thead class="text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300">
+              <tr>
+                <th scope="col" class="py-3 px-6">
+                  Title
+                </th>
+                <th scope="col" class="py-3 px-6">
+                  Description
+                </th>
+                <th scope="col" class="py-3 px-6">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories.map((category) => (
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <Link
+                    to="/admin-words-per-category"
+                    state={{ data: category }}
+                  >
+                    <th
+                      scope="row"
+                      class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      <p class="underline">Add Word |</p>
-                    </Link>
-                    <Link to="/admin-edit-category" state={{ data: category }}>
-                      <p class="underline">Edit Category |</p>
-                    </Link>
-                    <p
-                      class="underline"
-                      onClick={() => handleDeleteCategory(category.id)}
-                    >
-                      Delete Category
-                    </p>
-                  </div>
-                </li>
-              </div>
-            ))}
-          </ul>
+                      {category.category_name}
+                    </th>
+                  </Link>
+                  <td class="py-4 px-6"> {category.description}</td>
+                  <td class="py-4 px-6">
+                    <div class="flex flex-row space-x-3">
+                      <Link
+                        to="/admin-add-word-choices"
+                        state={{ data: category }}
+                      >
+                        <p class="underline">Add Word</p>
+                      </Link>
+                      <p class="underline">|</p>
+                      <Link
+                        to="/admin-edit-category"
+                        state={{ data: category }}
+                      >
+                        <p class="underline">Edit Category</p>
+                      </Link>
+                      <p class="underline">|</p>
+                      <p
+                        class="underline cursor-pointer"
+                        onClick={() => handleDeleteCategory(category.id)}
+                      >
+                        Delete Category
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
