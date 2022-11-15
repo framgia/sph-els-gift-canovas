@@ -55,22 +55,21 @@ function UserDetails() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-
       {isLoading ? (
         <div class="text-center mt-44">
           <Loader />
         </div>
       ) : (
-        <div class="flex flex-col place-items-center mt-2">
-          <div class="place-self-end mt-12 ">
+        <div class="flex flex-col place-items-center p-3">
+          <div class="place-self-end">
             <Link to="/update" state={{ data: userDetails }}>
               <button
                 type="button"
                 class="text-white bg-green-700 hover:bg-white-800 
                   focus:outline-none focus:ring-4 focus:ring-green-300 
-                  font-medium rounded-full text-sm px-5 py-2.5 text-center 
+                  font-medium rounded-full text-sm px-8 py-2.5 text-center 
                   dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               >
                 Edit
@@ -79,7 +78,7 @@ function UserDetails() {
           </div>
           <div
             class="inline-flex overflow-hidden relative justify-center items-center 
-                  w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600 \"
+                  w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
           >
             <span class="text-7xl text-gray-600 dark:text-gray-300">
               {userDetails.username[0].toUpperCase()}
@@ -113,13 +112,13 @@ function UserDetails() {
                 activity.activity_description === "unfollow" ? (
                   <div class="flex flex-row place-content-between">
                     <div class="flex flex-row space-x-2">
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                      <h3 class="tracking-tighter text-blue-800 md:text-lg">
                         {activity.user}
                       </h3>
                       <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
                         {activity.activity_description}
                       </p>
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                      <h3 class="tracking-tighter text-blue-800 md:text-lg">
                         {activity.follow}
                       </h3>
                     </div>
@@ -128,18 +127,17 @@ function UserDetails() {
                 ) : (
                   <div class="flex flex-row place-content-between">
                     <div class="flex flex-row space-x-2">
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                      <h3 class="tracking-tighter text-blue-800 md:text-lg">
                         {activity.user}
                       </h3>
                       <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
-                        learned {activity.quiz.total_check_answers} of{" "}
+                        learned {activity.quiz.total_check_answers} of
                         {activity.quiz.total_words} words in
                       </p>
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                      <h3 class="tracking-tighter text-blue-800 md:text-lg">
                         {activity.quiz.category_name}
                       </h3>
                     </div>
-
                     <ReactTimeAgo date={activity.created_at} locale="en-US" />
                   </div>
                 )}
