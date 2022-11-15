@@ -59,7 +59,7 @@ function UserDetails() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
       {isLoading ? (
         ""
@@ -67,7 +67,7 @@ function UserDetails() {
         <div class="flex flex-col place-items-center mt-20">
           <div
             class="inline-flex overflow-hidden relative justify-center items-center 
-                w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600 \"
+                w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600"
           >
             <span class="text-7xl text-gray-600 dark:text-gray-300">
               {userDetails.username[0].toUpperCase()}
@@ -76,11 +76,9 @@ function UserDetails() {
           <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
             {userDetails.username}
           </p>
-
           <p class="tracking-tighter text-center text-black md:text-lg dark:text-black">
             {userDetails.firstname} {userDetails.lastname}
           </p>
-
           <p class="tracking-tighter text-center text-black md:text-lg dark:text-black mb-5">
             {userDetails.email}
           </p>
@@ -106,7 +104,6 @@ function UserDetails() {
               {status}
             </button>
           )}
-
           <div class="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5"></div>
         </div>
       )}
