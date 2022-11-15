@@ -73,7 +73,7 @@ function Answer() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
       {isLoading ? (
         <div class="text-center mt-44">
@@ -82,8 +82,8 @@ function Answer() {
       ) : (
         <>
           {userAnswers.length !== wordsLength && (
-            <div class="flex flex-col place-items-center cursor-default">
-              <div class="flex flex-row space-x-72 mt-20">
+            <div class="flex flex-col place-items-center cursor-default mt-10">
+              <div class="flex flex-row space-x-72">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                   {words.category_name}
                 </h5>
