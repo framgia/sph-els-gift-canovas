@@ -36,9 +36,9 @@ function WordsLearned() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-      <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 class="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Words Learned
       </h5>
       <div class="flex flex-col place-items-center">
@@ -52,7 +52,7 @@ function WordsLearned() {
         </p>
         <div class="flex flex-row space-x-4">
           <Link to="/words-learned">
-            <p class="text-base text-gray-900 dark:text-black underline ">
+            <p class="text-base text-gray-900 dark:text-black underline">
               Learned {wordsLearned} Words
             </p>
           </Link>
