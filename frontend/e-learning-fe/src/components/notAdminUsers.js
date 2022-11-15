@@ -35,9 +35,9 @@ function NotAdminUsers() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 class="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Users
       </h5>
       {isLoading ? (
@@ -49,54 +49,42 @@ function NotAdminUsers() {
           {users.length === 0 ? (
             <p class="text-4xl text-center mt-44 font-semibold">No Users</p>
           ) : (
-            <div class="flex flex-col place-items-center">
-              <ul class="w-8/12 text-xl font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <div class="flex flex-row">
-                  <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+            <table class="w-full text-sm text-left text-gray-400 lg:w-3/4 lg:mx-auto md:mx-auto">
+              <thead class="text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300">
+                <tr>
+                  <th scope="col" class="py-3 px-6">
                     Username
-                  </li>
-                  <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                  </th>
+                  <th scope="col" class="py-3 px-6">
                     First Name
-                  </li>
-                  <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                  </th>
+                  <th scope="col" class="py-3 px-6">
                     Last Name
-                  </li>
-                  <li class="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+                  </th>
+                  <th scope="col" class="py-3 px-6">
                     Email
-                  </li>
-                </div>
-              </ul>
-              <ul class="w-8/12 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8">
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
                 {users.map((data) => (
-                  <div class="flex flex-row">
-                    <li
-                      onClick={() => handleClickUser(data.username)}
-                      class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer"
+                  <tr
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
+                    onClick={() => handleClickUser(data.username)}
+                  >
+                    <th
+                      scope="row"
+                      class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
                       {data.username}
-                    </li>
-                    <li
-                      onClick={() => handleClickUser(data.username)}
-                      class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer"
-                    >
-                      {data.firstname}
-                    </li>
-                    <li
-                      onClick={() => handleClickUser(data.username)}
-                      class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer"
-                    >
-                      {data.lastname}
-                    </li>
-                    <li
-                      onClick={() => handleClickUser(data.username)}
-                      class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600 cursor-pointer"
-                    >
-                      {data.email}
-                    </li>
-                  </div>
+                    </th>
+                    <td class="py-4 px-6">{data.firstname}</td>
+                    <td class="py-4 px-6">{data.lastname}</td>
+                    <td class="py-4 px-6">{data.email}</td>
+                  </tr>
                 ))}
-              </ul>
-            </div>
+              </tbody>
+            </table>
           )}
         </>
       )}
