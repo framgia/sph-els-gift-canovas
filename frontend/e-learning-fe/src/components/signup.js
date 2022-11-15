@@ -78,7 +78,7 @@ function SignUp() {
   };
 
   return (
-    <section class="bg-gray-50 dark:bg-gray-900">
+    <section class="md:h-screen lg:h-screen dark:bg-gray-900 p-8">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -90,20 +90,20 @@ function SignUp() {
         draggable
         pauseOnHover
       />
-      <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div class="flex flex-col items-center justify-center px-6 py-8">
         <a
           href="#"
           class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
           E-Learning
         </a>
-        <div class="w-9/12 h-4/5 bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
-          <div class=" p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Create E-Learning Account
-            </h1>
+        <div class="rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700 relative justify-center items-center">
+          <div class="p-6">
             <div class="flex flex-col space-y-4">
-              <div class="flex flex-row space-x-96">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Create E-Learning Account
+              </h1>
+              <div class="flex flex-row md:space-x-32 lg:space-x-40">
                 <div>
                   <label
                     for="username"
@@ -115,10 +115,10 @@ function SignUp() {
                     type="text"
                     name="username"
                     id="username"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                      dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg md:w-48 lg:w-80
+                        focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500"
                     placeholder="username"
                     onChange={(e) => {
                       setUsername(e.target.value);
@@ -126,7 +126,7 @@ function SignUp() {
                     }}
                   />
                 </div>
-                <div class="w-96">
+                <div>
                   <label
                     for="email"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -137,11 +137,11 @@ function SignUp() {
                     type="email"
                     name="email"
                     id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                  focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
-                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                  dark:focus:border-blue-500"
-                    placeholder="name@company.com"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg md:w-48 lg:w-80
+                        focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500"
+                    placeholder="email"
                     onChange={(e) => {
                       setEmail(e.target.value);
                       checkFields();
@@ -149,8 +149,7 @@ function SignUp() {
                   />
                 </div>
               </div>
-
-              <div class="flex flex-row space-x-96">
+              <div class="flex flex-row md:space-x-32 lg:space-x-40">
                 <div>
                   <label
                     for="firstname"
@@ -162,10 +161,10 @@ function SignUp() {
                     type="text"
                     name="firstname"
                     id="firstname"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                      dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg md:w-48 lg:w-80
+                        focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500"
                     placeholder="firstname"
                     onChange={(e) => {
                       setFirstName(e.target.value);
@@ -184,11 +183,11 @@ function SignUp() {
                     type="password"
                     name="password"
                     id="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg md:w-48 lg:w-80
+                        focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                      dark:focus:border-blue-500"
                     onChange={(e) => {
                       setPassword(e.target.value);
                       checkFields();
@@ -196,8 +195,7 @@ function SignUp() {
                   />
                 </div>
               </div>
-
-              <div class="flex flex-row space-x-96">
+              <div class="flex flex-row md:space-x-32 lg:space-x-40">
                 <div>
                   <label
                     for="lastname"
@@ -209,10 +207,10 @@ function SignUp() {
                     type="text"
                     name="lastname"
                     id="lastname"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                      dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg md:w-48 lg:w-80
+                        focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500"
                     placeholder="lastname"
                     onChange={(e) => {
                       setLastName(e.target.value);
@@ -231,11 +229,11 @@ function SignUp() {
                     type="password"
                     name="confirm-password"
                     id="confirm-password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg md:w-48 lg:w-80
+                        focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                      focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 
-                      dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                      dark:focus:border-blue-500"
                     onChange={(e) => {
                       setConfirmPassword(e.target.value);
                       checkFields();
@@ -244,14 +242,14 @@ function SignUp() {
                 </div>
               </div>
             </div>
-            <div class="flex items-start">
+            <div class="flex items-start mt-3">
               <div class="flex items-center h-5">
                 <input
                   id="is_admin"
                   type="checkbox"
                   class="w-4 h-4 border border-gray-300 rounded bg-gray-50 
-                        focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 
-                        dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 
+                    dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   checked={isAdmin}
                   onChange={handleOnChangeAdmin}
                 />
@@ -259,7 +257,7 @@ function SignUp() {
               <div class="ml-3 text-sm">
                 <label
                   for="is_admin"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  class="block text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Admin
                 </label>
@@ -270,9 +268,9 @@ function SignUp() {
                 <button
                   onClick={handleSignUp}
                   type="submit"
-                  class="w-80 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none mt-8
-                focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  class="w-80 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none
+                  focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                  dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Create an account
                 </button>
@@ -281,8 +279,8 @@ function SignUp() {
                   disabled
                   type="submit"
                   class="w-80 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none mt-8
-                focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                dark:bg-gray-400 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                  dark:bg-gray-400 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Create an account
                 </button>
