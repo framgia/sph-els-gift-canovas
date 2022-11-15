@@ -30,9 +30,9 @@ function Results() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 class="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Results
       </h5>
       {isLoading ? (
@@ -43,7 +43,7 @@ function Results() {
         <div class="flex flex-col place-items-center">
           <ul
             class="w-8/12 text-xl font-medium text-gray-900 bg-white rounded-lg border
-         border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
             <div class="flex flex-row">
               <li class="py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"></li>
@@ -57,7 +57,7 @@ function Results() {
           </ul>
           <ul
             class="w-8/12 text-sm font-medium text-gray-900 bg-white rounded-lg border
-         border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8"
+              border-gray-200 dark:bg-gray-600 dark:border-gray-600 dark:text-white mt-8"
           >
             {results.map((data) => (
               <div class="flex flex-row">
