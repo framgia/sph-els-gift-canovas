@@ -27,6 +27,7 @@ function AdminWordsPerCategory() {
       });
   };
   const handleDeleteWord = async (id) => {
+    setIsLoading(true);
     await API.word
       .deleteWord({
         token,

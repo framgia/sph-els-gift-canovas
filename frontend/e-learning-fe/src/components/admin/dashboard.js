@@ -23,6 +23,7 @@ function AdminDashboard() {
   };
 
   const handleDeleteCategory = async (id) => {
+    setIsLoading(true);
     await API.category
       .deleteCategory({
         token,
