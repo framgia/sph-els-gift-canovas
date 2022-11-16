@@ -39,9 +39,9 @@ function Dashboard() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 class="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Dashboard
       </h5>
       <div class="flex flex-col place-items-center">
