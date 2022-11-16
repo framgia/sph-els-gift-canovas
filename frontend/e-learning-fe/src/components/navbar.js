@@ -7,72 +7,40 @@ function Navbar() {
     navigate("/", { replace: true });
   };
   return (
-    <nav
-      class="bg-white px-2  dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b
-     border-gray-200 dark:border-gray-600 mb-5"
-    >
-      <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <nav class="relative w-full p-6 dark:bg-gray-900 border-border-gray-200 dark:border-gray-600">
+      <div class="flex items-center justify-between flex flex-wrap">
         <Link to="/dashboard">
-          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white ml-3">
-            E-Learning
+          <span class="self-center text-xl font-semibold dark:text-white">
+            E-Learning Admin
           </span>
         </Link>
-
-        <div
-          class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-          id="navbar-sticky"
-        >
-          <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <Link to="/dashboard">
-                <p
-                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
-              md:text-white text-base md:p-0 dark:text-white"
-                >
-                  Home
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/categories">
-                <p
-                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
-                 md:text-white text-base md:p-0 dark:text-white"
-                >
-                  Categories
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/users">
-                <p
-                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
-                  md:text-white text-base md:p-0 dark:text-white"
-                >
-                  Users
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/profile">
-                <p
-                  class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
-                  md:text-white text-base md:p-0 dark:text-white"
-                >
-                  Profile
-                </p>
-              </Link>
-            </li>
-            <li>
-              <p
-                class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent 
-                md:text-white text-base md:p-0 dark:text-white cursor-pointer"
-                onClick={handleLogout}
-              >
-                Logout
-              </p>
-            </li>
-          </ul>
+        <div class="sm:flex md:flex space-x-6" id="navbar-sticky">
+          <Link to="/dashboard">
+            <p class="block py-2 pr-4 pl-3 text-white md:text-white text-base md:p-0 dark:text-white">
+              Home
+            </p>
+          </Link>
+          <Link to="/categories">
+            <p class="block py-2 pr-4 pl-3 text-white md:text-white text-base md:p-0 dark:text-white">
+              Categories
+            </p>
+          </Link>
+          <Link to="/users">
+            <p class="block py-2 pr-4 pl-3 text-white md:text-white text-base md:p-0 dark:text-white">
+              Users
+            </p>
+          </Link>
+          <Link to="/profile">
+            <p class="block py-2 pr-4 pl-3 text-white md:text-white text-base md:p-0 dark:text-white">
+              Profile
+            </p>
+          </Link>
+          <p
+            class="block py-2 pr-4 pl-3 text-white md:text-white text-base md:p-0 dark:text-white cursor-pointer"
+            onClick={handleLogout}
+          >
+            Logout
+          </p>
         </div>
       </div>
     </nav>
