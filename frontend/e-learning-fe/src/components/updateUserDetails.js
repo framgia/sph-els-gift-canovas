@@ -112,7 +112,7 @@ function UpdateUserDetails() {
   }, []);
 
   return (
-    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
+    <div className="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
       <ToastContainer
         position="top-right"
@@ -125,7 +125,7 @@ function UpdateUserDetails() {
         draggable
         pauseOnHover
       />
-      <div class="grid gap-6 mb-6 md:grid-cols-2 p-3">
+      <div className="grid gap-6 mb-6 md:grid-cols-2 p-3">
         <div>
           <label
             htmlFor="username"
@@ -244,7 +244,7 @@ function UpdateUserDetails() {
       </div>
       <button
         onClick={handleDone}
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
             focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-32 p-3 ml-2
             sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
