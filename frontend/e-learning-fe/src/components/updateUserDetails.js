@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import API from "../api";
 import Navbar from "./navbar";
+
+const { REACT_APP_BASE_URL } = process.env;
 
 function UpdateUserDetails() {
   const location = useLocation();
@@ -24,7 +26,10 @@ function UpdateUserDetails() {
   const [email, setEmail] = useState(propEmail);
   const [password, setPassword] = useState(propPassword);
   const [confirmPassword, setConfirmPassword] = useState(propConfirmPassword);
-
+  const [url, setUrl] = useState("");
+  const [profile, setProfile] = useState();
+  const [hasProfile, setHasProfile] = useState();
+  const [image, setImage] = useState();
   const token = localStorage.getItem("token");
 
   const handleDone = async () => {
@@ -52,6 +57,59 @@ function UpdateUserDetails() {
         });
       });
   };
+  const uploadPicture = async () => {
+    const uploadData = new FormData();
+    uploadData.append("title", username);
+    uploadData.append("picture", image, image.name);
+    uploadData.append("username", username);
+    if (hasProfile === true) {
+      await API.userDetails
+        .editUploadProfile({
+          id: profile.id,
+          body: uploadData,
+          token,
+        })
+        .then((data) => {
+          setProfile(data.data);
+          setUrl(`${REACT_APP_BASE_URL}${data.data.picture}`);
+        });
+    } else {
+      await API.userDetails
+        .uploadProfile({
+          body: uploadData,
+          token,
+        })
+        .then((data) => {
+          setProfile(data.data);
+          setUrl(`${REACT_APP_BASE_URL}${data.data.picture}`);
+          setHasProfile(true);
+        });
+    }
+  };
+
+  const fetchData = async () => {
+    await API.userDetails
+      .getUserDetails({
+        username,
+        token,
+        follower: "none",
+        following: "none",
+      })
+      .then((data) => {
+        if (data.data.profile_details === "None") {
+          setProfile("None");
+          setHasProfile(false);
+        } else {
+          setUrl(`${REACT_APP_BASE_URL}${data.data.profile_details.picture}`);
+          setProfile(data.data.profile_details);
+          setHasProfile(true);
+        }
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
@@ -70,15 +128,15 @@ function UpdateUserDetails() {
       <div class="grid gap-6 mb-6 md:grid-cols-2 p-3">
         <div>
           <label
-            for="username"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            htmlFor="username"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Username
           </label>
           <input
             type="text"
             id="username"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={username}
@@ -89,15 +147,15 @@ function UpdateUserDetails() {
         </div>
         <div>
           <label
-            for="first_name"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            htmlFor="first_name"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             First name
           </label>
           <input
             type="text"
             id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={firstname}
@@ -108,15 +166,15 @@ function UpdateUserDetails() {
         </div>
         <div>
           <label
-            for="last_name"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            htmlFor="last_name"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Last name
           </label>
           <input
             type="text"
             id="last_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={lastname}
@@ -127,15 +185,15 @@ function UpdateUserDetails() {
         </div>
         <div>
           <label
-            for="email"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            htmlFor="email"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Email
           </label>
           <input
             type="text"
             id="email"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={email}
@@ -147,15 +205,15 @@ function UpdateUserDetails() {
 
         <div>
           <label
-            for="password"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            htmlFor="password"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Password
           </label>
           <input
             type="password"
             id="password"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={password}
@@ -166,15 +224,15 @@ function UpdateUserDetails() {
         </div>
         <div>
           <label
-            for="confirm_password"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            htmlFor="confirm_password"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Confirm Password
           </label>
           <input
             type="password"
             id="confirm_password"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={confirmPassword}
