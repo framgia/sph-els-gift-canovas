@@ -352,6 +352,11 @@ class DeleteCategory(generics.DestroyAPIView):
     serializer_class = CategorySerializer
     lookup_field = "id"
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"Successfully Deleted"})
+
 
 class AddWordAndchoices(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -388,6 +393,11 @@ class AddWordAndchoices(generics.CreateAPIView):
 class DeleteWord(generics.DestroyAPIView):
     queryset = Word.objects.all()
     lookup_field = "id"
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"Successfully Deleted"})
 
 
 class EditWordAndChoices(generics.UpdateAPIView):
