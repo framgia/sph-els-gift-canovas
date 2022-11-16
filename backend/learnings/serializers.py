@@ -1,6 +1,13 @@
 from rest_framework import serializers
 
-from .models import Category, EUser, UserActivityLog, UserAnswer, Word
+from .models import (
+    Category,
+    EUser,
+    UserActivityLog,
+    UserAnswer,
+    UserProfilePicture,
+    Word,
+)
 
 
 class EUserSerializer(serializers.ModelSerializer):
@@ -95,7 +102,14 @@ class UserActivityLogSerializer(serializers.ModelSerializer):
                 "category_name": category_name,
             }
 
+
 class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
         fields = ["id", "category_id", "word", "correct_answer"]
+
+
+class UserProfilePictureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfilePicture
+        fields = ["id", "title", "picture", "user_id"]

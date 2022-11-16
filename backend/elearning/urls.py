@@ -1,6 +1,7 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-
 from learnings.views import (
     AddCategory,
     AddNewFollower,
@@ -22,6 +23,8 @@ from learnings.views import (
     QuizResults,
     RegisterView,
     RemoveFollower,
+    UpdateProfilePicture,
+    UploadProfilePicture,
     UserAnswerView,
     UserDetails,
     WordsLearned,
@@ -55,4 +58,7 @@ urlpatterns = [
     path("delete_word/<int:id>", DeleteWord.as_view()),
     path("edit_word_choices/<int:id>", EditWordAndChoices.as_view()),
     path("admin_users/<str:username>", AdminUserList.as_view()),
+    path("upload_profile_picture/", UploadProfilePicture.as_view()),
+    path("update_profile_picture/<int:id>", UpdateProfilePicture.as_view()),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

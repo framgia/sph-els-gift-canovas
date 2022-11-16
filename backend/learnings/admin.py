@@ -8,6 +8,7 @@ from .models import (
     QuizTaken,
     UserActivityLog,
     UserAnswer,
+    UserProfilePicture,
     Word,
 )
 
@@ -17,5 +18,6 @@ admin.site.register(EUser)
 admin.site.register(Follow)
 admin.site.register(QuizTaken)
 admin.site.register(UserActivityLog)
+admin.site.register(UserProfilePicture)
 admin.site.register(UserAnswer)
 admin.site.register(Word)

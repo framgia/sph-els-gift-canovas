@@ -17,6 +17,7 @@ from .models import (
     QuizTaken,
     UserActivityLog,
     UserAnswer,
+    UserProfilePicture,
     Word,
 )
 from .serializers import (
@@ -25,6 +26,7 @@ from .serializers import (
     EUserSerializer,
     UserActivityLogSerializer,
     UserAnswerSerializer,
+    UserProfilePictureSerializer,
     WordSerializer,
 )
 
@@ -185,17 +187,32 @@ class UserDetails(APIView):
     def get(self, request, username, follower_username, following_username):
         user = EUser.objects.get(username=username)
         serializer = EUserSerializer(user)
+        try:
+            image = UserProfilePicture.objects.get(user_id=user)
+            serializer_image = UserProfilePictureSerializer(image)
+            profile_details = serializer_image.data
+        except Exception:
+            profile_details = "None"
         if follower_username != "none" or following_username != "none":
             try:
                 Follow.objects.get(
                     follower_id__username=follower_username,
                     following_id__username=following_username,
                 )
-                content = {"status": "unfollow", "data": serializer.data}
+                content = {
+                    "status": "unfollow",
+                    "data": serializer.data,
+                    "profile_details": profile_details,
+                }
             except Exception:
-                content = {"status": "follow", "data": serializer.data}
+                content = {
+                    "status": "follow",
+                    "data": serializer.data,
+                    "profile_details": profile_details,
+                }
             return Response(content)
-        return Response(serializer.data)
+        content = {"data": serializer.data, "profile_details": profile_details}
+        return Response(content)
 
 
 class EditUserDetails(generics.UpdateAPIView):
@@ -431,4 +448,40 @@ class AdminUserList(APIView):
     def get(self, request, username):
         user = EUser.objects.filter(is_admin=True).exclude(username=username)
         serializer = EUserSerializer(user, many=True)
+        return Response(serializer.data)
+
+
+class UploadProfilePicture(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def post(self, request, *args, **kwargs):
+        title = request.data["title"]
+        picture = request.data["picture"]
+        username = request.data["username"]
+        get_user = EUser.objects.get(username=username)
+        new_image = UserProfilePicture.objects.create(
+            title=title, picture=picture, user_id=get_user
+        )
+        serializer = UserProfilePictureSerializer(new_image)
+        return Response(serializer.data)
+
+
+class UpdateProfilePicture(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    queryset = UserProfilePicture.objects.all()
+    serializer_class = UserProfilePictureSerializer
+    lookup_field = "id"
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        title = request.data["title"]
+        picture = request.data["picture"]
+        username = request.data["username"]
+        instance.title = title
+        instance.picture = picture
+        instance.username = EUser.objects.get(username=username)
+        instance.save()
+        serializer = UserProfilePictureSerializer(instance)
         return Response(serializer.data)
