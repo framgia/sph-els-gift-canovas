@@ -446,7 +446,6 @@ class UploadProfilePicture(APIView):
     authentication_classes = [TokenAuthentication]
 
     def post(self, request, *args, **kwargs):
-        print("request.data", request.data)
         title = request.data["title"]
         picture = request.data["picture"]
         username = request.data["username"]
