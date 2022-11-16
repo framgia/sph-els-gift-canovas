@@ -62,42 +62,42 @@ function Dashboard() {
   }, []);
 
   return (
-    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
+    <div className="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-      <h5 class="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 className="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Dashboard
       </h5>
-      <div class="flex flex-col place-items-center">
+      <div className="flex flex-col place-items-center">
         <div
-          class="inline-flex overflow-hidden relative justify-center items-center 
+          className="inline-flex overflow-hidden relative justify-center items-center 
                   w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600 \"
         >
-          <span class="text-7xl text-gray-600 dark:text-gray-300">
+          <span className="text-7xl text-gray-600 dark:text-gray-300">
             {hasProfile ? (
-              <img class="w-32 h-32 rounded-full" src={profile}></img>
+              <img className="w-32 h-32 rounded-full" src={profile}></img>
             ) : (
               username[0].toUpperCase()
             )}
           </span>
         </div>
-        <p class="mt-3 text-3xl text-center text-gray-900 dark:text-black">
+        <p className="mt-3 text-3xl text-center text-gray-900 dark:text-black">
           {username}
         </p>
-        <div class="flex flex-row space-x-4">
+        <div className="flex flex-row space-x-4">
           <Link to="/words-learned">
-            <p class="text-base text-gray-900 dark:text-black underline cursor-pointer ">
+            <p className="text-base text-gray-900 dark:text-black underline cursor-pointer ">
               Learned {wordsLearned} Words
             </p>
           </Link>
-          <p class="text-base text-gray-900 dark:text-black underline ">
+          <p className="text-base text-gray-900 dark:text-black underline ">
             Learned {lessonsLearned} Lessons
           </p>
         </div>
-        <div class="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5">
+        <div className="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5">
           {isLoading ? (
-            <div class="text-center">
+            <div className="text-center">
               <svg
-                class="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                className="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -117,36 +117,41 @@ function Dashboard() {
               <div key={activity.id}>
                 {activity.activity_description === "follow" ||
                 activity.activity_description === "unfollow" ? (
-                  <div class="flex flex-row place-content-between">
-                    <div class="flex flex-row space-x-2">
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                  <div className="flex flex-row place-content-between">
+                    <div className="flex flex-row space-x-2">
+                      <h3 className="tracking-tighter text-blue-800  md:text-lg ">
                         {activity.user}
                       </h3>
-                      <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                      <p className="tracking-tighter text-gray-500 md:text-lg dark:text-black">
                         {activity.activity_description}
                       </p>
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                      <h3 className="tracking-tighter text-blue-800  md:text-lg ">
                         {activity.follow}
                       </h3>
                     </div>
-                    <ReactTimeAgo date={activity.created_at} locale="en-US" />
+                    <ReactTimeAgo
+                      date={new Date(activity.created_at)}
+                      locale="en-US"
+                    />
                   </div>
                 ) : (
-                  <div class="flex flex-row place-content-between">
-                    <div class="flex flex-row space-x-2">
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                  <div className="flex flex-row place-content-between">
+                    <div className="flex flex-row space-x-2">
+                      <h3 className="tracking-tighter text-blue-800  md:text-lg ">
                         {activity.user}
                       </h3>
-                      <p class="tracking-tighter text-gray-500 md:text-lg dark:text-black">
+                      <p className="tracking-tighter text-gray-500 md:text-lg dark:text-black">
                         learned {activity.quiz.total_check_answers} of{" "}
                         {activity.quiz.total_words} words in
                       </p>
-                      <h3 class="tracking-tighter text-blue-800  md:text-lg ">
+                      <h3 className="tracking-tighter text-blue-800  md:text-lg">
                         {activity.quiz.category_name}
                       </h3>
                     </div>
-
-                    <ReactTimeAgo date={activity.created_at} locale="en-US" />
+                    <ReactTimeAgo
+                      date={new Date(activity.created_at)}
+                      locale="en-US"
+                    />
                   </div>
                 )}
               </div>
