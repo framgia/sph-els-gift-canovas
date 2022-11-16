@@ -72,7 +72,7 @@ function AdminAddWordAndChoices() {
   };
 
   return (
-    <div class="p-6 bg-gray-300 h-screen">
+    <div class="bg-gray-300 h-screen cursor-default">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -85,148 +85,150 @@ function AdminAddWordAndChoices() {
         pauseOnHover
       />
       <Navbar />
-      <p class="text-4xl font-bold text-gray-900 dark:text-black py-6 mt-12">
-        Add Word and Choices
-      </p>
-      <div class="flex flex-row space-x-4 ">
-        <div class="flex flex-col">
-          <div>
-            <label
-              for="word"
-              class="block mb-2 text-sm font-medium text-black dark:text-black"
-            >
-              Word
-            </label>
-            <input
-              type="text"
-              id="word"
-              class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
+      <div class="p-6">
+        <p class="text-4xl font-bold text-gray-900 dark:text-black">
+          Add Word and Choices
+        </p>
+        <div class="flex flex-row space-x-4">
+          <div class="flex flex-col">
+            <div>
+              <label
+                for="word"
+                class="block mb-2 text-sm font-medium text-black dark:text-black"
+              >
+                Word
+              </label>
+              <input
+                type="text"
+                id="word"
+                class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => {
-                setWord(e.target.value);
-                checkFields();
-              }}
-            />
-          </div>
-          <div>
-            <label
-              for="correctAnswer"
-              class="block mb-2 text-sm font-medium text-black dark:text-black"
-            >
-              Correct Answer
-            </label>
-            <input
-              type="text"
-              id="correctAnswer"
-              class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
+                onChange={(e) => {
+                  setWord(e.target.value);
+                  checkFields();
+                }}
+              />
+            </div>
+            <div>
+              <label
+                for="correctAnswer"
+                class="block mb-2 text-sm font-medium text-black dark:text-black"
+              >
+                Correct Answer
+              </label>
+              <input
+                type="text"
+                id="correctAnswer"
+                class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => {
-                setCorrectAnswer(e.target.value);
-                checkFields();
-              }}
-            />
-          </div>
-        </div>
-
-        <div class="flex flex-col">
-          <div>
-            <label
-              for="choiceA"
-              class="block mb-2 text-sm font-medium text-black dark:text-black"
-            >
-              Choice A
-            </label>
-            <input
-              type="text"
-              id="choiceA"
-              class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
-                border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
-                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                dark:focus:border-blue-500"
-              onChange={(e) => {
-                setChoiceA(e.target.value);
-                checkFields();
-              }}
-            />
+                onChange={(e) => {
+                  setCorrectAnswer(e.target.value);
+                  checkFields();
+                }}
+              />
+            </div>
           </div>
 
-          <div>
-            <label
-              for="choiceB"
-              class="block mb-2 text-sm font-medium text-black dark:text-black"
-            >
-              Choice B
-            </label>
-            <input
-              type="text"
-              id="choiceB"
-              class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
+          <div class="flex flex-col">
+            <div>
+              <label
+                for="choiceA"
+                class="block mb-2 text-sm font-medium text-black dark:text-black"
+              >
+                Choice A
+              </label>
+              <input
+                type="text"
+                id="choiceA"
+                class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => {
-                setChoiceB(e.target.value);
-                checkFields();
-              }}
-            />
-          </div>
-          <div>
-            <label
-              for="choiceC"
-              class="block mb-2 text-sm font-medium text-black dark:text-black"
-            >
-              Choice C
-            </label>
-            <input
-              type="text"
-              id="choiceC"
-              class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
+                onChange={(e) => {
+                  setChoiceA(e.target.value);
+                  checkFields();
+                }}
+              />
+            </div>
+
+            <div>
+              <label
+                for="choiceB"
+                class="block mb-2 text-sm font-medium text-black dark:text-black"
+              >
+                Choice B
+              </label>
+              <input
+                type="text"
+                id="choiceB"
+                class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => {
-                setChoiceC(e.target.value);
-                checkFields();
-              }}
-            />
-          </div>
-          <div>
-            <label
-              for="choiceD"
-              class="block mb-2 text-sm font-medium text-black dark:text-black"
-            >
-              Choice D
-            </label>
-            <input
-              type="text"
-              id="choiceD"
-              class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
+                onChange={(e) => {
+                  setChoiceB(e.target.value);
+                  checkFields();
+                }}
+              />
+            </div>
+            <div>
+              <label
+                for="choiceC"
+                class="block mb-2 text-sm font-medium text-black dark:text-black"
+              >
+                Choice C
+              </label>
+              <input
+                type="text"
+                id="choiceC"
+                class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
                 border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                 dark:focus:border-blue-500"
-              onChange={(e) => {
-                setChoiceD(e.target.value);
-                checkFields();
-              }}
-            />
+                onChange={(e) => {
+                  setChoiceC(e.target.value);
+                  checkFields();
+                }}
+              />
+            </div>
+            <div>
+              <label
+                for="choiceD"
+                class="block mb-2 text-sm font-medium text-black dark:text-black"
+              >
+                Choice D
+              </label>
+              <input
+                type="text"
+                id="choiceD"
+                class="block p-2 w-80 text-gray-900 bg-gray-50 rounded-lg 
+                border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-500 
+                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                dark:focus:border-blue-500"
+                onChange={(e) => {
+                  setChoiceD(e.target.value);
+                  checkFields();
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <button
-        type="button"
-        class={`mt-3 text-white focus:outline-none focus:ring-4 focus:ring-blue-300 
-        font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 ${
+        <button
+          type="button"
+          class={`mt-3 text-white focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-full text-sm px-8 py-2.5 text-center mr-2 mb-2 ${
           isDisableAdd ? "bg-gray-700 " : "bg-blue-700"
         }`}
-        onClick={handleAddWordChoices}
-        disabled={isDisableAdd}
-      >
-        Add
-      </button>
+          onClick={handleAddWordChoices}
+          disabled={isDisableAdd}
+        >
+          Add
+        </button>
+      </div>
     </div>
   );
 }
