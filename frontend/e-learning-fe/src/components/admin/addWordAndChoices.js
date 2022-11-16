@@ -31,6 +31,7 @@ function AdminAddWordAndChoices() {
   };
 
   const handleAddWordChoices = async () => {
+    setIsDisableAdd(true);
     await API.word
       .addWordChoices({
         word,
@@ -65,6 +66,9 @@ function AdminAddWordAndChoices() {
           });
         }
       });
+    setTimeout(() => {
+      setIsDisableAdd(false);
+    }, 2000);
   };
 
   return (
