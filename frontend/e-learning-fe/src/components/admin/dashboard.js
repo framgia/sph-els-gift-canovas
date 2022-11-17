@@ -49,7 +49,7 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <div className="bg-gray-300 md:h-screen lg:h-screen cursor-default">
+    <div class="bg-gray-300 min-h-fit cursor-default">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -62,7 +62,7 @@ function AdminDashboard() {
         pauseOnHover
       />
       <Navbar />
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-2">
+      <h5 class="sticky top-20 z-50 text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-2">
         Categories
       </h5>
 
@@ -71,8 +71,8 @@ function AdminDashboard() {
           <Loader />
         </div>
       ) : (
-        <div className="relative lg:mx-auto">
-          <div className="w-full flex justify-end">
+        <div class="lg:mx-auto min-h-screen">
+          <div class="w-full flex justify-end">
             <Link to="/admin-add-category">
               <button className="mt-2 inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                 <span className="px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
