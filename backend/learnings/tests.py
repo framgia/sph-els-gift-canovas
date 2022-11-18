@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
-from .models import Category
+from .models import Category, EUser
 
 
 class CategoryAPIViewTests(APITestCase):
@@ -56,4 +56,45 @@ class CategoryAPIViewTests(APITestCase):
     def test_get_category_per_user(self):
         response = self.client.get(self.category_per_user_url)
         self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.status_code, 200)
+
+
+class UserDetailsAPIViewTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create(
+            username="Becs",
+            email="email@gmail.com",
+            first_name="firstname",
+            last_name="lastname",
+            password="canovas#123",
+        )
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
+        new_user = EUser.objects.create(
+            username="Becs",
+            firstname="Rebbeca",
+            lastname="Evans",
+            email="rebeccaevans@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=False,
+        )
+        self.user_details_url = reverse("user_details", args=[self.user.username, "none", "none"])
+        self.edit_details_url = reverse("edit_user_details", args=[new_user.id])
+
+    def test_get_user_details(self):
+        response = self.client.get(self.user_details_url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_patch_user_details(self):
+        data = {
+            "username": "Becs",
+            "firstname": "Rebbeca Lander",
+            "lastname": "Evangelista",
+            "email": "rebeccaevans@gmail.com",
+            "password": "canovas#123",
+            "confirm_password": "canovas#123",
+            "is_admin": False,
+        }
+        response = self.client.patch(self.edit_details_url, data, format="json")
         self.assertEqual(response.status_code, 200)
