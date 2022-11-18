@@ -33,8 +33,10 @@ from learnings.views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", LoginView.as_view()),
-    path("category/<str:user>/", DisplayCategoryWithUserFilter.as_view(), name="category_per_user"),
-    path("follow/", AddNewFollower.as_view()),
+    path(
+        "category/<str:user>/", DisplayCategoryWithUserFilter.as_view(), name="category_per_user"
+    ),
+    path("follow/", AddNewFollower.as_view(), name="follow"),
     path("get_words/<int:category_id>", GetWordsPerCategory.as_view()),
     path("not_admin_users/<str:username>", NotAdminUserList.as_view()),
     path("register/", RegisterView.as_view()),
@@ -43,13 +45,21 @@ urlpatterns = [
     path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
     path("quiz_results/<str:username>", QuizResults.as_view()),
     path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
-    path("unfollow/<str:follower_username>/<str:following_username>/", RemoveFollower.as_view()),
+    path(
+        "unfollow/<str:follower_username>/<str:following_username>/",
+        RemoveFollower.as_view(),
+        name="unfollow",
+    ),
     path(
         "user_details/<str:username>/<str:follower_username>/<str:following_username>/",
         UserDetails.as_view(),
     ),
-    path("number_of_followers_following/<str:username>/", NumberOfFollowersFollowing.as_view()),
     path("category_list/", CategoryList.as_view(), name="category_list"),
+    path(
+        "number_of_followers_following/<str:username>/",
+        NumberOfFollowersFollowing.as_view(),
+        name="number_of_followers_following",
+    ),
     path("words_learned/<str:username>", WordsLearned.as_view()),
     path("add_category/", AddCategory.as_view(), name="add_category"),
     path("edit_category/<int:id>", EditCategory.as_view(), name="edit_category"),
