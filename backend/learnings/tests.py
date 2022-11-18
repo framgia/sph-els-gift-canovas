@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
-from .models import Category
+from .models import Category, EUser
 
 
 class CategoryAPIViewTests(APITestCase):
@@ -55,5 +55,67 @@ class CategoryAPIViewTests(APITestCase):
 
     def test_get_category_per_user(self):
         response = self.client.get(self.category_per_user_url)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.status_code, 200)
+
+
+class UsersAPIViewTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create(
+            username="Becs",
+            email="email@gmail.com",
+            first_name="firstname",
+            last_name="lastname",
+            password="canovas#123",
+        )
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
+        self.not_admin_user1 = EUser.objects.create(
+            username="Becs",
+            firstname="Rebbeca",
+            lastname="Evans",
+            email="rebeccaevans@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=False,
+        )
+        self.not_admin_user2 = EUser.objects.create(
+            username="Trisha",
+            firstname="Trisha",
+            lastname="Duron",
+            email="trishaduron@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=False,
+        )
+        self.admin_user1 = EUser.objects.create(
+            username="Pif",
+            firstname="Pif",
+            lastname="Villaro",
+            email="piffa@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=True,
+        )
+        self.admin_user2 = EUser.objects.create(
+            username="James",
+            firstname="James",
+            lastname="Rodwin",
+            email="jamesrodwin@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=True,
+        )
+
+        self.not_admin_users_url = reverse("not_admin_users", args=[self.not_admin_user1.username])
+        self.admin_users_url = reverse("admin_users", args=[self.admin_user1.username])
+
+    def test_get_not_admin_user_list(self):
+        response = self.client.get(self.not_admin_users_url)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_admin_user_list(self):
+        response = self.client.get(self.admin_users_url)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.status_code, 200)
