@@ -33,7 +33,9 @@ from learnings.views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", LoginView.as_view()),
-    path("category/<str:user>/", DisplayCategoryWithUserFilter.as_view(), name="category_per_user"),
+    path(
+        "category/<str:user>/", DisplayCategoryWithUserFilter.as_view(), name="category_per_user"
+    ),
     path("follow/", AddNewFollower.as_view()),
     path("get_words/<int:category_id>", GetWordsPerCategory.as_view()),
     path("not_admin_users/<str:username>", NotAdminUserList.as_view()),
@@ -50,10 +52,10 @@ urlpatterns = [
     ),
     path("number_of_followers_following/<str:username>/", NumberOfFollowersFollowing.as_view()),
     path("category_list/", CategoryList.as_view(), name="category_list"),
-    path("words_learned/<str:username>", WordsLearned.as_view()),
     path("add_category/", AddCategory.as_view(), name="add_category"),
     path("edit_category/<int:id>", EditCategory.as_view(), name="edit_category"),
     path("delete_category/<int:id>", DeleteCategory.as_view(), name="delete_category"),
+    path("words_learned/<str:username>", WordsLearned.as_view(), name="words_learned"),
     path("add_words_choices/", AddWordAndchoices.as_view()),
     path("delete_word/<int:id>", DeleteWord.as_view()),
     path("edit_word_choices/<int:id>", EditWordAndChoices.as_view()),
