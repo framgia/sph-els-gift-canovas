@@ -56,4 +56,20 @@ class CategoryAPIViewTests(APITestCase):
     def test_get_category_per_user(self):
         response = self.client.get(self.category_per_user_url)
         self.assertEqual(len(response.data), 1)
+
+
+class SignUpAPIViewTests(APITestCase):
+    def test_post_sign_up(self):
+        register_url = reverse("register")
+        data = {
+            "username": "Becs",
+            "firstname": "Rebbeca",
+            "lastname": "Evans",
+            "email": "rebeccaevans@gmail.com",
+            "password": "canovas#123",
+            "confirm_password": "canovas#123",
+            "is_admin": True,
+        }
+        response = self.client.post(register_url, data, format="json")
+        self.assertEqual(response.data, {"message": "Account Registered"})
         self.assertEqual(response.status_code, 200)
