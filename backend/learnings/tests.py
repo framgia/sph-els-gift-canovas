@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
@@ -6,11 +7,11 @@ from .models import Category
 
 
 class CategoryAPIViewTests(APITestCase):
-    add_category_url = "http://127.0.0.1:8000/add_category/"
-    category_list_url = "http://127.0.0.1:8000/category_list/"
-    category_per_user_url = "http://127.0.0.1:8000/category/"
-    delete_category_url = "http://127.0.0.1:8000/delete_category/"
-    edit_category_url = "http://127.0.0.1:8000/edit_category/"
+    add_category_url = reverse("add_category")
+    category_list_url = reverse("category_list")
+    category_per_user_url = reverse("category_per_user", args=["Becs"])
+    delete_category_url = reverse("delete_category", args=[1])
+    edit_category_url = reverse("edit_category", args=[1])
 
     def setUp(self):
         self.user = User.objects.create(
@@ -37,23 +38,23 @@ class CategoryAPIViewTests(APITestCase):
 
     def test_get_category_list(self):
         response = self.client.get(self.category_list_url)
+        self.assertEqual(len(response.data), 1)
         self.assertEqual(response.status_code, 200)
 
     def test_patch_category(self):
-        id = "1"
         data = {
             "category_name": "Category Testing 1 Update",
             "description": "Category Testing 1 Description Update",
         }
-        response = self.client.patch(f"{self.edit_category_url}{id}", data, format="json")
+        response = self.client.patch(self.edit_category_url, data, format="json")
         self.assertEqual(response.status_code, 200)
 
     def test_delete_category(self):
-        id = "1"
-        response = self.client.delete(f"{self.delete_category_url}{id}")
+        response = self.client.delete(self.delete_category_url)
+        self.assertEqual(response.data, {"Successfully Deleted"})
         self.assertEqual(response.status_code, 200)
 
     def test_get_category_per_user(self):
-        user = "Becs"
-        response = self.client.get(f"{self.category_per_user_url}{user}/")
+        response = self.client.get(self.category_per_user_url)
+        self.assertEqual(len(response.data), 1)
         self.assertEqual(response.status_code, 200)
