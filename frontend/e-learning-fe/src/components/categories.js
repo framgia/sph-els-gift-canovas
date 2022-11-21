@@ -29,20 +29,20 @@ function Categories() {
   }, []);
 
   return (
-    <div class="p-6 bg-gray-300 h-screen cursor-default">
+    <div className="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
-      <h5 class="mb-2 mt-12 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+      <h5 className="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Categories
       </h5>
 
       {isLoading ? (
-        <div class="text-center mt-44">
+        <div className="text-center mt-44">
           <Loader />
         </div>
       ) : (
-        <div class="flex flex-row w-full flex flex-wrap place-content-center">
+        <div className="flex flex-row w-full flex flex-wrap place-content-center">
           {category.length === 0 ? (
-            <p class="text-4xl text-center mt-44 font-semibold">
+            <p className="text-4xl text-center mt-44 font-semibold">
               No Categories
             </p>
           ) : (
@@ -50,19 +50,19 @@ function Categories() {
               {category.map((cat, i) => (
                 <div
                   key={i}
-                  class="p-6 m-8 w-80 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-700"
+                  className="p-6 m-8 w-80 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-700"
                 >
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">
                     {cat.category_name}
                   </h5>
 
-                  <p class="mb-3 font-normal text-white dark:text-white">
+                  <p className="mb-3 font-normal text-white dark:text-white">
                     {cat.description}
                   </p>
                   <Link to="/answer" state={{ categoryId: cat.id }}>
-                    <a class="text-center ml-56 w-24 py-2 px-3 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <span className="text-center ml-56 w-24 py-2 px-3 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                       Start
-                    </a>
+                    </span>
                   </Link>
                 </div>
               ))}
