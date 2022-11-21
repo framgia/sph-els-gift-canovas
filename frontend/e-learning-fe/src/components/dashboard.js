@@ -96,7 +96,7 @@ function Dashboard() {
         </div>
         <div className="space-y-4 h-4/5 w-3/5 p-4 border-t-4 border-gray-900 mt-5">
           {isLoading ? (
-            <div class="text-center">
+            <div className="text-center">
               <Loader />
             </div>
           ) : (
