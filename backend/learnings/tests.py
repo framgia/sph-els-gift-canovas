@@ -7,12 +7,6 @@ from .models import Category
 
 
 class CategoryAPIViewTests(APITestCase):
-    add_category_url = reverse("add_category")
-    category_list_url = reverse("category_list")
-    category_per_user_url = reverse("category_per_user", args=["Becs"])
-    delete_category_url = reverse("delete_category", args=[1])
-    edit_category_url = reverse("edit_category", args=[1])
-
     def setUp(self):
         self.user = User.objects.create(
             username="Becs",
@@ -23,10 +17,15 @@ class CategoryAPIViewTests(APITestCase):
         )
         self.token = Token.objects.create(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
-        Category.objects.create(
+        category = Category.objects.create(
             category_name="Category Testing 1",
             description="Category Testing 1 Description",
         )
+        self.add_category_url = reverse("add_category")
+        self.category_list_url = reverse("category_list")
+        self.category_per_user_url = reverse("category_per_user", args=[self.user.username])
+        self.delete_category_url = reverse("delete_category", args=[category.id])
+        self.edit_category_url = reverse("edit_category", args=[category.id])
 
     def test_post_category(self):
         data = {
