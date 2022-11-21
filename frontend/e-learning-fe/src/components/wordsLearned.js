@@ -2,16 +2,37 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api";
 import Navbar from "./navbar";
+const { REACT_APP_BASE_URL } = process.env;
 
 function WordsLearned() {
   const [listOfWordsLearned, setListOfWordsLearned] = useState([]);
   const [wordsLearned, seWordsLearned] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [profile, setProfile] = useState();
+  const [hasProfile, setHasProfile] = useState();
 
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
   const fetchData = async () => {
+    await API.userDetails
+      .getUserDetails({
+        username,
+        token,
+        follower: "none",
+        following: "none",
+      })
+      .then((data) => {
+        if (data.data.profile_details === "None") {
+          setProfile("None");
+          setHasProfile(false);
+        } else {
+          setProfile(
+            `${REACT_APP_BASE_URL}${data.data.profile_details.picture}`
+          );
+          setHasProfile(true);
+        }
+      });
     await API.word
       .getWordsLearned({
         username,
@@ -41,10 +62,14 @@ function WordsLearned() {
       <h5 className="p-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
         Words Learned
       </h5>
-      <div className="flex flex-col place-items-center">
-        <div className="inline-flex overflow-hidden relative justify-center items-center w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600">
-          <span className="text-7xl text-gray-600 dark:text-gray-300">
-            {username[0].toUpperCase()}
+      <div class="flex flex-col place-items-center">
+        <div class="inline-flex overflow-hidden relative justify-center items-center w-32 h-32 bg-gray-100 rounded-full dark:bg-gray-600">
+          <span class="text-7xl text-gray-600 dark:text-gray-300">
+            {hasProfile ? (
+              <img className="w-32 h-32 rounded-full" src={profile}></img>
+            ) : (
+              username[0].toUpperCase()
+            )}
           </span>
         </div>
         <p className="mt-3 text-3xl text-center text-gray-900 dark:text-black">
