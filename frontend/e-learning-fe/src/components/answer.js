@@ -73,59 +73,59 @@ function Answer() {
   }, []);
 
   return (
-    <div class="bg-gray-300 md:h-screen lg:h-screen cursor-default">
+    <div className="bg-gray-300 md:h-screen lg:h-screen cursor-default">
       <Navbar />
       {isLoading ? (
-        <div class="text-center mt-44">
+        <div className="text-center mt-44">
           <Loader />
         </div>
       ) : (
         <>
           {userAnswers.length !== wordsLength && (
-            <div class="flex flex-col place-items-center cursor-default mt-10">
-              <div class="flex flex-row space-x-72">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+            <div className="flex flex-col place-items-center cursor-default mt-10">
+              <div className="flex flex-row space-x-72">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                   {words.category_name}
                 </h5>
-                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                <h4 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                   {index + 1} of {wordsLength}
                 </h4>
               </div>
-              <p class="text-4xl font-semibold text-gray-900 dark:text-blackl text-center mt-10">
+              <p className="text-4xl font-semibold text-gray-900 dark:text-blackl text-center mt-10">
                 {words.words[index].word}
               </p>
 
-              <div class="flex flex-row mt-12 space-x-12">
+              <div className="flex flex-row mt-12 space-x-12">
                 <button
                   onClick={() => nextIndex(words.words[index].choice_a)}
-                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
                 >
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_a}
                   </span>
                 </button>
                 <button
                   onClick={() => nextIndex(words.words[index].choice_b)}
-                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
                 >
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_b}
                   </span>
                 </button>
 
                 <button
                   onClick={() => nextIndex(words.words[index].choice_c)}
-                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
                 >
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_c}
                   </span>
                 </button>
                 <button
                   onClick={() => nextIndex(words.words[index].choice_d)}
-                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
                 >
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     {words.words[index].choice_d}
                   </span>
                 </button>
