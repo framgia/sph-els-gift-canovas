@@ -36,7 +36,7 @@ urlpatterns = [
     path("category/<str:user>/", DisplayCategoryWithUserFilter.as_view(), name="category_per_user"),
     path("follow/", AddNewFollower.as_view()),
     path("get_words/<int:category_id>", GetWordsPerCategory.as_view()),
-    path("not_admin_users/<str:username>", NotAdminUserList.as_view()),
+    path("not_admin_users/<str:username>", NotAdminUserList.as_view(),name="not_admin_users"),
     path("register/", RegisterView.as_view()),
     path("results/<int:quiz_taken_id>", GetResults.as_view()),
     path("user_answer/", UserAnswerView.as_view()),
@@ -57,7 +57,7 @@ urlpatterns = [
     path("add_words_choices/", AddWordAndchoices.as_view()),
     path("delete_word/<int:id>", DeleteWord.as_view()),
     path("edit_word_choices/<int:id>", EditWordAndChoices.as_view()),
-    path("admin_users/<str:username>", AdminUserList.as_view()),
+    path("admin_users/<str:username>", AdminUserList.as_view(), name ='admin_users'),
     path("upload_profile_picture/", UploadProfilePicture.as_view()),
     path("update_profile_picture/<int:id>", UpdateProfilePicture.as_view()),
 ]
