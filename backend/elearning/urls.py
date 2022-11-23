@@ -42,7 +42,11 @@ urlpatterns = [
     path("user_answer/", UserAnswerView.as_view()),
     path("edit_user_details/<int:id>/", EditUserDetails.as_view()),
     path("quiz_results/<str:username>", QuizResults.as_view()),
-    path("activity_log/<str:page>/<str:username>/", GetUserActivityLog.as_view()),
+    path(
+        "activity_log/<str:page>/<str:username>/",
+        GetUserActivityLog.as_view(),
+        name="activity_log",
+    ),
     path("unfollow/<str:follower_username>/<str:following_username>/", RemoveFollower.as_view()),
     path(
         "user_details/<str:username>/<str:follower_username>/<str:following_username>/",

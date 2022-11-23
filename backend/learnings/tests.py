@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
-from .models import Category
+from .models import Category, EUser, Follow, UserActivityLog
 
 
 class CategoryAPIViewTests(APITestCase):
@@ -56,4 +56,52 @@ class CategoryAPIViewTests(APITestCase):
     def test_get_category_per_user(self):
         response = self.client.get(self.category_per_user_url)
         self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.status_code, 200)
+
+
+class GetUserActivityLogAPIViewTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create(
+            username="Becs",
+            email="email@gmail.com",
+            first_name="firstname",
+            last_name="lastname",
+            password="canovas#123",
+        )
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
+
+        follower_id = EUser.objects.create(
+            username="Becs",
+            firstname="Rebbeca",
+            lastname="Evans",
+            email="rebeccaevans@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=False,
+        )
+        following_id = EUser.objects.create(
+            username="Pif",
+            firstname="Pif",
+            lastname="Villaro",
+            email="piffa@gmail.com",
+            password="canovas#123",
+            confirm_password="canovas#123",
+            is_admin=False,
+        )
+        Follow.objects.create(follower_id=follower_id, following_id=following_id)
+        UserActivityLog.objects.create(
+            user_id=follower_id, follow_id=following_id, activity_description="follow"
+        )
+
+    def test_get_user_dashboard_activity_log(self):
+        page = "dashboard"
+        activity_log_url = reverse("activity_log", args=[page, self.user.username])
+        response = self.client.get(activity_log_url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_user_profile_activity_log(self):
+        page = "profile"
+        activity_log_url = reverse("activity_log", args=[page, self.user.username])
+        response = self.client.get(activity_log_url)
         self.assertEqual(response.status_code, 200)
